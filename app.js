@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.get('/',(req,res)=>{
-    res.send("Home Page");
+    res.render("pages/home.ejs");
 })
 
 app.get('/about', (req,res)=>{
