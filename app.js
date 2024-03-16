@@ -25,7 +25,7 @@ res.send('About Page')
 })
 
 app.get('/blog', (req,res)=>{
-res.send('Blog Paage')
+res.render('pages/blog.ejs')
 })
 
 app.get('/login', (req,res)=>{
