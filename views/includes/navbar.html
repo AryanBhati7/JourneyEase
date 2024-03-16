@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JourneyEase</title>
+    <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+    <div class="progressbar_wrap">
+        <div class="progressbar" id="progressbar"></div>
+    </div>
+    <header>
+        <!--/PROGRESS-->
+        <div class="headercontent">
+
+            <a href="#" class="logo">
+                <img src="Projects\JourneyEase\public\assets\logo.png" alt="logo" />
+            </a>
+
+            <div class="menuicons" style="display:none;">
+                <a href="javascript:void();" class="shownav">
+                    <span class="fa-solid fa-bars"></span>
+                </a>
+                <a href="javascript:void();" class="hidenav" style="display:none;">
+                    <span class="fa-solid fa-times"></span>
+                </a>
+            </div>
+            <nav class="headernav" id="headnav">
+                <ul>
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#price">Blog</a></li>
+                    <li><a href="#About">About Us</a></li>
+                    <li><a href="#SignUp">Sign Up</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <script>
+        var lightbox = new SimpleLightbox('.picgallery a', {});
+        var menuid = '#headnav';
+        var gaptop = 135;
+        var scrollspeed = 1200;
+        var menu_active_class = 'active';
+        function progressscroll() {
+            let viewportscroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let scrollheight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (viewportscroll / scrollheight) * 100;
+            document.getElementById("progressbar").style.width = scrolled + "%";
+        }
+        window.onscroll = function () {
+            progressscroll();
+        }; 
+    </script>
+</body>
+
+</html>
