@@ -4,10 +4,10 @@ const path = require("path");
 const port = 8080;
 const methodOverride = require("method-override")
 const ejsMate = require("ejs-mate")
-//const favicon = require("serve-favicon")
+const favicon = require("serve-favicon")
 
 
-//app.use(favicon(path.join(__dirname, 'public', '/Assests/favicon')))
+app.use(favicon(path.join(__dirname, 'public', '/assets/favicon.ico')))
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
