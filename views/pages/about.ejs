@@ -1,0 +1,99 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+
+<style>
+    .about {
+        /* display: flex; */
+        background-image: url('/assets/About-UsBackground.png');
+        padding: 5% 10%;
+        height: 100vh;
+        background-size: cover; /* Changed from contain to cover */
+        background-position: center; /* Added this line */
+    }
+
+    .about-left {
+        width: 50%;
+    }
+
+    .about-left h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .about-left p {
+        font-size: 1.5rem;
+    }
+
+    .right {
+        width: 50%;
+    }
+
+    .faq {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5% 10%;
+        height: 100vh;
+        background-image: url('/assets/FAQ.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .faq-left {
+        width: 50%;
+        background-image: url('/assets/FAQ.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .faq-right {
+        width: 50%;
+        padding: 2rem;
+    }
+
+    .faq-questions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .faq-question {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .faq-question h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .faq-question p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+   
+</style>
+<div class="about">
+    <div class="about-left">
+        <h1>About Us</h1>
+        <p>
+            JourneyEase is a travel agency that provides a platform for users to book their travel tickets and hotel rooms. We provide a wide range of options for our users to choose from. We also provide a platform for users to share their travel experiences and reviews. We are committed to providing the best travel experience to our users.
+        </p>
+        
+    </div>
+    <div class="right">
+        <!-- <img src="/assets/About-UsBackground.png" alt="about-img"> -->
+    </div>
+</div>
+<div class="faq">
+    <div class="faq-left"></div>
+    <div class="faq-right">
+        <div class="faq-questions">
+            <div class="faq-question">
+            <h2>Q.What is the price of a russian girl</h2><i class="fa-solid fa-plus"></i>
+                <p class="hide">It is priceless</p>
+            </div>
+        </div>
+    </div>
+</div>
