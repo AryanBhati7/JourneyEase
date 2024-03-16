@@ -1,17 +1,52 @@
-.progressbar_wrap {
-  position: fixed;
-  width: 100%;
-  height: 2px;
-  left: 0;
-  top: 0;
-  z-index: 10;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
-.progressbar {
-  position: absolute;
-  width: 0%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: #fff1da;
+
+nav {
+  height: 60px;
+  color: #51565e;
 }
-/* PROGRESS BAR */
+
+.logo-div {
+  float: left;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 0 10px;
+  line-height: 60px;
+}
+
+nav ul li a {
+  margin-left: 15px;
+  color: #51565e;
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+nav ul li .signup-btn {
+  border: 0.5px solid black;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+nav ul li .signup-btn:hover {
+  border: 0.5px solid black;
+  background-color: #51565e;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+nav ul li a:hover {
+  color: #f1a501;
+}
