@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   background-image: url(/assets/hero-bg.svg);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .hero-text {
