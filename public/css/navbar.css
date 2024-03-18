@@ -21,7 +21,6 @@ nav.scrolled {
   z-index: 100;
   background: rgba(255, 255, 255, 0.8); /* change this to the color you want */
   backdrop-filter: blur(8px);
-  height: 4.2rem; /* adjust as needed */
 }
 
 .logo-navbar {
