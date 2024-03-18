@@ -13,6 +13,9 @@ nav {
   justify-content: space-between;
   width: 100%;
 }
+nav.scrolled {
+  margin-top: 20px;
+}
 
 .logo-navbar {
   height: 6rem;
