@@ -11,10 +11,17 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 95vw;
+  height: 10rem;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 nav.scrolled {
-  margin-top: 20px;
+  position: fixed;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.8); /* change this to the color you want */
+  backdrop-filter: blur(8px);
+  height: 4.2rem; /* adjust as needed */
 }
 
 .logo-navbar {

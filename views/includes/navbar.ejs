@@ -20,6 +20,12 @@
         </div>
     </nav>
 </header>
+<script>
+    window.addEventListener('scroll', function () {
+        var nav = document.querySelector('nav');
+        nav.classList.toggle('scrolled', window.scrollY > 0);
+    });
+</script>
 
 <!-- <script>
         var lightbox = new SimpleLightbox('.picgallery a', {});
