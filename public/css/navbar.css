@@ -22,7 +22,7 @@ nav {
 
 .logo-navbar {
   height: 6rem;
-  width: 15rem;
+  width: 16rem;
   position: relative;
   left: 42px;
 }
@@ -42,6 +42,7 @@ nav ul li {
 }
 
 nav ul li a {
+  font-weight: bold;
   margin-left: 15px;
   color: #51565e;
   text-decoration: none;
