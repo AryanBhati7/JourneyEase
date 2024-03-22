@@ -1,0 +1,59 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <br><br>
+        <h3 class="offset-2">Creat a New Blog</h3>
+        <br>
+        <form method="POST" action="/blog" novalidate class="needs-validation" enctype="multipart/form-data">
+
+            <div id="post-container">
+    
+                <div id="image-preview-container"></div>
+                <label for="file-input" id="file-label">Select Image</label>
+                <input type="file" id="file-input" name="Blog[images][]" multiple accept="image/*" onchange="previewImage(event)">
+    
+            <!-- <div class="mb-3 col-md-4">
+                <label for="image" class="form-label">Upload Image</label>
+                <input id="image" name="listing[image]" type="file"
+                    class="form-control" required>
+            </div> -->
+
+            <div class="mb-3">
+                <label for="destination" class="form-label">Destination</label>
+                <input id="title" name="blog[destination]" placeholder="Enter Title" type="text" class="form-control" required>
+                <div class="valid-feedback">Title Looks Good</div>
+                <div class="invalid-feedback">Please Enter A Title</div>
+            </div>
+
+
+            <div class="row">
+                <div class="mb-3 col-md-4" >
+                    <label for="budget" class="form-label">Budget</label>
+                    <input id="budget" name="blog[budget]" placeholder=" 1200,etc" 
+                        class="form-control"required>
+                        <div class="invalid-feedback">Budget Should be  Valid </div>
+                </div>
+                <div class="mb-3 col-md-8 " >
+                    <label for="state" class="form-label">State</label>
+                    <input id="state" name="blog[state]" placeholder="Enter State You Visited" type="text"
+                        class="form-control" required>
+                        <div class="invalid-feedback">State Should be Valid </div>
+                </div>
+            </div>
+           
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input id="country" name="blog[country]" placeholder="Enter Country" class="form-control" required>
+                <div class="invalid-feedback">Country Name Should be valid</div>
+            </div>
+            <div class="mb-3">
+                <label for="experience" class="form-label">Experience</label>
+                <textarea id="experience" name="blog[experience]" type="text" class="form-control" placeholder="Enter your experience of your adventure trip" required></textarea>
+                <div class="invalid-feedback">Please Enter A Short Experience</div>
+            </div>
+            <button class="btn  btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
