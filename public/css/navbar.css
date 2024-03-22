@@ -1,15 +1,12 @@
 nav {
-  /* height: 5rem; */
-  /* color: #51565e; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  background-color: white;
+  width: 100vw;
 }
 
 nav.scrolled {
-  width: 100vw;
   position: fixed;
   z-index: 100;
   background: rgba(255, 255, 255, 0.8);
@@ -46,6 +43,7 @@ nav ul li a {
 }
 
 nav .signup-btn {
+  margin-right: 65px;
   margin-left: 150px;
   border: 0.5px solid black;
   padding: 5px 10px;
