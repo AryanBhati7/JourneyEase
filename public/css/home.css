@@ -1,3 +1,12 @@
+.home-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
 .hero-container {
   padding-top: 250px;
   height: 702px;
@@ -74,4 +83,18 @@
   background-color: #f17945;
   color: white;
   box-shadow: 0 1.25rem 2.1875rem 0 rgba(241, 165, 1, 0.15);
+}
+
+.find-more-btn:hover {
+  background-color: #f17945;
+  color: white;
+}
+
+.three-step-container {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
 }
