@@ -4,15 +4,17 @@ nav {
   align-items: center;
   padding: 0 30px;
   width: 100vw;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
+  padding-top: 25px;
+  background: transparent;
 }
-
+/* 
 nav.scrolled {
   z-index: 100;
-  background: rgba(255, 255, 255, 0.4);
-}
+  background: rgba(255, 255, 255, 0.5);
+} */
 
 .logo-navbar {
   height: 4rem;
@@ -43,22 +45,96 @@ nav ul li a {
   text-decoration: none;
   font-size: 1.3rem;
 }
-
 nav .signup-btn {
   margin-right: 65px;
   margin-left: 150px;
-  border: 0.5px solid black;
-  padding: 5px 10px;
-  border-radius: 3px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  background-color: #f17945;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+nav .signup-btn .icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease-in-out;
 }
 
 nav .signup-btn:hover {
-  border: 0.5px solid black;
-  background-color: #51565e;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 3px;
+  transform: scale(1.05);
+  border-color: #fff9;
 }
+
+nav .signup-btn:hover .icon {
+  transform: translate(4px);
+}
+
+nav .signup-btn:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+nav .signup-btn::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+/* nav .signup-btn {
+  border: none;
+  width: 110px;
+  background-color: #f17945;
+  color: white;
+  border-radius: 50px;
+  margin-right: 65px;
+  margin-left: 150px;
+  padding: 5px 10px;
+}
+
+nav .signup-btn:hover {
+  width: 110px;
+  border: 0.5px solid black;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+} */
 
 nav ul li a:hover {
   color: #f1a501;
