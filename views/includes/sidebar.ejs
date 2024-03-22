@@ -1,0 +1,133 @@
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    }
+
+    .sidemenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 19rem;
+        background-color: #000;
+        transition: 0.5s;
+    }
+
+    .side-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        height: 100%;
+        padding: 1rem;
+        color: #fff;
+        margin-left: 20px;
+    }
+
+    .up {
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .up a {
+        text-decoration: none;
+        color: #fff;
+
+
+    }
+
+    .up a div {
+        padding: 0.8rem;
+        margin: 0.8rem;
+        border-radius: 4rem;
+        background-color: #000;
+        transition: 0.5s;
+        font-size: 1.4rem;
+        display: inline-block;
+        /* border: 1px solid #fff; */
+    }
+
+    .up a div:hover {
+        background-color: #4e4e4e;
+        cursor: pointer;
+    }
+
+    .down{
+        display: flex;
+        flex-direction: column;
+    }
+    .down a{
+        text-decoration: none;
+        color: #fff;
+    
+    }
+
+    .down a div{
+        padding: 0.8rem;
+        margin-top: 1.6rem;
+        border-radius: 4rem;
+        background-color: #000;
+        transition: 0.5s;
+        font-size: 1.4rem;
+        display: inline-block;
+        /* border: 1px solid #fff; */
+    }
+    .down a div:hover{
+        background-color: #4e4e4e;
+        cursor: pointer;
+    }
+
+    #btn div {
+        background-color: #1DA1F2; 
+        color: #fff; 
+        padding-right: 1.7rem;
+        padding-left: 1.7rem;
+    }
+
+    #btn div:hover {
+        background-color: #0b8ed4;
+    }
+</style>
+
+
+<div class="sidemenu">
+    <div class="side-content">
+        <div class="up">
+            <a href="#">
+                <div>JourneyEase</div>
+            </a>
+            <a href="#">
+                <div><i class="fa-solid fa-house"></i> Home</div>
+            </a>
+            <a href="#">
+                <div><i class="fa-solid fa-plane"></i> Plan Your trip</div>
+            </a>
+            <a href="#">
+                <div><i class="fa-solid fa-bell"></i> Notification</div>
+            </a>
+            <a href="#">
+                <div><i class="fa-solid fa-gear"></i> Setting</div>
+            </a>
+            <a href="#">
+                <div><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+            </a>
+            <a id="btn" type="btn" href="/blog/form">
+                <div><i class="fa-solid fa-plus"></i> Post</div>
+            </a>
+        </div>
+        <div class="down">
+            <a href="#">
+                <div><i class="fa-solid fa-circle-info"></i> Help</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/637810c134.js" crossorigin="anonymous"></script>
