@@ -8,8 +8,10 @@ const favicon = require("serve-favicon")
 const session = require("express-session");
 const mongoose = require("mongoose");
 const Blog = require("./models/blog.models");
-
 const MongoStore = require("connect-mongo");
+const multer = require("multer")
+const {storage} = require("./cloudConfig");
+const upload = multer({storage});
 
 const MONGO_URL = "mongodb+srv://arjun12345bhandari:D4igTLqjmffPe9oN@cluster3.iolho9r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster3";
 
@@ -98,9 +100,48 @@ app.get('/about', (req,res)=>{
 res.render('pages/about.ejs')
 })
 
-app.get('/blog', (req,res)=>{
-res.render('pages/blog.ejs')
+app.get('/blog', async (req,res)=>{
+  const allBlog = await Blog.find({});
+res.render('pages/blog.ejs',{allBlog});
 })
+
+app.post('/blog',upload.array('Blog[images][]', 6),async (req,res)=>{
+  try{
+
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+
+    const images = req.files.map(file => {
+      return {
+        url: file.path, // Assuming you want to store the URL/path of the uploaded file
+        filename: file.filename // Assuming you want to store the filename of the uploaded file
+      };
+    });
+    // const url = req.file.path[0];
+    // const filename = req.file.filename;
+    const newBlog = new Blog(req.body.blog);
+    newBlog.images = images;
+    const saveBlog = await newBlog.save();
+    console.log(saveBlog);
+    res.redirect("/blog");
+  }catch (error) {
+    console.log(error.stack);
+    res.status(500).send("Error uploading files");
+  }
+ 
+})
+
+app.get("/blog/form",(req,res)=>{
+  res.render("pages/createBlog.ejs");
+})
+
+app.get('/blog/:id',(req,res,)=>{
+  //Full Blog Will be seen here 
+  let id = req.params;
+  res.send(id);
+})
+
 
 app.get('/login', (req,res)=>{
     res.send('Login Page')
