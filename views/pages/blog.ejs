@@ -1,92 +1,61 @@
 <% layout('/layouts/boilerplate.ejs') -%>
 
 <style>
-  .outerbox{
+  .outerbox {
     display: flex;
-    margin: 3rem ;
+    margin: 3rem;
   }
   .inner-box {
     width: 40%;
-    display: flex;  
-    justify-content: space-evenly;
+    display: flex;
+    flex: 1 1 auto;
     padding: 1rem;
     background-color: aliceblue;
   }
-  .img-box img{
+  .img-box img {
     height: 16rem;
     width: auto;
     border-radius: 1rem;
   }
-  .createBtn{
+  .createBtn {
     margin: 2rem 0 3rem 3rem;
+  }
+  .title-box {
+    width: 100%;
+  }
+
+  .exp {
+    word-wrap: break-word; /* Wrap long texts */
+    /* Add additional styling as needed */
+  }
+
+  .price-btn {
+    padding: 0 1.5rem 0 1.5rem;
+    height: 4rem;
   }
 </style>
 
-<a href="" class=" btn btn-dark createBtn"> Create post</a>
+<a href="/blog/form" class="btn btn-primary createBtn"> Create blog</a>
+
+<% for(let blog of allBlog){%>
 <div class="outerbox">
-<div class="img-box" >
-  <img src="assets/girl.jpeg" alt="" >
-</div>
-<div class="inner-box">
-
-  <div class="title-box">
-    <h5>Bali Trip</h5>
-    <ul>
-      <li>Country</li>
-      <li>State</li>
-      <li>Budget: &#8377; <b>500</b></li>
-    </ul>
-  </div>
-
-  <div class="price-btn">
-    <a href="" class="btn btn-primary ">Read Blog</a>
-  </div>
-  
-</div>
-</div>
-
-
-<div class="outerbox">
-  <div class="img-box" >
-    <img src="assets/girl.jpeg" alt="" >
+  <div class="img-box">
+    <img src="<%=blog.images[0] .url%>" alt="BlogImage" />
+    <img src="<%=blog.images[1] .url%>" alt="BlogImage" />
   </div>
   <div class="inner-box">
-  
     <div class="title-box">
-      <h5>Bali Trip</h5>
+      <h5><%= blog.destination %></h5>
       <ul>
-        <li>Country</li>
-        <li>State</li>
-        <li>Budget: &#8377; <b>500</b></li>
+        <li>Country:<%= blog.country%></li>
+        <li>State:<%= blog.state%></li>
+        <li>Budget: &#8377; <b><%= blog.budget %></b></li>
+        <li class="exp">Experience:<%= blog.experience %></li>
       </ul>
     </div>
-  
-    <div class="price-btn">
-      <a href="" class="btn btn-primary ">Read Blog</a>
-    </div>
-    
   </div>
-  </div>
+</div>
 
 
-  <div class="outerbox">
-    <div class="img-box" >
-      <img src="assets/girl.jpeg" alt="" >
-    </div>
-    <div class="inner-box">
-    
-      <div class="title-box">
-        <h5>Bali Trip</h5>
-        <ul>
-          <li>Country</li>
-          <li>State</li>
-          <li>Budget: &#8377; <b>500</b></li>
-        </ul>
-      </div>
-    
-      <div class="price-btn">
-        <a href="" class="btn btn-primary ">Read Blog</a>
-      </div>
-      
-    </div>
-    </div>
+<%}%>
+

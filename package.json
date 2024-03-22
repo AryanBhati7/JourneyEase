@@ -9,6 +9,7 @@
   "author": "Arnabjk008,Aryan,Arjun",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.21.0",
     "connect-mongo": "^5.1.0",
     "ejs": "^3.1.9",
     "ejs-mate": "^4.0.0",
@@ -16,6 +17,8 @@
     "express-session": "^1.18.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.2.2",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
     "path": "^0.12.7",
     "serve-favicon": "^2.5.0"
   }
