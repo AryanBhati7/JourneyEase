@@ -4,8 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(/assets/hero-bg.svg);
-  background-size: contain;
+  background-image: url(/assets/hero_1.png);
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -34,7 +34,7 @@
 .hero-text h1 {
   font-family: "Volkhov", "DM Serif Display", cursive;
   font-weight: 700;
-  color: #181e4b;
+  color: white;
   margin-bottom: 5px;
   position: relative;
   font-size: 5rem;

@@ -17,6 +17,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.2.2",
     "path": "^0.12.7",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "session": "^0.1.0"
   }
 }
