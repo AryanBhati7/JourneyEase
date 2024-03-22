@@ -20,6 +20,7 @@
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
     "path": "^0.12.7",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "session": "^0.1.0"
   }
 }

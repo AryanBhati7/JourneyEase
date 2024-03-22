@@ -1,31 +1,38 @@
-.home-container {
-  height: 100%;
-  width: 100%;
+.hero-container {
+  padding-top: 250px;
+  height: 702px;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(/assets/hero-bg.svg);
-  background-size: contain;
+  background-image: url(/assets/hero_1.png);
+  background-size: cover;
   background-repeat: no-repeat;
+}
+.hero-container::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .hero-text {
   margin-top: 10%;
   margin-left: 5%;
-  width: 50%;
+  width: 100%;
   height: 764px;
 }
 
-.hero-img {
-  width: 50%;
-  justify-content: end;
-}
 .hero-subtitle {
   font-size: 1.5rem;
   font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
-  color: #db4444;
+  color: #f17945;
   margin-bottom: 5px;
   position: relative;
   z-index: 1;
@@ -34,7 +41,7 @@
 .hero-text h1 {
   font-family: "Volkhov", "DM Serif Display", cursive;
   font-weight: 700;
-  color: #181e4b;
+  color: white;
   margin-bottom: 5px;
   position: relative;
   font-size: 5rem;
@@ -42,6 +49,9 @@
 }
 
 .hero-text p {
+  position: absolute;
+  color: white;
+  z-index: 100;
   font-size: 1.2rem;
   font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
@@ -49,6 +59,9 @@
 }
 
 .find-more-btn {
+  margin-top: 20px;
+  position: absolute;
+  z-index: 100;
   font-size: 1.2rem;
   font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
@@ -58,7 +71,7 @@
   width: 180px;
   border-radius: 5px;
   border: none;
-  background-color: #f1a501;
+  background-color: #f17945;
   color: white;
   box-shadow: 0 1.25rem 2.1875rem 0 rgba(241, 165, 1, 0.15);
 }
