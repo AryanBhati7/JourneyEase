@@ -9,6 +9,7 @@ nav {
   left: 0;
   padding-top: 25px;
   background: transparent;
+  z-index: 100;
 }
 /* 
 nav.scrolled {
