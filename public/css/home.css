@@ -213,5 +213,61 @@
   color: #f17945;
 }
 .recent-post-text .recent-post-readmore:hover {
-  color: #ff8b60; /* Change this to the color you want on hover */
+  color: #ff8b60;
+}
+
+.Write-Your-Own-Blog {
+  height: 30rem;
+  padding-top: 50px;
+  padding-left: 8%;
+  width: 100%;
+  display: flex;
+}
+
+.Write-Your-Own-Blog .text {
+  width: 43%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Write-Your-Own-Blog .text h1 {
+  font-size: 2.7rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.Write-Your-Own-Blog .text .write-blog-btn {
+  margin-right: 23rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  background-color: #f17945;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+}
+.Write-Your-Own-Blog .text .write-blog-btn a {
+  color: white;
+  text-decoration: none;
+}
+.Write-Your-Own-Blog .blog-img {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Write-Your-Own-Blog .blog-img img {
+  scale: 3.5;
+  border-radius: 20px;
+  width: 80px;
 }
