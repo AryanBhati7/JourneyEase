@@ -173,3 +173,22 @@
   height: 168px;
   width: 300px;
 }
+
+.recent-posts {
+  padding-top: 50px;
+  margin-left: 8%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.recent-posts .recent-posts-head {
+  font-size: 2.7rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.recent-posts .recent-posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
