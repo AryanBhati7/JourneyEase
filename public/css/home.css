@@ -1,3 +1,12 @@
+.home-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* background-color: #f8f9fa; */
+}
+
 .hero-container {
   padding-top: 250px;
   height: 702px;
@@ -22,7 +31,7 @@
 
 .hero-text {
   margin-top: 10%;
-  margin-left: 5%;
+  margin-left: 8%;
   width: 100%;
   height: 764px;
 }
@@ -74,4 +83,93 @@
   background-color: #f17945;
   color: white;
   box-shadow: 0 1.25rem 2.1875rem 0 rgba(241, 165, 1, 0.15);
+}
+
+.find-more-btn:hover {
+  background-color: #f17945;
+  color: white;
+}
+
+.three-step-container {
+  padding-top: 50px;
+  /* padding-left: 150px; */
+  margin-left: 8%;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center;
+  align-items: center; */
+  /* background-color: #f8f9fa; */
+}
+
+.three-step-container .step-text {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.step-text .step-head-text {
+  margin-bottom: 20px;
+}
+.step-text .step-head-text h1 {
+  font-size: 2.7rem;
+  font-weight: bold;
+}
+.step-text .step-1,
+.step-2,
+.step-3 {
+  display: flex;
+}
+.step-1 .step-1-text,
+.step-2 .step-2-text,
+.step-3 .step-3-text {
+  margin-left: 20px;
+  line-height: 1.2;
+  /* display: flex; */
+}
+
+.step-1 .step-1-img,
+.step-2 .step-2-img,
+.step-3 .step-3-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  height: 55px;
+  width: 55px;
+}
+
+.step-1 .step-1-img {
+  background-color: #f1a501;
+}
+.step-2 .step-2-img {
+  background-color: #f17945;
+}
+.step-3 .step-3-img {
+  background-color: #749afc;
+}
+
+.step-1 .step-1-img img,
+.step-2 .step-2-img img,
+.step-3 .step-3-img img {
+  height: 35px;
+  width: 35px;
+}
+
+.three-step-container .step-img {
+  margin-right: 30px;
+  width: 100px;
+  background-image: url(assets/step/bg.png);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.step-img img {
+  border-radius: 20px;
+  height: 168px;
+  width: 300px;
 }
