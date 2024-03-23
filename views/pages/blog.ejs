@@ -1,6 +1,9 @@
 <% layout('/layouts/boilerplate.ejs') -%>
 
 <style>
+  .box{
+    margin-top:10rem;
+  }
   .outerbox {
     display: flex;
     margin: 3rem;
@@ -34,14 +37,12 @@
     height: 4rem;
   }
 </style>
-<div class=" mt-5">
-  <a href="/blog/form" class="btn btn-primary createBtn"> Create blog</a>
-</div>
 
 
-
+<div class="box">
+  <a href="/logout" >Logout</a>
 <% for(let blog of allBlog){%>
-<div class="outerbox">
+<div class="outerbox ">
   <div class="img-box">
     <img src="<%=blog.images[0] .url%>" alt="BlogImage" />
   </div>
@@ -60,4 +61,4 @@
 
 
 <%}%>
-
+</div>

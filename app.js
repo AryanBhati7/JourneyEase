@@ -96,16 +96,14 @@ app.get('/about', (req, res) => {
   res.render('pages/about.ejs')
 })
 
-app.get('/sidebar', (req, res) => {
-  res.render('includes/sidebar.ejs')
-})
-app.get('/dashboard', (req, res) => {
+
+app.get('/dashboard', isLoggedIn,(req, res) => {
   res.render('dashboard/dashboard.ejs')
 })
 app.get('/blog', async (req, res) => {
   const allBlog = await Blog.find({});
   res.render('pages/blog.ejs', { allBlog });
-})
+});
 
 app.post('/blog', upload.array('Blog[images][]', 6), async (req, res) => {
   try {
@@ -134,7 +132,7 @@ app.post('/blog', upload.array('Blog[images][]', 6), async (req, res) => {
 
 })
 
-app.get("/blog/form", (req, res) => {
+app.get("/blog/form", isLoggedIn,(req, res) => {
   res.render("pages/createBlog.ejs");
 })
 
@@ -152,8 +150,8 @@ app.get('/login', (req, res) => {
 app.post("/login",saveRedirectUrl,passport.authenticate("local",
 { failureRedirect:"/login",
 failureFlash:true }),(req,res,next)=>{
-  req.flash("success","Welcome Back to Dhphotography");
-  let redirectUrl = res.locals.redirectUrl || "/";
+  req.flash("success","Welcome Back to JourneyEase");
+  let redirectUrl = res.locals.redirectUrl || "/dashboard";
   res.redirect(redirectUrl);
 })
 
@@ -172,7 +170,7 @@ app.post("/signup",async(req,res,next)=>{
             return next(err);
         }
     req.flash("success","Welcome to JourneyEase");
-    res.redirect("/");
+    res.redirect("/dashboard");
     });
 }catch(err){
     req.flash("error",err.message);
