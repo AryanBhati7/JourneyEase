@@ -9,9 +9,17 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const Blog = require("./models/blog.models");
 const MongoStore = require("connect-mongo");
+const flash = require("connect-flash");
+const ExpressError = require("./utils/ExpressError.js");
+const { saveRedirectUrl,isLoggedIn } = require("./middleware.js");
+const wrapAsync = require("./utils/wrapAsync.js");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/users.model.js");
 const multer = require("multer")
 const { storage } = require("./cloudConfig");
 const upload = multer({ storage });
+
 
 const MONGO_URL = "mongodb+srv://arjun12345bhandari:D4igTLqjmffPe9oN@cluster3.iolho9r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster3";
 
@@ -62,34 +70,22 @@ const sessionOption = {
 };
 
 app.use(session(sessionOption));
-
-//   const newBlog = new Blog({
-//     images: [
-//         { url: 'https://images.pexels.com/photos/20567522/pexels-photo-20567522/free-photo-of-an-aerial-view-of-the-lake-and-mountains.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load', 
-//         filename: 'image_1.jpg'
-//      },
-//         { url: 'https://images.pexels.com/photos/20567522/pexels-photo-20567522/free-photo-of-an-aerial-view-of-the-lake-and-mountains.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-//          filename: 'image_2.jpg'
-//          }
-//     ],
-//     destination: 'Destination',
-//     state: 'State',
-//     country: 'Country',
-//     budget: 1000,
-//     experience: 'Experience'
-// });
-
-// newBlog.save()
-//     .then(savedBlog => {
-//         console.log('Blog post saved successfully:', savedBlog);
-//     })
-//     .catch(err => {
-//         console.error('Error saving blog post:', err);
-//     });
+app.use(flash())
 
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
+});
 
 
 app.get('/', (req, res) => {
@@ -148,14 +144,59 @@ app.get('/blog/:id', (req, res,) => {
 
 
 app.get('/login', (req, res) => {
-  res.send('Login Page')
+  res.render('users/login.ejs')
+})
+
+app.post("/login",saveRedirectUrl,passport.authenticate("local",
+{ failureRedirect:"/login",
+failureFlash:true }),(req,res,next)=>{
+  req.flash("success","Welcome Back to Dhphotography");
+  let redirectUrl = res.locals.redirectUrl || "/";
+  res.redirect(redirectUrl);
 })
 
 app.get('/signup', (req, res) => {
-  res.send('Signup page')
+  res.render('users/signup.ejs')
+})
+
+app.post("/signup",async(req,res,next)=>{
+  try{
+    let {username, email, password,role} = req.body;
+    const newUser = new User({email,username,role});
+    let registerUser = await User.register(newUser, password);
+    console.log(registerUser);
+    req.login(registerUser,(err)=>{
+        if(err){
+            return next(err);
+        }
+    req.flash("success","Welcome to JourneyEase");
+    res.redirect("/");
+    });
+}catch(err){
+    req.flash("error",err.message);
+    res.redirect("/signup");
+}
+})
+
+app.get("/logout",(req,res,next)=>{
+  req.logout((err)=>{
+    if(err){
+        return next(err);
+    }
+    req.flash("success","You Logged Out!!");
+    res.redirect("/");
+});
 })
 
 
+app.all("*", (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found"));
+});
+
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something Went Wrong!" } = err;
+  res.status(statusCode).render("pages/error.ejs", { message });
+});
 
 app.listen(port, () => {
   console.log(`Server Running at ${port}`);

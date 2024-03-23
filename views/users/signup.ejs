@@ -1,0 +1,54 @@
+<% layout('/layouts/boilerplate.ejs') -%>
+<style>
+
+.outer{
+        display: flex;
+        justify-content: center;
+    
+    }
+
+    .color{
+        background: linear-gradient(217deg,rgb(71, 181, 255), rgb(223, 246, 255)),
+            linear-gradient(127deg,  rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);
+            padding: 1rem;
+         /* width: 70%; */
+         display: flex;
+         justify-content: center;
+         border-top-left-radius: 2rem;
+         border-bottom-right-radius: 2rem;
+         
+    }
+</style>
+<div class="outer mt-2">
+
+
+<div class="color col-md-6 col-sm-12">
+<div class="row  col-10 col-sm-12 row  p-2">
+    <h1 class="col-md-10 col-sm-12 offset-1">Register</h1>
+    <div class="col-md-10  col-sm-12 offset-1">
+            <form action="/signup" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input id="username" name="username" placeholder="Enter Username" type="text" class="form-control" required>
+                    <div class="valid-feedback"> Looks Good</div>
+                    <div class="invalid-feedback">Please Enter A Username</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" name="email" placeholder="Enter Email" type="email" class="form-control" required>
+                    
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" name="password" placeholder="Enter Password" type="password" class="form-control" required>
+                </div>
+                <button class="btn btn-success">SignUp</button>
+                <p class="mt-2">Already have an Account?<a href="/login">Login</a></p>
+            </form>
+    </div>
+</div>
+</div>
+</div>
