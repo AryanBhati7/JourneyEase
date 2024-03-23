@@ -1,0 +1,59 @@
+<%- include("../includes/sidebar.ejs") %>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .containers {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding-left: 20rem; /* Add padding to make room for the sidebar */
+    }
+
+    .blog-post {
+        border: 1px solid #ddd;
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #fff;
+        transition: 0.3s;
+    }
+
+    .blog-post:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow on hover */
+    }
+
+    .blog-post h2 {
+        margin-bottom: 10px;
+    }
+
+    .blog-post p {
+        line-height: 1.6;
+    }
+</style>
+
+<div class="containers">
+    <div class="blog-post">
+        <h2>Blog Post 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.</p>
+    </div>
+    <div class="blog-post">
+        <h2>Blog Post 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.</p>
+    </div>
+    <!-- Add more blog posts as needed -->
+</div>
+
+<script>
+    const blogs = document.querySelectorAll('.blog-post');
+    blogs.forEach(blg => {
+        blg.style.cursor = 'pointer';
+        blg.addEventListener("click", () => {
+            window.location.href = 'https://www.google.com';
+        });
+    });
+</script>
