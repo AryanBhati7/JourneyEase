@@ -103,7 +103,9 @@ app.get('/about', (req, res) => {
 app.get('/sidebar', (req, res) => {
   res.render('includes/sidebar.ejs')
 })
-
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard/dashboard.ejs')
+})
 app.get('/blog', async (req, res) => {
   const allBlog = await Blog.find({});
   res.render('pages/blog.ejs', { allBlog });
