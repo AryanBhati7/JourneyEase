@@ -1,64 +1,88 @@
 <% layout('/layouts/boilerplate.ejs') -%>
 
 <style>
-  .box{
-    margin-top:10rem;
+  body {
+    background-image: url('assets/blog.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
   }
-  .outerbox {
-    display: flex;
-    margin: 3rem;
-  }
-  .inner-box {
-    width: 40%;
-    display: flex;
-    flex: 1 1 auto;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    justify-items: center;
     padding: 1rem;
-    background-color: aliceblue;
   }
-  .img-box img {
-    height: 16rem;
-    width: auto;
+
+  .blog-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 10rem;
+  }
+
+  .blog-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .blog-card img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
     border-radius: 1rem;
   }
-  .createBtn {
-    margin: 2rem 0 3rem 3rem;
-  }
-  .title-box {
-    width: 100%;
+
+  .blog-card h5 {
+    margin-top: 1rem;
   }
 
-  .exp {
-    word-wrap: break-word; /* Wrap long texts */
-    /* Add additional styling as needed */
+  .blog-card ul {
+    list-style-type: none;
+    padding: 0;
   }
 
-  .price-btn {
-    padding: 0 1.5rem 0 1.5rem;
-    height: 4rem;
+  .read-more {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .read-more button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .read-more button:hover {
+    background-color: #0056b3;
   }
 </style>
 
-
-<div class="box">
-
-<% for(let blog of allBlog){%>
-<div class="outerbox ">
-  <div class="img-box">
-    <img src="<%=blog.images[0] .url%>" alt="BlogImage" />
-  </div>
-  <div class="inner-box">
-    <div class="title-box">
+<div class="container">
+  <% for(let blog of allBlog) { %>
+    <div class="blog-card">
+      <img src="<%= blog.images[0].url %>" alt="Blog Image">
       <h5><%= blog.destination %></h5>
       <ul>
-        <li>Country:<%= blog.country%></li>
-        <li>State:<%= blog.state%></li>
+        <li>Country: <%= blog.country %></li>
+        <li>State: <%= blog.state %></li>
         <li>Budget: &#8377; <b><%= blog.budget %></b></li>
-        <li class="exp">Experience:<%= blog.experience %></li>
+        <li class="exp">Experience: <%= blog.experience %></li>
       </ul>
     </div>
+  <% } %>
+  <div class="read-more">
+    <button>Read More</button>
   </div>
-</div>
-
-
-<%}%>
 </div>
