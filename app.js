@@ -97,8 +97,9 @@ app.get('/about', (req, res) => {
 })
 
 
-app.get('/dashboard', isLoggedIn,(req, res) => {
-  res.render('dashboard/dashboard.ejs')
+app.get('/dashboard', isLoggedIn,async (req, res) => {
+  const allBlog = await Blog.find ({});
+  res.render('dashboard/dashboard.ejs',{allBlog});
 })
 app.get('/blog', async (req, res) => {
   const allBlog = await Blog.find({});

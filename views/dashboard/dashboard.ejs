@@ -155,7 +155,7 @@
 </style>
 
 <div class="navbar">
-    <h1>My Blog</h1>
+    <h1 style="color: white;">My Blog </h1>
     <div class="search-container">
         <input type="text" placeholder="Search...">
         <button class="signup-btn">Search</button>
@@ -163,20 +163,17 @@
 </div>
 
 <div class="containers">
+    <% for(let blog of allBlog){%>
     <div class="blog-post">
-        <img src="assets/bg.png" alt="Blog Post 1">
+        <img src="<%=blog.images[0] .url%>" alt="Blog Post 1">
         <div class="info">
-            <h2>Destination</h2>
-            <b>Budget:&#8377;</b>
-            <p>State</p>
-            <p>Coutry</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, fugiat laudantium assumenda officiis ducimus eius harum nam quos praesentium, illo tempore doloribus deserunt cum iste consequatur delectus eligendi, aliquid veritatis?
-            Voluptas velit nulla saepe, dolore ea perspiciatis fugiat recusandae dignissimos nemo, accusamus quidem doloremque expedita debitis eaque vitae, quibusdam eveniet modi ratione deleniti dolor. Enim earum voluptatibus facere eveniet corrupti.
-            Ex saepe nam veniam, a ullam consequatur beatae suscipit minus harum id reiciendis vero porro deleniti consectetur doloribus officia praesentium aliquam impedit odio dignissimos nemo nesciunt quod quidem! Numquam, hic!
-            Assumenda libero, quasi consequatur ipsa laboriosam earum, expedita nulla asperiores odit ab tempora, aspernatur magni optio nesciunt deserunt maiores. Incidunt vel distinctio id at et, provident ad expedita aut dolor.
-            Accusamus autem dolorum impedit ipsa itaque explicabo harum enim eum amet perferendis quidem a, ex non earum cumque quam aperiam iste, voluptas minima ullam nesciunt voluptatibus? Voluptas laboriosam atque magnam!
-            Nisi recusandae iure, mollitia earum voluptate dolorem nulla ad neque. Possimus tenetur incidunt doloribus ullam illum atque aperiam omnis, corporis dicta, temporibus quasi ut. Corrupti sit ea neque laboriosam autem.</p>
+            <h2>Destination: <%= blog.destination %></h2>
+            <p><b>Budget:&#8377;: <%= blog.budget %> </b></p>
+            <p>State:<%blog.state%></p>
+            <p>Coutry:<%blog.country%></p>
+            <p>Exprience: <%blog.experience%></p>
         </div>
+        <%}%>
     </div>
     
 
