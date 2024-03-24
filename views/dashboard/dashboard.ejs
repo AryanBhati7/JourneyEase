@@ -43,17 +43,18 @@
         margin: auto;
         overflow: hidden;
         padding-left: 20rem;
-        background-color: #000;
+        background-color: #ededed;
     }
 
     .blog-post {
         display: flex;
-        border: 1px solid #FFA500;
+        /* border: 1px solid #FFA500; */
         margin: 20px 0;
         padding: 20px;
-        background-color: #000;
+        background-color: #3230304f;
         transition: 0.3s;
         border-radius: 10px;
+        width: 90%;
     }
 
     .blog-post:hover {
@@ -76,12 +77,12 @@
 
     .blog-post .info h2 {
         margin-bottom: 10px;
-        color: #FFA500;
+        color: #f56b1a;
     }
 
     .blog-post .info p {
         line-height: 1.6;
-        color: #fff;
+        color: #000000;
     }
 
     .navbar .signup-btn {
@@ -169,13 +170,15 @@
         <div class="info">
             <h2>Destination: <%= blog.destination %></h2>
             <p><b>Budget:&#8377;: <%= blog.budget %> </b></p>
-            <p>State:<%blog.state%></p>
-            <p>Coutry:<%blog.country%></p>
-            <p>Exprience: <%blog.experience%></p>
+            <p>State:<%= blog.state%></p>
+            <p>Coutry:<%=blog.country%></p>
+            <p>Exprience: <%=blog.experience%></p>
         </div>
-        <%}%>
+       
     </div>
-    
+    <%}%>
+
+</div>
 
 
 <script>
