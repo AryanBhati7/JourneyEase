@@ -4,7 +4,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
-  background: linear-gradient(to right, #f17945, white);
+  background: linear-gradient(to left, #ffb798, rgb(255, 205, 205));
   color: black;
 }
 .footer-left {
@@ -33,15 +33,8 @@ footer {
 }
 
 .footer-middle a:hover {
-  color: #f1a501;
+  color: #f17945;
 }
-
-.reserved {
-  color: black;
-  text-align: center;
-  padding: 10px;
-}
-
 .footer-middle div {
   display: flex;
   flex-direction: column;
@@ -49,4 +42,27 @@ footer {
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.socials-footer {
+  display: flex;
+  margin-top: 12px;
+  gap: 30px;
+}
+.socials-footer img {
+  width: 30px;
+  height: 30px;
+}
+.reserved {
+  color: black;
+  text-align: center;
+  padding: 10px;
 }
