@@ -1,54 +1,143 @@
 <% layout('/layouts/boilerplate.ejs') -%>
-<style>
+    <style>
+        body {
+            overflow: hidden;
+        }
 
-.outer{
-        display: flex;
-        justify-content: center;
-    
-    }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('assets/bg.png') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
 
-    .color{
-        background: linear-gradient(217deg,rgb(71, 181, 255), rgb(223, 246, 255)),
-            linear-gradient(127deg,  rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);
-            padding: 1rem;
-         /* width: 70%; */
-         display: flex;
-         justify-content: center;
-         border-top-left-radius: 2rem;
-         border-bottom-right-radius: 2rem;
-         
-    }
-</style>
-<div class="outer mt-2">
+        .signup-form {
+            width: 400px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-top: 5rem;
+        }
 
+        .signup-form h2 {
+            text-align: center;
+            color: #333;
+        }
 
-<div class="color col-md-6 col-sm-12">
-<div class="row  col-10 col-sm-12 row  p-2">
-    <h1 class="col-md-10 col-sm-12 offset-1">Register</h1>
-    <div class="col-md-10  col-sm-12 offset-1">
-            <form action="/signup" method="POST" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input id="username" name="username" placeholder="Enter Username" type="text" class="form-control" required>
-                    <div class="valid-feedback"> Looks Good</div>
-                    <div class="invalid-feedback">Please Enter A Username</div>
-                </div>
+        .signup-form input[type="text"],
+        .signup-form input[type="password"],
+        .signup-form input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" name="email" placeholder="Enter Email" type="email" class="form-control" required>
-                    
-                </div>
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input id="password" name="password" placeholder="Enter Password" type="password" class="form-control" required>
-                </div>
-                <button class="btn btn-success">SignUp</button>
-                <p class="mt-2">Already have an Account?<a href="/login">Login</a></p>
-            </form>
+        .signup-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .password-container,
+        .confirm-password-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .password-container input[type="password"],
+        .confirm-password-container input[type="password"] {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .error {
+            border: 1px solid red;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+
+    <div class="login-container">
+        <form  action="/signup" method="post" class="signup-form">
+            <h2>Sign Up</h2>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Enter your username" required>
+            <label for="email">Email</label>
+            <input id="email" type="email"  name="email" placeholder="Enter your email" required>
+            <label for="password">Password</label>
+            <div class="password-container">
+                <input id="password" name="password" type="password" placeholder="Enter your password" required>
+                <span id="toggle-password" class="toggle-visibility">👁️</span>
+            </div>
+            <label for="confirm-password">Confirm Password</label>
+            <div class="confirm-password-container">
+                <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm your password" required>
+                <span id="toggle-confirm-password" class="toggle-visibility">👁️</span>
+            </div>
+            <p id="password-error" class="error-message">Passwords do not match!</p>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </form>
     </div>
-</div>
-</div>
-</div>
+
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function (event) {
+            togglePasswordVisibility('password');
+        });
+
+        document.getElementById('toggle-confirm-password').addEventListener('click', function (event) {
+            togglePasswordVisibility('confirm-password');
+        });
+
+        function togglePasswordVisibility(id) {
+            var passwordInput = document.getElementById(id);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+
+        document.querySelector('.signup-form').addEventListener('submit', function (event) {
+            var password = document.querySelector('#password');
+            var confirmPassword = document.querySelector('#confirm-password');
+            var passwordError = document.querySelector('#password-error');
+
+            if (password.value !== confirmPassword.value) {
+                password.classList.add('error');
+                confirmPassword.classList.add('error');
+                passwordError.style.display = 'block';
+                event.preventDefault(); // Prevent form from submitting
+            } else {
+                password.classList.remove('error');
+                confirmPassword.classList.remove('error');
+                passwordError.style.display = 'none';
+            }
+        });
+    </script>
