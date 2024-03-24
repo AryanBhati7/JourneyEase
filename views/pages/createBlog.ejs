@@ -1,43 +1,105 @@
 <%- include("../includes/sidebar.ejs") %>
 
-<style>
-  .container {
-      margin-top: 5rem;
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    .modal {
       display: flex;
       justify-content: center;
-  }
-  .form-container {
-      width: 50%;
-      background-color: #f8f9fa;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      width: 60%;
+      max-width: 800px;
+      background-color: #232323;
+      color: #fff;
       padding: 2rem;
-      border-radius: 5px;
+      border-radius: 23px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  .form-container h3 {
+      transition: all 0.3s ease;
+      overflow: scroll;
+      scrollbar-width: none;
+      max-height: 90vh;
+    }
+
+
+    .modal-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+
+    .modal-content.dark .close-button {
+      /* background-color: #333; */
+      color: #fff;
+    }
+
+    .modal-content h3 {
       text-align: center;
       margin-bottom: 2rem;
-  }
-  .form-group {
+    }
+
+    .form-group {
       margin-bottom: 1rem;
-  }
-  .form-group label {
+    }
+
+    .form-group label {
       display: block;
       margin-bottom: 0.5rem;
-  }
-  .form-group input, .form-group textarea {
+    }
+
+    .form-group input,
+    .form-group textarea {
       width: 100%;
+      background-color: #555;
+      color: #fff;
       padding: 0.5rem;
       border-radius: 5px;
-      border: 1px solid #ced4da;
-  }
-  .form-row {
+      border: 1px solid #777;
+      transition: border 0.3s ease;
+    }
+
+    .modal-content.dark .form-group input,
+    .modal-content.dark .form-group textarea {
+      background-color: #555;
+      color: #fff;
+      border-color: #777;
+    }
+
+    .form-group textarea {
+      height: 200px;
+    }
+
+    .form-row {
       display: flex;
       justify-content: space-between;
-  }
-  .form-row div {
+    }
+
+    .form-row div {
       width: 45%;
-  }
-  button {
+    }
+
+    button {
       display: block;
       width: 100%;
       padding: 0.5rem;
@@ -46,80 +108,93 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-  }
-  button:hover {
-      background-color: #0056b3;
-  }
-</style>
-
-<div class="container">
-    <div class="form-container">
-        <div>
-            <h3>Create a New Blog</h3>
-            <form
-                method="POST"
-                action="/blog"
-                enctype="multipart/form-data"
-            >
-                <div class="form-group">
-                    <label for="file-input">Select Image</label>
-                    <input type="file" id="file-input" name="Blog[images][]" multiple accept="image/*" onchange="previewImage(event)">
-                    <div id="image-preview-container"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="destination">Destination</label>
-                    <input id="title" name="blog[destination]" placeholder="Enter Title" type="text">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="budget">Budget</label>
-                        <input id="budget" name="blog[budget]" placeholder=" 1200,etc">
-                    </div>
-                    <div class="form-group">
-                        <label for="state">State</label>
-                        <input id="state" name="blog[state]" placeholder="Enter State You Visited" type="text">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input id="country" name="blog[country]" placeholder="Enter Country" type="text">
-                </div>
-
-                <div class="form-group">
-                    <label for="experience">Experience</label>
-                    <textarea id="experience" name="blog[experience]" type="text" placeholder="Enter your experience of your adventure trip"></textarea>
-                </div>
-
-                <button>Add</button>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script>
-    function previewImage(event) {
-        const fileInput = event.target;
-        const imagePreviewContainer = document.getElementById("image-preview-container");
-        imagePreviewContainer.innerHTML = "";
-
-        for (const file of fileInput.files) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.style.width = '100px';
-                img.style.height = '100px';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '5px';
-                img.style.marginRight = '10px';
-                imagePreviewContainer.appendChild(img);
-            };
-
-            reader.readAsDataURL(file);
-        }
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
-</script>
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .modal-content.dark button {
+      background-color: #555;
+    }
+
+    .modal-content.dark button:hover {
+      background-color: #777;
+    }
+  </style>
+
+  <div class="modal">
+    <div class="modal-content" id="form-container">
+      <span class="close-button" onclick="window.location.href='/dashboard'">&times;</span>
+      <h3>Create a New Blog</h3>
+      <form method="POST" action="/dashboard" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file-input">Select Image</label>
+          <input type="file" id="file-input" name="Blog[images][]" multiple accept="image/*"
+            onchange="previewImage(event)">
+          <div id="image-preview-container"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <input id="title" name="blog[destination]" placeholder="Enter Title" type="text">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="budget">Budget</label>
+            <input id="budget" name="blog[budget]" placeholder=" 1200,etc">
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" name="blog[state]" placeholder="Enter State You Visited" type="text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input id="country" name="blog[country]" placeholder="Enter Country" type="text">
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Experience</label>
+          <textarea id="experience" name="blog[experience]" type="text"
+            placeholder="Enter your experience of your adventure trip"></textarea>
+        </div>
+
+        <button style="position: relative; z-index: 1;">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const fileInput = event.target;
+      const imagePreviewContainer = document.getElementById("image-preview-container");
+      imagePreviewContainer.innerHTML = "";
+
+      for (const file of fileInput.files) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.style.width = '100px';
+          img.style.height = '100px';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '5px';
+          img.style.marginRight = '10px';
+          imagePreviewContainer.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+
+  <script>
+    document.getElementById('form-container').classList.toggle('dark');
+  </script>
