@@ -84,20 +84,20 @@
     </style>
 
     <div class="login-container">
-        <form class="signup-form">
+        <form  action="/signup" method="post" class="signup-form">
             <h2>Sign Up</h2>
             <label for="username">Username</label>
-            <input id="username" type="text" placeholder="Enter your username" required>
+            <input id="username" name="username" type="text" placeholder="Enter your username" required>
             <label for="email">Email</label>
-            <input id="email" type="email" placeholder="Enter your email" required>
+            <input id="email" type="email"  name="email" placeholder="Enter your email" required>
             <label for="password">Password</label>
             <div class="password-container">
-                <input id="password" type="password" placeholder="Enter your password" required>
+                <input id="password" name="password" type="password" placeholder="Enter your password" required>
                 <span id="toggle-password" class="toggle-visibility">👁️</span>
             </div>
             <label for="confirm-password">Confirm Password</label>
             <div class="confirm-password-container">
-                <input id="confirm-password" type="password" placeholder="Confirm your password" required>
+                <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm your password" required>
                 <span id="toggle-confirm-password" class="toggle-visibility">👁️</span>
             </div>
             <p id="password-error" class="error-message">Passwords do not match!</p>

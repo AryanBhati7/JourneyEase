@@ -73,14 +73,14 @@
     </style>
 
 <div class="login-container">
-    <form class="login-form">
+    <form  action = "/login" method="post" class="login-form">
         <h2>Login</h2>
         <div class="input-container">
             <label for="username">Username</label>
-            <input id="username" type="text" placeholder="Enter your username" required>
+            <input id="username" name="username" type="text" placeholder="Enter your username" required>
             <label for="password">Password</label>
             <div class="password-container">
-                <input id="password" type="password" placeholder="Enter your password" required>
+                <input id="password" type="password" name="password" placeholder="Enter your password" required>
                 <i class="toggle-password">👁️</i>
             </div>
         </div>
