@@ -1,123 +1,125 @@
-<% layout('/layouts/boilerplate.ejs') -%>
+<%- include("../includes/sidebar.ejs") %>
 
-<div class="row">
-  <div class="col-8 offset-2">
-    <br /><br />
-    <h3 class="offset-2">Creat a New Blog</h3>
-    <br />
-    <form
-      method="POST"
-      action="/blog"
-      novalidate
-      class="needs-validation"
-      enctype="multipart/form-data"
-    >
-      <div id="post-container">
-        <div id="image-preview-container"></div>
-                <label for="file-input" id="file-label">Select Image</label>
-                <input type="file" id="file-input" name="Blog[images][]" multiple accept="image/*" onchange="previewImage(event)">
-    
-        <!-- <div class="mb-3 col-md-4">
-            <div id="image-preview-container"></div>
-          <label for="image" class="form-label">Upload Image</label>
-          <input
-            id="image"
-            name="Blog[images][]"
-            type="file"
-            class="form-control"
-            multiple
-            accept="image/*"
-            onchange="previewImage(event)"
-            required
-          />
-        </div> -->
+<style>
+  .container {
+      margin-top: 5rem;
+      display: flex;
+      justify-content: center;
+  }
+  .form-container {
+      width: 50%;
+      background-color: #f8f9fa;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  .form-container h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+  }
+  .form-group {
+      margin-bottom: 1rem;
+  }
+  .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+  }
+  .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+  }
+  .form-row {
+      display: flex;
+      justify-content: space-between;
+  }
+  .form-row div {
+      width: 45%;
+  }
+  button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  button:hover {
+      background-color: #0056b3;
+  }
+</style>
 
-        <div class="mb-3">
-          <label for="destination" class="form-label">Destination</label>
-          <input
-            id="title"
-            name="blog[destination]"
-            placeholder="Enter Title"
-            type="text"
-            class="form-control"
-            required
-          />
-          <div class="valid-feedback">Title Looks Good</div>
-          <div class="invalid-feedback">Please Enter A Title</div>
-        </div>
+<div class="container">
+    <div class="form-container">
+        <div>
+            <h3>Create a New Blog</h3>
+            <form
+                method="POST"
+                action="/blog"
+                enctype="multipart/form-data"
+            >
+                <div class="form-group">
+                    <label for="file-input">Select Image</label>
+                    <input type="file" id="file-input" name="Blog[images][]" multiple accept="image/*" onchange="previewImage(event)">
+                    <div id="image-preview-container"></div>
+                </div>
 
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label for="budget" class="form-label">Budget</label>
-            <input
-              id="budget"
-              name="blog[budget]"
-              placeholder=" 1200,etc"
-              class="form-control"
-              required
-            />
-            <div class="invalid-feedback">Budget Should be Valid</div>
-          </div>
-          <div class="mb-3 col-md-8">
-            <label for="state" class="form-label">State</label>
-            <input
-              id="state"
-              name="blog[state]"
-              placeholder="Enter State You Visited"
-              type="text"
-              class="form-control"
-              required
-            />
-            <div class="invalid-feedback">State Should be Valid</div>
-          </div>
-        </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input id="title" name="blog[destination]" placeholder="Enter Title" type="text">
+                </div>
 
-        <div class="mb-3">
-          <label for="country" class="form-label">Country</label>
-          <input
-            id="country"
-            name="blog[country]"
-            placeholder="Enter Country"
-            class="form-control"
-            required
-          />
-          <div class="invalid-feedback">Country Name Should be valid</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget">Budget</label>
+                        <input id="budget" name="blog[budget]" placeholder=" 1200,etc">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input id="state" name="blog[state]" placeholder="Enter State You Visited" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input id="country" name="blog[country]" placeholder="Enter Country" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <textarea id="experience" name="blog[experience]" type="text" placeholder="Enter your experience of your adventure trip"></textarea>
+                </div>
+
+                <button>Add</button>
+            </form>
         </div>
-        <div class="mb-3">
-          <label for="experience" class="form-label">Experience</label>
-          <textarea
-            id="experience"
-            name="blog[experience]"
-            type="text"
-            class="form-control"
-            placeholder="Enter your experience of your adventure trip"
-            required
-          ></textarea>
-          <div class="invalid-feedback">Please Enter A Short Experience</div>
-        </div>
-        <button class="btn btn-primary">Add</button>
-      </div>
-    </form>
-  </div>
+    </div>
 </div>
-
 
 <script>
     function previewImage(event) {
-    const fileInput = event.target;
-    const imagePreviewContainer = document.getElementById("image-preview-container");
-    imagePreviewContainer.innerHTML = "";
+        const fileInput = event.target;
+        const imagePreviewContainer = document.getElementById("image-preview-container");
+        imagePreviewContainer.innerHTML = "";
 
-    for (const file of fileInput.files) {
-        const reader = new FileReader();
+        for (const file of fileInput.files) {
+            const reader = new FileReader();
 
-        reader.onload = function (e) {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            imagePreviewContainer.appendChild(img);
-        };
+            reader.onload = function (e) {
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.style.width = '100px';
+                img.style.height = '100px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '5px';
+                img.style.marginRight = '10px';
+                imagePreviewContainer.appendChild(img);
+            };
 
-        reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
+        }
     }
-}
 </script>
