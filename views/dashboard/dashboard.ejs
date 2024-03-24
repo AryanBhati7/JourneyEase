@@ -1,192 +1,186 @@
 <%- include("../includes/sidebar.ejs") %>
 
 <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #000;
-        color: #fff;
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #000;
+    padding: 1rem;
+    color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar h1 {
+    font-size: 1.5em;
+    color: #ffa500;
+  }
+
+  .navbar .search-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .search-container input {
+    margin-right: 1rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .containers {
+    width: 96%;
+    margin: auto;
+    overflow: hidden;
+    padding-left: 20rem;
+    background-color: #ededed;
+  }
+.containers a{
+    text-decoration: none;
+}
+  .blog-post {
+    display: flex;
+    /* border: 1px solid #FFA500; */
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #3230304f;
+    transition: 0.3s;
+    border-radius: 10px;
+    width: 90%;
+  }
+
+  .blog-post:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-post img {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .blog-post .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .blog-post .info h2 {
+    margin-bottom: 10px;
+    color: #f56b1a;
+  }
+
+  .blog-post .info p {
+    line-height: 1.6;
+    color: #000000;
+  }
+
+  .navbar .signup-btn {
+    margin-right: 65px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #ffa500;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    gap: 10px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .navbar .signup-btn .icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .navbar .signup-btn:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
+  }
+
+  .navbar .signup-btn:hover .icon {
+    transform: translate(4px);
+  }
+
+  .navbar .signup-btn:hover::before {
+    animation: shine 1.5s ease-out infinite;
+  }
+
+  .navbar .signup-btn::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100px;
     }
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        background-color: #000;
-        padding: 1rem;
-        color: #fff;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    60% {
+      left: 100%;
     }
 
-    .navbar h1 {
-        font-size: 1.5em;
-        color: #FFA500;
+    to {
+      left: 100%;
     }
-
-    .navbar .search-container {
-        display: flex;
-        align-items: center;
-    }
-
-    .navbar .search-container input {
-        margin-right: 1rem;
-        padding: 0.5rem;
-        border: none;
-        border-radius: 20px;
-        width: 200px;
-        background-color: #fff;
-        color: #000;
-    }
-
-    .containers {
-        width: 96%;
-        margin: auto;
-        overflow: hidden;
-        padding-left: 20rem;
-        background-color: #ededed;
-    }
-
-    .blog-post {
-        display: flex;
-        /* border: 1px solid #FFA500; */
-        margin: 20px 0;
-        padding: 20px;
-        background-color: #3230304f;
-        transition: 0.3s;
-        border-radius: 10px;
-        width: 90%;
-    }
-
-    .blog-post:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .blog-post img {
-        width: 200px;
-        height: 200px;
-        margin-right: 20px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-
-    .blog-post .info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .blog-post .info h2 {
-        margin-bottom: 10px;
-        color: #f56b1a;
-    }
-
-    .blog-post .info p {
-        line-height: 1.6;
-        color: #000000;
-    }
-
-    .navbar .signup-btn {
-        margin-right: 65px;
-        position: relative;
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        padding-block: 0.5rem;
-        padding-inline: 1.25rem;
-        background-color: #FFA500;
-        border-radius: 9999px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: #fff;
-        gap: 10px;
-        font-weight: bold;
-        border: none;
-        outline: none;
-        overflow: hidden;
-        font-size: 15px;
-    }
-
-    .navbar .signup-btn .icon {
-        width: 24px;
-        height: 24px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .navbar .signup-btn:hover {
-        transform: scale(1.05);
-        border-color: #fff9;
-    }
-
-    .navbar .signup-btn:hover .icon {
-        transform: translate(4px);
-    }
-
-    .navbar .signup-btn:hover::before {
-        animation: shine 1.5s ease-out infinite;
-    }
-
-    .navbar .signup-btn::before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 100%;
-        background-image: linear-gradient(120deg,
-                rgba(255, 255, 255, 0) 30%,
-                rgba(255, 255, 255, 0.8),
-                rgba(255, 255, 255, 0) 70%);
-        top: 0;
-        left: -100px;
-        opacity: 0.6;
-    }
-
-    @keyframes shine {
-        0% {
-            left: -100px;
-        }
-
-        60% {
-            left: 100%;
-        }
-
-        to {
-            left: 100%;
-        }
-    }
+  }
 </style>
 
 <div class="navbar">
-    <h1 style="color: white;">My Blog </h1>
-    <div class="search-container">
-        <input type="text" placeholder="Search...">
-        <button class="signup-btn">Search</button>
-    </div>
+  <h1 style="color: white">My Blog</h1>
+  <div class="search-container">
+    <input type="text" placeholder="Search..." />
+    <button class="signup-btn">Search</button>
+  </div>
 </div>
 
 <div class="containers">
-    <% for(let blog of allBlog){%>
+  <% for(let blog of allBlog){%>
+  <a href="/dashboard/<%=blog.id%>">
     <div class="blog-post">
-        <img src="<%=blog.images[0] .url%>" alt="Blog Post 1">
-        <div class="info">
-            <h2>Destination: <%= blog.destination %></h2>
-            <p><b>Budget:&#8377;: <%= blog.budget %> </b></p>
-            <p>State:<%= blog.state%></p>
-            <p>Coutry:<%=blog.country%></p>
-            <p>Exprience: <%=blog.experience%></p>
-        </div>
-       
+      <img src="<%=blog.images[0] .url%>" alt="Blog Post 1" />
+      <div class="info">
+        <h2>Destination: <%= blog.destination %></h2>
+        <p><b>Budget:&#8377;: <%= blog.budget %> </b></p>
+        <p>State:<%= blog.state%></p>
+        <p>Coutry:<%=blog.country%></p>
+        <p><b>Experience:</b><%= blog.experience.substring(0, 195) %>...ReadMore</p>
+      </div>
     </div>
-    <%}%>
-
+  </a>
+  <%}%>
 </div>
 
-
-<script>
-    const blogs = document.querySelectorAll('.blog-post');
-    blogs.forEach(blg => {
-        blg.style.cursor = 'pointer';
-        blg.addEventListener("click", () => {
-            window.location.href = 'https://www.google.com';
-        });
-    });
-</script>

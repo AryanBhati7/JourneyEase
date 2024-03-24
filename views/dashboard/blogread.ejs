@@ -1,0 +1,75 @@
+
+<%- include("../includes/sidebar.ejs") %>
+
+<style>
+/* Sidebar styling */
+/* Main content styling */
+.blog-details {
+  max-width: calc(80% - 20rem); /* Adjusted width to leave 20rem space for the sidebar */
+  margin-left: auto; /* Center the content horizontally */
+  margin-right: 0;
+  padding: 20px;
+}
+
+.blog-details h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.blog-details .images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.blog-details .images img {
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-details .content {
+  margin-top: 20px;
+}
+
+.blog-details .content p {
+  margin-bottom: 10px;
+}
+
+.blog-details .content b {
+  font-weight: bold;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .blog-details {
+    max-width: 100%;
+    margin-left: 0;
+    float: none;
+    padding: 20px 10px;
+  }
+}
+
+
+</style>
+
+
+
+<div class="blog-details">
+  <h2><%= blogs.destination %></h2>
+  <div class="images">
+    <% blogs.images.forEach(image => { %>
+    <img src="<%= image.url %>" alt="BlogImage" />
+    <% }); %>
+  </div>
+  <div class="content">
+    <p><b>Country:</b><%= blogs.country %></p>
+    <p><b>State:</b><%= blogs.state %></p>
+    <p><b>Budget:</b><%= blogs.budget %></p>
+    <p><b>Experience:</b><%= blogs.experience %></p>
+  </div>
+</div>

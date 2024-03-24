@@ -11,8 +11,15 @@
         </a>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <%if(!currUser){%>
+
+                <li><a href="/blog">Blog</a></li>
+            <%}%>
             <li><a href="/about">About Us</a></li>
+            <%if(currUser){%>
+                <li><a href="/dashboard">Dashboard</a></li>
+            <%}%>
+            
         </ul>
         <button class="signup-btn" onclick="location.href='/login'">Login
             <svg fill="currentColor" viewBox="0 0 24 24" class="icon">

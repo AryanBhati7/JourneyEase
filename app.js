@@ -103,10 +103,10 @@ app.get('/dashboard', isLoggedIn,async (req, res) => {
 })
 app.get('/blog', async (req, res) => {
   const allBlog = await Blog.find({});
-  res.render('pages/blog.ejs', { allBlog });
+   res.render('pages/blog.ejs',{allBlog});
 });
 
-app.post('/blog', upload.array('Blog[images][]', 6), async (req, res) => {
+app.post('/dashboard', upload.array('Blog[images][]', 6), async (req, res) => {
   try {
 
     if (!req.files || req.files.length === 0) {
@@ -115,8 +115,8 @@ app.post('/blog', upload.array('Blog[images][]', 6), async (req, res) => {
 
     const images = req.files.map(file => {
       return {
-        url: file.path, // Assuming you want to store the URL/path of the uploaded file
-        filename: file.filename // Assuming you want to store the filename of the uploaded file
+        url: file.path,
+        filename: file.filename 
       };
     });
     // const url = req.file.path[0];
@@ -125,7 +125,7 @@ app.post('/blog', upload.array('Blog[images][]', 6), async (req, res) => {
     newBlog.images = images;
     const saveBlog = await newBlog.save();
     console.log(saveBlog);
-    res.redirect("/blog");
+    res.redirect("/dashboard");
   } catch (error) {
     console.log(error.stack);
     res.status(500).send("Error uploading files");
@@ -137,10 +137,20 @@ app.get("/blog/form", isLoggedIn,(req, res) => {
   res.render("pages/createBlog.ejs");
 })
 
-app.get('/blog/:id', (req, res,) => {
+app.get('/dashboard/:id', async(req, res,) => {
   //Full Blog Will be seen here 
-  let id = req.params;
-  res.send(id);
+
+  try {
+    const blogs = await Blog.findById(req.params.id);
+    if (!blogs) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+    res.render('dashboard/blogread', { blogs });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+
 })
 
 
