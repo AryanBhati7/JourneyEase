@@ -1,50 +1,69 @@
 footer {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    justify-items: center;
-    align-items: center;
-    width: 100%;
-    height: 300px;
-    background: #fff1da;
-    color: #000;
-    padding: 80px 33px 10px 33px;
-    box-sizing: border-box;
-    border-radius: 50% / 106px 106px 0 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  background: linear-gradient(to left, #ffb798, rgb(255, 205, 205));
+  color: black;
 }
-
-.footer-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.footer-left {
+  position: relative;
+  left: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
-
-.footer-item a {
-    color: #000;
-    font-weight: 600;
-    text-decoration: none;
-    margin: 0 20px 10px 10px;
-    /* Added horizontal margins */
-    transition: color 0.3s ease;
+.footer-left img {
+  width: 150px;
+  height: 100px;
 }
-
-.footer-item a:hover {
-    color: #FFA500;
-}
-
-.footer-left h1 {
-    font-size: 2em;
-    font-weight: bold;
-    color: #000;
-}
-
 .footer-middle {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
+  display: flex;
+  gap: 10px;
 }
 
+.footer-middle a {
+  color: black;
+  gap: 25px;
+  text-decoration: none;
+  margin: 5px 20px; /* Added horizontal margin */
+}
+
+.footer-middle a:hover {
+  color: #f17945;
+}
+.footer-middle div {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.socials-footer {
+  display: flex;
+  margin-top: 12px;
+  gap: 30px;
+}
+.socials-footer img {
+  width: 30px;
+  height: 30px;
+}
 .reserved {
-    text-align: center;
-    margin-top: 20px;
-    color: #000;
+  color: black;
+  text-align: center;
+  padding: 10px;
 }
