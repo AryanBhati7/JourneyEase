@@ -1,10 +1,28 @@
 footer {
+  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
   background: linear-gradient(to right, #f17945, white);
   color: black;
+}
+.footer-left {
+  position: relative;
+  left: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-left img {
+  width: 150px;
+  height: 100px;
+}
+.footer-middle {
+  display: flex;
+  gap: 10px;
 }
 
 .footer-middle a {
@@ -26,6 +44,9 @@ footer {
 
 .footer-middle div {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   margin-bottom: 20px;
 }
