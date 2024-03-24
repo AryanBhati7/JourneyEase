@@ -36,6 +36,7 @@ footer {
   color: #f17945;
 }
 .footer-middle div {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
