@@ -158,6 +158,11 @@
     <p><b>State:</b> <%= blogs.state %></p>
     <p><b>Budget:</b> &#8377;<%= blogs.budget %></p>
     <p><b>Experience:</b> <%= blogs.experience %></p>
+    <% if (blogs.owner) { %>
+      <p><b>Posted by:</b> <%= blogs.owner.username %></p>
+  <% } else { %>
+      <p><b>Posted by:</b> Unknown</p>
+  <% } %>
     <p class="time"><b>Uploaded On:</b><%= new Date(blogs.dateUploaded).toLocaleString() %></p>
   </div>
   <div class="actions">

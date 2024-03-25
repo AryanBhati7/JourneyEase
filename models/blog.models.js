@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
+const Comment = require("./comment.model");
 
 const blogSchema = new Schema(
     {
@@ -30,7 +31,15 @@ const blogSchema = new Schema(
         dateUploaded:{
             type:Date,
             default:Date.now,
-        }
+        },
+        owner:{
+            type:Schema.Types.ObjectId,
+            ref:"User",
+        },
+        comment:[{
+            type:Schema.Types.ObjectId,
+            ref:"Comment",
+        }],
     }
 )
 
