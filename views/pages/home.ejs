@@ -130,3 +130,12 @@
             </div>
         </section>
     </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const image = new Image();
+            image.src = '/assets/hero-background.svg';
+            image.onload = function () {
+                document.querySelector('.hero-container').style.backgroundImage = 'url(' + this.src + ')';
+            }
+        });
+    </script>
