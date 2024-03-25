@@ -93,7 +93,9 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/dashboard", isLoggedIn, async (req, res) => {
-  const allBlog = await Blog.find({}).sort({ dateUploaded: -1 });
+  const allBlog = await Blog.find({})
+    .sort({ dateUploaded: -1 })
+    .populate("owner");
   res.render("dashboard/dashboard.ejs", { allBlog });
 });
 app.get("/blog", async (req, res) => {
@@ -133,7 +135,9 @@ app.get("/dashboard/:id", async (req, res) => {
   //Full Blog Will be seen here
 
   try {
-    const blogs = await Blog.findById(req.params.id).sort({ dateUploaded: -1 }).populate("owner");
+    const blogs = await Blog.findById(req.params.id)
+      .sort({ dateUploaded: -1 })
+      .populate("owner");
     if (!blogs) {
       return res.status(404).json({ error: "Blog not found" });
     }
