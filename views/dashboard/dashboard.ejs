@@ -319,6 +319,7 @@
       /* background-color: aqua; */
       margin-left: 20%;
       max-width: calc(100%-25rem);
+      background-color: #f4f3ef;
     }
 
     .dashboard-home .search-container {
@@ -332,34 +333,93 @@
       align-items: center;
     }
 
-    .blog-posts-container {
+    .group {
       display: flex;
+      line-height: 28px;
+      align-items: center;
+      position: relative;
+      top: 25px;
+      width: 500px;
+    }
+
+    .input {
+      font-size: 1.5rem;
+      width: 100%;
+      height: 60px;
+      line-height: 28px;
+      padding: 0 1rem;
+      padding-left: 2.9rem;
+      border: 2px solid orange;
+      border-radius: 8px;
+      outline: none;
+      background-color: #f3f3f4;
+      color: #0d0c22;
+      transition: .3s ease;
+    }
+
+    .input::placeholder {
+      font-size: 1.5rem;
+      color: #9e9ea7;
+      position: relative;
+      top: 2px;
+    }
+
+    .input:focus,
+    input:hover {
+      outline: none;
+      border-color: #f17945(234, 76, 137, 0.4);
+      background-color: #fff;
+      box-shadow: 0 0 0 4px #f17945(234 76 137 / 10%);
+    }
+
+    .icon {
+      position: absolute;
+      left: 1rem;
+      fill: #9e9ea7;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .blog-posts-container {
+      padding: 25px;
       flex-direction: column;
       flex-wrap: wrap;
       gap: 20px;
-      align-items: center;
-      margin-top: 10%;
-      background-color: rgb(255, 86, 86);
-      height: 20%;
+      align-items: flex-start;
+      margin-top: 3%;
+      height: 100%;
+      width: 95%;
     }
 
     .blog-posts-container .blog-post {
-      background-color: blue;
-      height: 15rem;
-      width: 85%;
-      border-radius: 20px;
+      border: 2px solid black;
+      height: 20rem;
+      width: 100%;
       display: flex;
-      flex-wrap: wrap;
+      transition: transform 0.3s ease;
+    }
+
+    .blog-post-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .blog-post:hover {
+      transform: scale(1.01);
     }
 
     .blog-post .blog-post-img {
       width: 30%;
-      height: 100%;
+      height: auto;
+      padding: 20px;
+
+
     }
 
     .blog-post-img img {
       width: 100%;
       height: 100%;
+      border-radius: 20px;
     }
 
     .blog-post .blog-post-content {
@@ -367,22 +427,73 @@
       display: flex;
       flex-direction: column;
       padding: 20px;
+      gap: 20px;
+    }
+
+    .blog-post-content .destination {
+      font-size: 1.5rem;
+    }
+
+    .blog-post-content .country,
+    .budget,
+    .exp {
+      font-size: 1.2rem;
+    }
+
+    .blog-post-content .upload-time {
+      position: relative;
+      top: 25px
+    }
+
+    .blog-post-content .upload-time img {
+      position: relative;
+      top: 3px;
     }
   </style>
   <div class="dashboard-home">
-    <div class="search-container">
-      <input type="text" id="blog-search" placeholder="Search Blogs...">
+    <div class="group">
+      <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+        <g>
+          <path
+            d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+          </path>
+        </g>
+      </svg>
+      <input placeholder="Search" type="search" class="input">
     </div>
     <div class="blog-posts-container">
 
-      <div class="blog-post">
-        <div class="blog-post-img">
-          <img src="/assets/blog-img.jpg" alt="">
+      <a href="#" class="blog-post-link">
+
+
+        <div class="blog-post">
+          <div class="blog-post-img">
+            <img src="/assets/blog-img.jpg" alt="">
+          </div>
+          <div class="blog-post-content">
+            <div class="destination">
+              <b>XYZ Trip to Europe</b>
+            </div>
+            <div class="upload-by">
+              BY ARYAN BHATI
+            </div>
+            <div class="country">
+              <b><img src="/assets/dashboard-blogs/location.svg" alt="">Country :</b>
+            </div>
+            <div class="budget">
+              <b><img src="/assets/dashboard-blogs/rupee-sign.svg" alt=""> Budget :</b>
+            </div>
+            <div class="exp">
+              <b><img src="/assets/dashboard-blogs/exp.svg" alt=""> Experience :</b>Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Suscipit obcaecati exercitationem, illo molestias veritatis numquam
+            </div>
+            <div class="upload-time">
+              <img src="/assets/dashboard-blogs/upload-time.svg" alt="">
+              25th August, 2021
+            </div>
+          </div>
         </div>
-        <div class="blog-post-content">
-          <h1>XYZ Trip to Europe</h1>
-        </div>
-      </div>
+      </a>
 
     </div>
 
