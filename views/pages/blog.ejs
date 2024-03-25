@@ -87,7 +87,7 @@
         <li>Country: <%= blog.country %></li>
         <li>State: <%= blog.state %></li>
         <li>Budget: &#8377; <b><%= blog.budget %></b></li>
-        <li class="exp">Experience: <%= blog.experience %></li>
+        <li class="exp">Experience: <%= blog.experience.substring(0,100) %>...<a href="/dashboard" style="display: inline;">ReadMore</a></li>
       </ul>
       <p class="time"><b>Uploaded On:</b><%= new Date(blog.dateUploaded).toLocaleString() %></p>
     </div>
