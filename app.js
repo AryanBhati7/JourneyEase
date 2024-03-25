@@ -150,9 +150,13 @@ app.get("/dashboard/:id", async (req, res) => {
 
 
 
-app.get("/profile",(req,res)=>{
-  res.render("users/profile.ejs")
-})
+// app.get("/profile",(req,res)=>{
+//   res.render("users/profile.ejs")
+// })
+app.get("/profile", async (req, res) => {
+  const allBlog = await Blog.find({}).sort({ dateUploaded: -1 });
+  res.render("users/profile.ejs", { allBlog });
+});
 
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
