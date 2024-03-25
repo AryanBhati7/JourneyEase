@@ -42,7 +42,7 @@ nav ul li {
 nav ul li a {
   margin-left: 60px;
   font-weight: 500;
-  color: rgb(59, 59, 59);
+  color: rgb(255, 255, 255);
   text-decoration: none;
   font-size: 1.2rem;
 }
@@ -54,9 +54,10 @@ nav ul li a:hover {
 } */
 
 nav .signup-btn {
-  margin-right: 65px;
+  /* margin-right: 40px; */
   margin-left: 150px;
   position: relative;
+  right: 150px;
   transition: all 0.3s ease-in-out;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   padding-block: 0.5rem;
@@ -143,3 +144,75 @@ nav .signup-btn:hover {
   color: black;
   padding: 5px 10px;
 } */
+/* The switch - the box around the slider */
+#theme-toggle-button {
+  font-size: 17px;
+  position: relative;
+  bottom: 10px;
+  display: inline-block;
+  width: 5rem;
+  cursor: pointer;
+}
+
+/* Hide default HTML checkbox */
+#toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.25s;
+}
+
+/* night sky background */
+#toggle:checked + svg #container {
+  fill: #2b4360;
+}
+
+/* move button to right when checked */
+#toggle:checked + svg #button {
+  transform: translate(28px, 2.333px);
+}
+
+/* show/hide sun and moon based on checkbox state */
+#sun {
+  opacity: 1;
+}
+
+#toggle:checked + svg #sun {
+  opacity: 0;
+}
+
+#moon {
+  opacity: 0;
+}
+
+#toggle:checked + svg #moon {
+  opacity: 1;
+}
+
+/* show or hide background items on checkbox state */
+#cloud {
+  opacity: 1;
+}
+
+#toggle:checked + svg #cloud {
+  opacity: 0;
+}
+
+#stars {
+  opacity: 0;
+}
+
+#toggle:checked + svg #stars {
+  opacity: 1;
+}
