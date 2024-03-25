@@ -1,75 +1,184 @@
-
 <%- include("../includes/sidebar.ejs") %>
 
 <style>
-/* Sidebar styling */
-/* Main content styling */
-.blog-details {
-  max-width: calc(80% - 20rem); /* Adjusted width to leave 20rem space for the sidebar */
-  margin-left: auto; /* Center the content horizontally */
-  margin-right: 0;
-  padding: 20px;
-}
-
-.blog-details h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.blog-details .images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.blog-details .images img {
-  max-width: 100%;
-  height: auto;
-}
-
-.blog-details .content {
-  margin-top: 20px;
-}
-
-.blog-details .content p {
-  margin-bottom: 10px;
-}
-
-.blog-details .content b {
-  font-weight: bold;
-}
-
-/* Responsive styling */
-@media screen and (max-width: 768px) {
-  .sidebar {
-    display: none;
+  /* Sidebar styling */
+  /* Main content styling */
+  body {
+    background-color: #f2f2f2; /* Light gray background */
+    color: #333;
+    font-family: Arial, sans-serif;
   }
 
   .blog-details {
-    max-width: 100%;
-    margin-left: 0;
-    float: none;
-    padding: 20px 10px;
+    max-width: 80%;
+    margin-left: 20rem;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
   }
-}
 
 
+
+  .blog-details .images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .blog-details .images img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .blog-details .images .prev, .blog-details .images .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .blog-details .images .prev {
+    left: 10px;
+  }
+
+  .blog-details .images .next {
+    right: 10px;
+  }
+
+  .blog-details .content {
+    margin-top: 20px;
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+
+  /* Add styles for like, comment features, and comment box */
+  .blog-details .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .blog-details .actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue button color */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .blog-details .actions button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+
+  .blog-details .actions .comments {
+    display: flex;
+    align-items: center;
+  }
+
+  .blog-details .actions .comments span {
+    margin-right: 10px;
+  }
+
+  .blog-details .comment-box {
+    margin-top: 20px;
+  }
+
+  .blog-details .comment-box textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  /* Responsive styling */
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+
+    .blog-details {
+      max-width: 100%;
+      margin-left: 0;
+      float: none;
+      padding: 20px 10px;
+    }
+
+    .blog-details .images {
+      flex-direction: column; /* Stack images vertically on smaller screens */
+      overflow-x: hidden; /* Hide horizontal overflow */
+      scroll-behavior: initial; /* Remove smooth scrolling */
+    }
+
+    .blog-details .images img {
+      width: 100%; /* Make images full width */
+      height: auto; /* Auto height */
+      margin-bottom: 10px; /* Add space between images */
+    }
+  }
 </style>
-
-
 
 <div class="blog-details">
   <h2><%= blogs.destination %></h2>
   <div class="images">
-    <% blogs.images.forEach(image => { %>
-    <img src="<%= image.url %>" alt="BlogImage" />
+    <% if (blogs.images.length > 1) { %>
+      <div class="prev">&lt;</div>
+    <% } %>
+    <% blogs.images.forEach((image, index) => { %>
+      <% if(index === 0) { %>
+        <img src="<%= image.url %>" alt="BlogImage" style="display:block;" />
+      <% } else { %>
+        <img src="<%= image.url %>" alt="BlogImage" style="display:none;" />
+      <% } %>
     <% }); %>
+    <% if (blogs.images.length > 1) { %>
+      <div class="next">&gt;</div>
+    <% } %>
   </div>
   <div class="content">
-    <p><b>Country:</b><%= blogs.country %></p>
-    <p><b>State:</b><%= blogs.state %></p>
-    <p><b>Budget:</b><%= blogs.budget %></p>
-    <p><b>Experience:</b><%= blogs.experience %></p>
+    <p><b>Country:</b> <%= blogs.country %></p>
+    <p><b>State:</b> <%= blogs.state %></p>
+    <p><b>Budget:</b> <%= blogs.budget %></p>
+    <p><b>Experience:</b> <%= blogs.experience %></p>
+  </div>
+  <div class="actions">
+    <button>Like</button>
+    <div class="comments">
+      <span>Comments</span>
+      <button>Comment</button>
+    </div>
+  </div>
+  <div class="comment-box">
+    <textarea placeholder="Write a comment..."></textarea>
   </div>
 </div>
+
+<script>
+  var images = document.querySelectorAll('.blog-details .images img');
+  var currentIndex = 0;
+
+  document.querySelector('.blog-details .images .prev').addEventListener('click', function() {
+    images[currentIndex].style.display = 'none';
+    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    images[currentIndex].style.display = 'block';
+  });
+
+  document.querySelector('.blog-details .images .next').addEventListener('click', function() {
+    images[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.display = 'block';
+  });
+</script>
