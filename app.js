@@ -148,6 +148,12 @@ app.get("/dashboard/:id", async (req, res) => {
   }
 });
 
+
+
+app.get("/profile",(req,res)=>{
+  res.render("users/profile.ejs")
+})
+
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
