@@ -89,7 +89,9 @@
         <li>Budget: &#8377; <b><%= blog.budget %></b></li>
         <li class="exp">Experience: <%= blog.experience %></li>
       </ul>
+      <p class="time"><b>Uploaded On:</b><%= new Date(blog.dateUploaded).toLocaleString() %></p>
     </div>
+
   <% } %>
 </div>
 <div class="read-more">
