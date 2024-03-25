@@ -103,6 +103,10 @@
     border: 1px solid #ddd;
     border-radius: 5px;
   }
+  .time{
+      font-size: small;
+      text-align: end;
+    }
 
   /* Responsive styling */
   @media screen and (max-width: 768px) {
@@ -128,6 +132,7 @@
       height: auto; /* Auto height */
       margin-bottom: 10px; /* Add space between images */
     }
+  
   }
 </style>
 
@@ -153,6 +158,7 @@
     <p><b>State:</b> <%= blogs.state %></p>
     <p><b>Budget:</b> &#8377;<%= blogs.budget %></p>
     <p><b>Experience:</b> <%= blogs.experience %></p>
+    <p class="time"><b>Uploaded On:</b><%= new Date(blogs.dateUploaded).toLocaleString() %></p>
   </div>
   <div class="actions">
     <button>Like</button>
