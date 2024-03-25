@@ -4,7 +4,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
-  background: linear-gradient(to left, #ffb798, rgb(255, 205, 205));
+  background: linear-gradient(to right, grey, #ff7439dc);
   color: black;
 }
 .footer-left {
@@ -33,7 +33,7 @@ footer {
 }
 
 .footer-middle a:hover {
-  color: #f17945;
+  color: #fd4d21;
 }
 .footer-middle div {
   margin-top: 10px;
