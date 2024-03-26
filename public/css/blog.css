@@ -7,6 +7,9 @@
   overflow: hidden;
   font-family: "Inter", sans-serif;
 } */
+footer {
+  display: none;
+}
 .card {
   position: absolute;
   left: 0;
@@ -38,7 +41,6 @@
   padding-left: 16px;
 }
 
-
 .content-place {
   margin-top: 6px;
   font-size: 13px;
@@ -62,7 +64,7 @@
 .details {
   z-index: 22;
   position: absolute;
-  top: 240px;
+  top: 150px;
   left: 60px;
 }
 .details .place-box {
@@ -131,9 +133,9 @@
   margin-left: 16px;
   text-transform: uppercase;
 }
-.write-blog-btn>a{
-    text-decoration: none;
-    color: white;
+.write-blog-btn > a {
+  text-decoration: none;
+  color: white;
 }
 .indicator {
   position: fixed;
@@ -148,7 +150,7 @@
   position: absolute;
   left: 0px;
   top: 0px;
-  display: inline-flex; 
+  display: inline-flex;
 }
 .pagination > .arrow {
   z-index: 60;
