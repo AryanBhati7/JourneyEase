@@ -8,221 +8,72 @@
       overflow-x: hidden;
       font-family: Arial, sans-serif;
     }
-
-    .hero-text {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 764px;
-    }
-
-    .hero-text h1 {
-      position: relative;
-      bottom: 50px;
-    }
-
-    .blog-posts {
-      padding-top: 50px;
-      padding-left: 8%;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-    }
-
-    .blog-post-link {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .blog-post-1-container:hover {
-      transform: scale(1.01);
-    }
-
-    .blog-posts .blog-posts-head h1 {
-      font-size: 2.7rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .blog-posts .blog-posts-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .blog-posts-container .blog-post-1-container {
-      height: 20%;
-      width: 20%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 20px;
-      border-radius: 10px;
-      background-color: black;
-      box-shadow: 0 1.25rem 2.1875rem 0 rgb(253, 77, 33, 0.1);
-    }
-
-    .blog-post-1-container img {
-      border-radius: 10px;
-      height: 200px;
-      width: 100%;
-    }
-
-    .blog-post-text .blog-post-readmore {
-      text-decoration: underline;
-      color: #f17945;
-    }
-
-    .blog-post-text .blog-post-readmore:hover {
-      color: #ff8b60;
-    }
-
-    .blog-post-text img {
-      height: 25px;
-      width: 25px;
-      color: white;
-    }
   </style>
 
-<div id="demo"></div>
+  <div id="demo"></div>
 
-    <div class="details" id="details-even">
-      <div class="place-box">
-        <div class="text">Switzerland Alps</div>
-      </div>
-      <div class="title-box-1"><div class="title-1">SAINT</div></div>
-      <div class="title-box-2"><div class="title-2">ANTONIEN</div></div>
-      <div class="desc">
-        Tucked away in the Switzerland Alps, Saint Antönien offers an idyllic
-        retreat for those seeking tranquility and adventure alike. It's a hidden
-        gem for backcountry skiing in winter and boasts lush trails for hiking
-        and mountain biking during the warmer months.
-      </div>
-      <div class="cta">
-        <button class="write-blog-btn"><a href="/signup">Write Your Blog</a></button>
-      </div>
+  <div class="details" id="details-even">
+    <div class="place-box">
+      <div class="text">Switzerland Alps</div>
     </div>
-
-    <div class="details" id="details-odd">
-      <div class="place-box">
-        <div class="text">Switzerland Alps</div>
-      </div>
-      <div class="title-box-1"><div class="title-1">SAINT</div></div>
-      <div class="title-box-2"><div class="title-2">ANTONIEN</div></div>
-      <div class="desc">
-        Tucked away in the Switzerland Alps, Saint Antönien offers an idyllic
-        retreat for those seeking tranquility and adventure alike. It's a hidden
-        gem for backcountry skiing in winter and boasts lush trails for hiking
-        and mountain biking during the warmer months.
-      </div>
-      <div class="cta">
-        <button class="write-blog-btn"><a href="/signup">Write Your Blog</a></button>
-      </div>
+    <div class="title-box-1">
+      <div class="title-1">SAINT</div>
     </div>
-
-    <div class="pagination" id="pagination">
-      <div class="arrow arrow-left">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 19.5L8.25 12l7.5-7.5"
-          />
-        </svg>
-      </div>
-      <div class="arrow arrow-right">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M8.25 4.5l7.5 7.5-7.5 7.5"
-          />
-        </svg>
-      </div>
-      <div class="progress-sub-container">
-        <div class="progress-sub-background">
-          <div class="progress-sub-foreground"></div>
-        </div>
-      </div>
-      <div class="slide-numbers" id="slide-numbers"></div>
+    <div class="title-box-2">
+      <div class="title-2">ANTONIEN</div>
     </div>
-
-    <div class="cover"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="/js/blog.js"></script>
-
-
-
-  <!-- <div class="blogs-container">
-    <% for(let blog of allBlog) { %>
-      <div class="blog-card">
-        <img src="<%= blog.images[0].url %>" alt="Blog Image">
-        <h5>
-          <%= blog.destination %>
-        </h5>
-        <ul>
-          <li>Country: <%= blog.country %>
-          </li>
-          <li>State: <%= blog.state %>
-          </li>
-          <li>Budget: &#8377; <b>
-              <%= blog.budget %>
-            </b></li>
-          <li class="exp">Experience: <%= blog.experience.substring(0,100) %>...<a href="/dashboard"
-                style="display: inline;">ReadMore</a></li>
-        </ul>
-        <p class="time"><b>Uploaded On:</b>
-          <%= new Date(blog.dateUploaded).toLocaleString() %>
-        </p>
-      </div>
-
-      <% } %>
+    <div class="desc">
+      Tucked away in the Switzerland Alps, Saint Antönien offers an idyllic
+      retreat for those seeking tranquility and adventure alike. It's a hidden
+      gem for backcountry skiing in winter and boasts lush trails for hiking
+      and mountain biking during the warmer months.
+    </div>
+    <div class="cta">
+      <button class="write-blog-btn"><a href="/signup">Write Your Blog</a></button>
+    </div>
   </div>
-  <div class="read-more">
-    <button>Read More</button>
-  </div> -->
-  <section class="blog-posts">
-    <div class="blog-posts-container">
-      <% for(let blog of allBlog) { %>
-        <a class="blog-post-link" href="">
-          <div class="blog-post-1-container">
-            <div class="img-container">
-              <img src="<%= blog.images[0].url %>" alt="blog-post-1">
-            </div>
-            <div class="blog-post-text">
-              <p class="blog-post-date"> <img src="/assets/dashboard-blogs/upload-time.svg" alt="">
-                <%= new Date(blog.dateUploaded).toLocaleString() %>
-              </p>
-              <p class="blog-post-date"><b>
-                  <%= blog.destination %>
-                </b></p>
-              <ul>
-                <li>Country: <%= blog.country %>
-                </li>
-                <li>State: <%= blog.state %>
-                </li>
-                <li>Budget: &#8377; <%= blog.budget.toLocaleString("en-IN") %>
-                    </b></li>
-                <li class="exp">Experience: <%= blog.experience.substring(0,100) %> <a class="blog-post-readmore"
-                      href="/signup">Read More ></a></li>
-              </ul>
 
-            </div>
-          </div>
-        </a>
-        <%}%>
+  <div class="details" id="details-odd">
+    <div class="place-box">
+      <div class="text">Switzerland Alps</div>
     </div>
-  </section>
+    <div class="title-box-1">
+      <div class="title-1">SAINT</div>
+    </div>
+    <div class="title-box-2">
+      <div class="title-2">ANTONIEN</div>
+    </div>
+    <div class="desc">
+      Tucked away in the Switzerland Alps, Saint Antönien offers an idyllic
+      retreat for those seeking tranquility and adventure alike. It's a hidden
+      gem for backcountry skiing in winter and boasts lush trails for hiking
+      and mountain biking during the warmer months.
+    </div>
+    <div class="cta">
+      <button class="write-blog-btn"><a href="/signup">Write Your Blog</a></button>
+    </div>
+  </div>
+
+  <div class="pagination" id="pagination">
+    <div class="arrow arrow-left">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </div>
+    <div class="arrow arrow-right">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </div>
+    <div class="progress-sub-container">
+      <div class="progress-sub-background">
+        <div class="progress-sub-foreground"></div>
+      </div>
+    </div>
+    <div class="slide-numbers" id="slide-numbers"></div>
+  </div>
+
+  <div class="cover"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="/js/blog.js"></script>
