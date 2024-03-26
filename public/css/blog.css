@@ -122,7 +122,6 @@ footer {
   height: 20px;
 }
 .details > .cta > .write-blog-btn {
-  border: 1px solid #ffffff;
   background-color: transparent;
   height: 36px;
   border-radius: 99px;
@@ -130,8 +129,11 @@ footer {
   background-color: #fd4d21;
   padding: 4px 24px;
   font-size: 12px;
-  margin-left: 16px;
+  margin-left: 2px;
   text-transform: uppercase;
+}
+.write-blog-btn:hover {
+  background-color: #f17945;
 }
 .write-blog-btn > a {
   text-decoration: none;
