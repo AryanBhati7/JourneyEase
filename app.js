@@ -203,44 +203,6 @@ app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) =>
   res.redirect(`/dashboard/${id}`);
 });
 
-
-
-
-
-// app.put("/dashboard/:id",upload.array("Blog[images][]", 6), async(req,res)=>{
-//   let { id } = req.params;
-//   // Ensure that id is a valid ObjectId
-//   if (!mongoose.isValidObjectId(id)) {
-//     return res.status(400).send('Invalid ObjectId');
-//   }
-//   let Blogs = await Blog.findByIdAndUpdate(
-//     id,
-//     { ...req.body.Blog },
-//     { new: true, runValidators: true }
-//   );
-//   if (!Blogs) {
-//     return res.status(404).send('Image not found');
-//   }
-//   const images = req.files.map((file) => {
-//     return {
-//       url: file.path,
-//       filename: file.filename,
-//     };
-//   });
-
-//   if (req.file) {
-//   const newBlog = new Blog(req.body.blog);
-//   newBlog.owner = req.user._id;
-//   newBlog.images = images;
-//   const saveBlog = await newBlog.save();
-//   console.log(saveBlog);
-// }
-//   req.flash("success","Image Updated")
-//   res.redirect("/dashboard")
-// })
-
-
-
 app.get("/profile", async (req, res) => {
   try {
     const userId = req.user._id;
