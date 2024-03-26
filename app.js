@@ -185,19 +185,19 @@ app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) =>
   if (!updatedBlog) {
     return res.status(404).send('Blog not found');
   }
-
+  if(typeof req.files !== "undefined" && req.files.length > 0){
   const images = req.files.map((file) => {
     return {
       url: file.path,
       filename: file.filename,
     };
   });
-
   updatedBlog.images = images;
-  
-  // Save the updatedBlog
-  await updatedBlog.save();
+  }else{
+    updatedBlog.images = updatedBlog.images
+  }
 
+  await updatedBlog.save();
   req.flash("success", "Blog Updated");
   res.redirect(`/dashboard/${id}`);
 });
