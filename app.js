@@ -164,11 +164,80 @@ app.get("/dashboard/:id/edit",async (req,res)=>{
     req.flash("error", " Blog You Requested does not exist!");
     res.redirect("/dashboard");
   }
-  // let originalImageUrl = Blog.image.url;
-  // originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_200");
-  res.render("pages/editBlog.ejs", { userBlog });
+  let originalImageUrls = userBlog.images.map(image => {
+    let originalImageUrl = image.url;
+    return originalImageUrl.replace("/upload", "/upload/w_200");
+  });
+  res.render("pages/editBlog.ejs", { userBlog,originalImageUrls });
 
 })
+
+app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) => {
+  let { id } = req.params;
+  // Ensure that id is a valid ObjectId
+  if (!mongoose.isValidObjectId(id)) {
+    return res.status(400).send('Invalid ObjectId');
+  }
+  let updatedBlog = await Blog.findByIdAndUpdate(
+    id,
+    { ...req.body.blog }
+  );
+  if (!updatedBlog) {
+    return res.status(404).send('Blog not found');
+  }
+
+  const images = req.files.map((file) => {
+    return {
+      url: file.path,
+      filename: file.filename,
+    };
+  });
+
+  // Update the images array of the updatedBlog
+  updatedBlog.images = images;
+  
+  // Save the updatedBlog
+  await updatedBlog.save();
+
+  req.flash("success", "Blog Updated");
+  res.redirect(`/dashboard/${id}`);
+});
+
+
+
+
+
+// app.put("/dashboard/:id",upload.array("Blog[images][]", 6), async(req,res)=>{
+//   let { id } = req.params;
+//   // Ensure that id is a valid ObjectId
+//   if (!mongoose.isValidObjectId(id)) {
+//     return res.status(400).send('Invalid ObjectId');
+//   }
+//   let Blogs = await Blog.findByIdAndUpdate(
+//     id,
+//     { ...req.body.Blog },
+//     { new: true, runValidators: true }
+//   );
+//   if (!Blogs) {
+//     return res.status(404).send('Image not found');
+//   }
+//   const images = req.files.map((file) => {
+//     return {
+//       url: file.path,
+//       filename: file.filename,
+//     };
+//   });
+
+//   if (req.file) {
+//   const newBlog = new Blog(req.body.blog);
+//   newBlog.owner = req.user._id;
+//   newBlog.images = images;
+//   const saveBlog = await newBlog.save();
+//   console.log(saveBlog);
+// }
+//   req.flash("success","Image Updated")
+//   res.redirect("/dashboard")
+// })
 
 
 
