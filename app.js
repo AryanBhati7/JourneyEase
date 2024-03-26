@@ -164,13 +164,43 @@ app.get("/dashboard/:id/edit",async (req,res)=>{
     req.flash("error", " Blog You Requested does not exist!");
     res.redirect("/dashboard");
   }
-  // let originalImageUrl = Blog.image.url;
-  // originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_200");
-  res.render("pages/editBlog.ejs", { userBlog });
+  let originalImageUrls = userBlog.images.map(image => {
+    let originalImageUrl = image.url;
+    return originalImageUrl.replace("/upload", "/upload/w_200");
+  });
+  res.render("pages/editBlog.ejs", { userBlog,originalImageUrls });
 
 })
 
+app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) => {
+  let { id } = req.params;
+  // Ensure that id is a valid ObjectId
+  if (!mongoose.isValidObjectId(id)) {
+    return res.status(400).send('Invalid ObjectId');
+  }
+  let updatedBlog = await Blog.findByIdAndUpdate(
+    id,
+    { ...req.body.blog }
+  );
+  if (!updatedBlog) {
+    return res.status(404).send('Blog not found');
+  }
 
+  const images = req.files.map((file) => {
+    return {
+      url: file.path,
+      filename: file.filename,
+    };
+  });
+
+  updatedBlog.images = images;
+  
+  // Save the updatedBlog
+  await updatedBlog.save();
+
+  req.flash("success", "Blog Updated");
+  res.redirect(`/dashboard/${id}`);
+});
 
 app.get("/profile", async (req, res) => {
   try {
@@ -179,7 +209,6 @@ app.get("/profile", async (req, res) => {
       .sort({ dateUploaded: -1 })
       .populate("owner");
 
-    // Render the user's profile page with their blogs
     res.render("users/profile.ejs", { userBlogs });
   } catch (err) {
     console.error("Error fetching user's blogs:", err);

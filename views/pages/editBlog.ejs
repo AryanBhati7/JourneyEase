@@ -130,14 +130,19 @@
     <div class="modal-content" id="form-container">
       <span class="close-button" onclick="window.location.href='/dashboard'">&times;</span>
       <h3>Edit Your  Blog</h3>
-      <form method="POST" aaction="/dashboard/<%=userBlog._id%>?_method=PUT" enctype="multipart/form-data">
+      <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=PUT" enctype="multipart/form-data">
         <div class="form-group">
           <label for="file-input">Select Image</label>
           <input type="file" id="file-input" name="Blog[images][]" multiple accept="image/*"
             onchange="previewImage(event)">
           <div id="image-preview-container"></div>
         </div>
-
+        <%originalImageUrls.forEach(originalImage=>{%>
+          <div>
+            <img src="<%=originalImage%>">
+          </div>
+       <%})%>
+        
         <div class="form-group">
           <label for="destination">Destination</label>
           <input id="title" name="blog[destination]" placeholder="Enter Title" type="text" value="<%=userBlog.destination%>">
