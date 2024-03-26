@@ -80,10 +80,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  if(req.user){
-    res.locals.currUser = req.user;
-  }
-  
+  res.locals.currUser = req.user;
+
   next();
 });
 
@@ -156,7 +154,9 @@ app.get("/profile", async (req, res) => {
     // Assuming req.user._id contains the ID of the currently logged-in user
     const userId = req.user._id;
     // Fetch blogs posted by the user
-    const userBlogs = await Blog.find({ owner: userId }).sort({ dateUploaded: -1 }).populate("owner");
+    const userBlogs = await Blog.find({ owner: userId })
+      .sort({ dateUploaded: -1 })
+      .populate("owner");
 
     // Render the user's profile page with their blogs
     res.render("users/profile.ejs", { userBlogs });
@@ -165,12 +165,6 @@ app.get("/profile", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
-
-
-
-
-
 
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
