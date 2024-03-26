@@ -80,7 +80,10 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user;
+  if(req.user){
+    res.locals.currUser = req.user;
+  }
+  
   next();
 });
 
@@ -153,10 +156,33 @@ app.get("/dashboard/:id", async (req, res) => {
 // app.get("/profile",(req,res)=>{
 //   res.render("users/profile.ejs")
 // })
+// app.get("/profile", async (req, res) => {
+//   const allBlog = await Blog.find({}).sort({ dateUploaded: -1 });
+//   res.render("users/profile.ejs", { allBlog });
+// });
+
+
 app.get("/profile", async (req, res) => {
-  const allBlog = await Blog.find({}).sort({ dateUploaded: -1 });
-  res.render("users/profile.ejs", { allBlog });
+  try {
+    // Assuming req.user._id contains the ID of the currently logged-in user
+    const userId = req.user._id;
+
+    // Fetch blogs posted by the user
+    const userBlogs = await Blog.find({ owner: userId }).sort({ dateUploaded: -1 }).populate("owner");
+
+    // Render the user's profile page with their blogs
+    res.render("users/profile.ejs", { userBlogs });
+  } catch (err) {
+    console.error("Error fetching user's blogs:", err);
+    res.status(500).send("Internal Server Error");
+  }
 });
+
+
+
+
+
+
 
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");

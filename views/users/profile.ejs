@@ -135,33 +135,42 @@
     <div class="blog-section">
       <section class="blog-posts">
         <div class="blog-posts-container">
-          <% for(let blog of allBlog) { %>
+          <% for(let userBlog of userBlogs) { %>
             <a class="blog-post-link" href="">
               <div class="blog-post-1-container">
                 <div class="img-container">
-                  <img src="<%= blog.images[0].url %>" alt="blog-post-1">
+                  <img src="<%= userBlog.images[0].url %>" alt="blog-post-1">
                 </div>
                 <div class="blog-post-text">
                   <p class="blog-post-date"> <img src="/assets/dashboard-blogs/upload-time.svg" alt="">
-                    <%= new Date(blog.dateUploaded).toLocaleString() %>
+                    <%= new Date(userBlog.dateUploaded).toLocaleString() %>
                   </p>
                   <p class="blog-post-date"><b>
-                      <%= blog.destination %>
-                    </b></p>
+                      <%= userBlog.destination %>
+                    </b>
+                  </p>
+                    <div class="upload-by">
+                      By:<%=userBlog.owner.username%>
+                    </div>
                   <ul>
-                    <li>Country: <%= blog.country %>
+                    <li>Country: <%= userBlog.country %>
                     </li>
-                    <li>State: <%= blog.state %>
+                    <li>State: <%= userBlog.state %>
                     </li>
-                    <li>Budget: &#8377; <%= blog.budget.toLocaleString("en-IN") %>
+                    <li>Budget: &#8377; <%= userBlog.budget.toLocaleString("en-IN") %>
                         </b></li>
-                    <li class="exp">Experience: <%= blog.experience.substring(0,100) %> <a class="blog-post-readmore"
-                          href="/signup">Read More ></a></li>
+                    <li class="exp">Experience: <%= userBlog.experience.substring(0,100) %> <a class="blog-post-readmore"
+                          href="/dashboard/<%=userBlog._id%>">Read More ></a></li>
                   </ul>
     
                 </div>
               </div>
             </a>
+            <%if(!userBlog){%>
+              <div>
+                <h4>No Blogs Posted</h4>
+              </div>
+           <% } %>
             <%}%>
         </div>
       </section>
