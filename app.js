@@ -151,22 +151,10 @@ app.get("/dashboard/:id", async (req, res) => {
   }
 });
 
-
-
-// app.get("/profile",(req,res)=>{
-//   res.render("users/profile.ejs")
-// })
-// app.get("/profile", async (req, res) => {
-//   const allBlog = await Blog.find({}).sort({ dateUploaded: -1 });
-//   res.render("users/profile.ejs", { allBlog });
-// });
-
-
 app.get("/profile", async (req, res) => {
   try {
     // Assuming req.user._id contains the ID of the currently logged-in user
     const userId = req.user._id;
-
     // Fetch blogs posted by the user
     const userBlogs = await Blog.find({ owner: userId }).sort({ dateUploaded: -1 }).populate("owner");
 
