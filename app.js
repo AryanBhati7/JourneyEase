@@ -148,12 +148,18 @@ app.get("/dashboard/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+app.delete("/dashboard/:id",async(req,res,next)=>{
+  let { id } = req.params;
+  let deletedBlog = await Blog.findByIdAndDelete(id);
+  console.log(deletedBlog);
+  req.flash("success", " Blog Deleted");
+  res.redirect("/profile");
+})
+ 
 
 app.get("/profile", async (req, res) => {
   try {
-    // Assuming req.user._id contains the ID of the currently logged-in user
     const userId = req.user._id;
-    // Fetch blogs posted by the user
     const userBlogs = await Blog.find({ owner: userId })
       .sort({ dateUploaded: -1 })
       .populate("owner");
