@@ -1,206 +1,201 @@
 <%- include("../includes/sidebar.ejs") %>
 
-  
+<style>
+  body {
+    background-color: #1a1a1a;
+  }
 
-  <style>
-    body {
-      background-color: #f4f4f4;
-    }
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-left: 250px;
+  }
 
-    .profile-box {
-      margin-left: 25%;
-      max-width: calc(100%-25%);
-      position: relative;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-    }
+  .profile-box {
+    width: 70%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    border-radius: 10px;
+  }
 
-    .banner {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
 
-    .banner img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
+  .banner img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
 
-    .banner .edit-banner {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 24px;
-      cursor: pointer;
-    }
+  .edit-banner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #ff7f00; /* Change color to match your theme */
+    cursor: pointer;
+  }
 
-    .user-profile {
-      padding-top: 50px;
-      color: #000;
-      padding: 10px;
-      width: 100px;
-      box-sizing: border-box;
-      text-align: center;
-    }
+  .user-profile {
+    display: flex;
+    align-items: center;
+  }
 
-    .user-profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 3px solid white;
-      object-fit: cover;
-    }
+  .user-profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    margin-right: 20px;
+  }
 
-    .blog-section {
-      margin-top: 100px;
-    }
+  .user-details {
+    flex-grow: 1;
+  }
 
-    .blog-posts {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+  .user-details h2,
+  .user-details h4 {
+    margin: 0;
+  }
 
-    .blog-posts-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+  .blog-section {
+    background-color: #333; /* Dark background */
+    color: #fff; /* Light text color */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
 
-    .blog-post-link {
-      text-decoration: none;
-      color: inherit;
-    }
+  .blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .blog-post-1-container {
-      display: flex;
-      gap: 20px;
-    }
+  .blog-post {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+  }
 
-    .img-container {
-      width: 200px;
-      height: 200px;
-      overflow: hidden;
-    }
+  .blog-post-actions {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+  }
 
-    .img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  .blog-post img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
 
-    .blog-post-text {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+  .blog-post-details {
+    flex-grow: 1;
+  }
 
-    .blog-post-date {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+  .blog-post-details p {
+    margin: 0;
+  }
+  .user-profile button {
+    background-color: #ff7f00; 
+    color: #fff;
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+  }
 
-    .blog-post-readmore {
-      color: blue;
-      text-decoration: underline;
-    }
-  </style>
+  .user-profile button:hover {
+    background-color: #cc6600; /* Darker orange on hover */
+  }
 
+  .blog-post-readmore {
+    color: #ff7f00; /* Orange read more link */
+    text-decoration: underline;
+  }
+</style>
+
+<div class="profile-container">
   <div class="profile-box">
     <div class="banner">
       <img id="banner-img" src="/assets/blog-img.jpg" alt="banner-img" />
-      <label for="file-input" class="edit-banner">✏️</label>
+      <label for="file-input" class="edit-banner"><i class="fas fa-pencil-alt"></i></label>
       <input id="file-input" type="file" style="display: none;" onchange="handleFileSelect(event)" />
     </div>
 
     <div class="user-profile">
-      <label for="profile-input">
-        <img id="profile-img" src="/assets/bg.png" alt="" />
-      </label>
-      <input id="profile-input" type="file" style="display: none;" onchange="handleProfileSelect(event)" />
-      <h2>
-        <%=currUser.username%>
-      </h2>
-      <h4>
-        <%=currUser.email%>
-      </h4>
+      <img id="profile-img" src="/assets/bg.png" alt="" />
+      <div class="user-details">
+        <h2><%= currUser.username %></h2>
+        <h4><%= currUser.email %></h4>
+      </div>
+      <button>edit</button>
     </div>
 
     <div class="blog-section">
-      <section class="blog-posts">
-        <div class="blog-posts-container">
-          <% for(let userBlog of userBlogs) { %>
-            <div class="dropdown-content">
-              <a href="/dashboard/<%=userBlog._id%>/edit"> <i class="fa-regular fa-pen-to-square"></i> Edit</a>
-              <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=DELETE">
-                  <button><i class="fa-solid fa-trash" style="margin-right: 0.2rem;"></i>Delete</button>
+      <h3>Your Blog Posts</h3>
+      <div class="blog-posts">
+        <% for(let userBlog of userBlogs) { %>
+        <div class="blog-post">
+          <img src="<%= userBlog.images[0].url %>" alt="blog-post" />
+          <div class="blog-post-details">
+            <p><strong><%= userBlog.destination %></strong></p>
+            <p>Country: <%= userBlog.country %></p>
+            <p>State: <%= userBlog.state %></p>
+            <p>Budget: ₹ <%= userBlog.budget.toLocaleString("en-IN") %></p>
+            <p>Experience: <%= userBlog.experience.substring(0, 100) %> <a class="blog-post-readmore"
+                href="/dashboard/<%= userBlog._id %>">Read More ></a></p>
+            <div class="blog-post-actions">
+              <a href="/dashboard/<%=userBlog._id%>/edit"><i class="fas fa-edit"></i></a>
+              <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=DELETE" style="display: inline;">
+                <button type="submit"><i class="fas fa-trash"></i></button>
               </form>
+            </div>
           </div>
-              <div class="blog-post-1-container">
-                <div class="img-container">
-                  <img src="<%= userBlog.images[0].url %>" alt="blog-post-1">
-                </div>
-                <div class="blog-post-text">
-                  <p class="blog-post-date"> <img src="/assets/dashboard-blogs/upload-time.svg" alt="">
-                    <%= new Date(userBlog.dateUploaded).toLocaleString() %>
-                  </p>
-                  <p class="blog-post-date"><b>
-                      <%= userBlog.destination %>
-                    </b>
-                  </p>
-                    <div class="upload-by">
-                      By:<%=userBlog.owner.username%>
-                    </div>
-                  <ul>
-                    <li>Country: <%= userBlog.country %>
-                    </li>
-                    <li>State: <%= userBlog.state %>
-                    </li>
-                    <li>Budget: &#8377; <%= userBlog.budget.toLocaleString("en-IN") %>
-                        </b></li>
-                    <li class="exp">Experience: <%= userBlog.experience.substring(0,100) %> <a class="blog-post-readmore"
-                          href="/dashboard/<%=userBlog._id%>">Read More ></a></li>
-                  </ul>
-    
-                </div>
-              </div>
-            
-            <%if(!userBlog){%>
-              <div>
-                <h4>No Blogs Posted</h4>
-              </div>
-           <% } %>
-            <%}%>
         </div>
-      </section>
+        <% } %>
+        <% if (userBlogs.length === 0) { %>
+        <div>
+          <h4>No Blogs Posted Yet</h4>
+        </div>
+        <% } %>
+      </div>
+    </div>
   </div>
+</div>
 
-  <script>
-    function handleFileSelect(event) {
-      var file = event.target.files[0];
-      var reader = new FileReader();
+<script>
+  function handleFileSelect(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
 
-      reader.onload = function (e) {
-        document.getElementById('banner-img').src = e.target.result;
-      };
+    reader.onload = function (e) {
+      document.getElementById('banner-img').src = e.target.result;
+    };
 
-      reader.readAsDataURL(file);
-    }
+    reader.readAsDataURL(file);
+  }
 
-    function handleProfileSelect(event) {
-      var file = event.target.files[0];
-      var reader = new FileReader();
+  function handleProfileSelect(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
 
-      reader.onload = function (e) {
-        document.getElementById('profile-img').src = e.target.result;
-      };
+    reader.onload = function (e) {
+      document.getElementById('profile-img').src = e.target.result;
+    };
 
-      reader.readAsDataURL(file);
-    }
-  </script>
+    reader.readAsDataURL(file);
+  }
+</script>
