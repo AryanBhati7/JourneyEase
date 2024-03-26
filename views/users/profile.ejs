@@ -136,7 +136,12 @@
       <section class="blog-posts">
         <div class="blog-posts-container">
           <% for(let userBlog of userBlogs) { %>
-            <a class="blog-post-link" href="">
+            <div class="dropdown-content">
+              <a href="/dashboard/<%=userBlog._id%>/edit"> <i class="fa-regular fa-pen-to-square"></i> Edit</a>
+              <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=DELETE">
+                  <button><i class="fa-solid fa-trash" style="margin-right: 0.2rem;"></i>Delete</button>
+              </form>
+          </div>
               <div class="blog-post-1-container">
                 <div class="img-container">
                   <img src="<%= userBlog.images[0].url %>" alt="blog-post-1">
@@ -165,7 +170,7 @@
     
                 </div>
               </div>
-            </a>
+            
             <%if(!userBlog){%>
               <div>
                 <h4>No Blogs Posted</h4>
