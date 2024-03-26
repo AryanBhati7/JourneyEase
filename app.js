@@ -157,6 +157,21 @@ app.delete("/dashboard/:id",async(req,res,next)=>{
 })
  
 
+app.get("/dashboard/:id/edit",async (req,res)=>{
+  let { id } = req.params;
+  const userBlog = await Blog.findById(id);
+  if (!userBlog) {
+    req.flash("error", " Blog You Requested does not exist!");
+    res.redirect("/dashboard");
+  }
+  // let originalImageUrl = Blog.image.url;
+  // originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_200");
+  res.render("pages/editBlog.ejs", { userBlog });
+
+})
+
+
+
 app.get("/profile", async (req, res) => {
   try {
     const userId = req.user._id;
