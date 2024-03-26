@@ -193,7 +193,6 @@ app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) =>
     };
   });
 
-  // Update the images array of the updatedBlog
   updatedBlog.images = images;
   
   // Save the updatedBlog
@@ -210,7 +209,6 @@ app.get("/profile", async (req, res) => {
       .sort({ dateUploaded: -1 })
       .populate("owner");
 
-    // Render the user's profile page with their blogs
     res.render("users/profile.ejs", { userBlogs });
   } catch (err) {
     console.error("Error fetching user's blogs:", err);
