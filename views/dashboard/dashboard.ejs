@@ -21,14 +21,30 @@
     }
 
     .search-button {
-
-      border-radius: 20px;
+      font-size: 1.5rem;
+      width: 20%;
       height: 60px;
-      background-color: blue;
-      color: white;
-      border: none;
-      padding: 10px;
+      line-height: 28px;
+      padding: 0 1rem;
+      border: 1px solid #f17945;
+      border-left: none;
+      border-radius: 8px;
+      border-top-left-radius: 0%;
+      border-bottom-left-radius: 0%;
+      outline: none;
+      background-color: #fd4d21;
+      color: #0d0c22;
+      transition: .3s ease;
       cursor: pointer;
+      text-align: center;
+    }
+
+    .search-button:focus,
+    .search-button:hover {
+      outline: none;
+      border-color: #f17945(234, 76, 137, 0.4);
+      background-color: #fff;
+      box-shadow: 0 0 0 4px #f17945(234 76 137 / 10%);
     }
 
     .input {
@@ -39,7 +55,10 @@
       padding: 0 1rem;
       padding-left: 2.9rem;
       border: 2px solid #f17945;
+      border-right: none;
       border-radius: 8px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0%;
       outline: none;
       background-color: #f3f3f4;
       color: #0d0c22;
@@ -116,6 +135,8 @@
     }
 
     .blog-post .blog-post-content {
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
       padding: 10px;
       padding-left: 20px;
       width: 70%;
@@ -131,11 +152,12 @@
       justify-content: flex-start;
       align-items: center;
       gap: 12px;
+      font-size: 1.2rem;
     }
 
     .user-detail .user-profile-img {
-      width: 20px;
-      height: 20px;
+      width: 35px;
+      height: 35px;
       object-fit: cover;
       border-radius: 50%;
     }
@@ -147,6 +169,7 @@
 
     .blog-post-content .destination {
       font-size: 1.5rem;
+      color: #f17945;
     }
 
     .blog-post-content .country,
@@ -181,7 +204,7 @@
         </path>
       </g>
     </svg>
-    <button class="search-button">Search</button>
+    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
 
 
@@ -198,17 +221,17 @@
             <div class="user-detail">
               <img class="user-profile-img" src="/assets/blog.png" alt="">
               <div class="username">
-                <%=blog.owner.username%>
+                <%=blog.owner.username%>'s
               </div>
             </div>
             <div class="destination">
               <b>
-                <%= blog.destination %>
+                <%= blog.destination.toUpperCase()%>
               </b>
             </div>
             <div class="country">
-              <b><i class="fa-solid fa-location-dot"></i> Country :</b>
-              <%=blog.country%>
+              <i class="fa-solid fa-location-dot"></i>
+              <%=blog.state%>-<%=blog.country%>
             </div>
             <div class="budget">
               <b><i class="fa-solid fa-money-check-dollar"></i> Budget :</b>
