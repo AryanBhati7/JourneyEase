@@ -1,201 +1,375 @@
 <%- include("../includes/sidebar.ejs") %>
 
-<style>
-  body {
-    background-color: #1a1a1a;
-  }
+  <style>
+    body {
+      background-color: #d2d1d1;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
 
-  .profile-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    margin-left: 250px;
-  }
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      margin-left: 250px;
+    }
 
-  .profile-box {
-    width: 70%;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #333;
-    border-radius: 10px;
-  }
+    .profile-box {
+      width: 80rem;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #151515;
+      border-radius: 10px;
+      margin-left: 5.6rem;
+      margin-top: -30px;
+    }
 
-  .banner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
+    .banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
 
-  .banner img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
+    .banner img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
 
-  .edit-banner {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #ff7f00; 
-    cursor: pointer;
-  }
+    .edit-banner {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #ff7f00;
+      cursor: pointer;
+    }
 
-  .user-profile {
-    display: flex;
-    align-items: center;
-  }
+    .user-profile {
+      display: flex;
+      align-items: center;
+      background-color: #ff860040;
+      /* Darker blue */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
 
-  .user-profile img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid white;
-    object-fit: cover;
-    margin-right: 20px;
-  }
+    .user-profile img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      margin-right: 20px;
+    }
 
-  .user-details {
-    flex-grow: 1;
-  }
+    .user-details {
+      flex-grow: 1;
+    }
 
-  .user-details h2,
-  .user-details h4 {
-    margin: 0;
-  }
 
-  .blog-section {
-    background-color: #333; /* Dark background */
-    color: #fff; /* Light text color */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
+    .user-details h1 {
+      font-size: 24px;
+      color: #e0e0e0;
+      /* Light gray text color */
+      margin-bottom: 10px;
+    }
 
-  .blog-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
 
-  .blog-post {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    position: relative;
-  }
 
-  .blog-post-actions {
-    position: absolute;
-    top: 10px; 
-    right: 10px; 
-  }
+    .user-details h2,
+    .user-details h4 {
+      margin: 0;
+      color: white;
+    }
 
-  .blog-post img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
+    .user-details h3 {
+      font-size: 16px;
+      color: #e0e0e0;
+      /* Light gray text color */
+      margin-bottom: 10px;
+    }
 
-  .blog-post-details {
-    flex-grow: 1;
-  }
+    .user-bio {
+      font-size: 14px;
+      color: #e0e0e0;
+      /* Light gray text color */
+      margin-bottom: 10px;
+    }
 
-  .blog-post-details p {
-    margin: 0;
-  }
-  .user-profile button {
-    background-color: #ff7f00; 
-    color: #fff;
-    border: none; 
-    border-radius: 5px; 
-    padding: 10px 20px;
-    font-size: 16px; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
-  }
+    .blog-section {
+      background-color: #101010;
+      /* Dark background */
+      color: #fff;
+      /* Light text color */
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
 
-  .user-profile button:hover {
-    background-color: #cc6600; /* Darker orange on hover */
-  }
+    .blog-post {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
 
-  .blog-post-readmore {
-    color: #ff7f00; /* Orange read more link */
-    text-decoration: underline;
-  }
-</style>
+    /* .blog-post {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+    } */
 
-<div class="profile-container">
-  <div class="profile-box">
-    <div class="banner">
-      <img id="banner-img" src="/assets/blog-img.jpg" alt="banner-img" />
-      <label for="file-input" class="edit-banner"><i class="fas fa-pencil-alt"></i></label>
-      <input id="file-input" type="file" style="display: none;" onchange="handleFileSelect(event)" />
-    </div>
+    .blog-post img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
 
-    <div class="user-profile">
-      <img id="profile-img" src="/assets/bg.png" alt="" />
-      <div class="user-details">
-        <h2><%= currUser.username %></h2>
-        <h4><%= currUser.email %></h4>
+    .blog-post-details h4 {
+      font-size: 24px;
+      color: #222222;
+      /* Dark gray text color */
+      margin-bottom: 10px;
+    }
+
+
+    .blog-post-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: 70px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      padding: 12px 16px;
+      z-index: 1;
+      overflow: auto;
+      /* Add this */
+      max-width: 100%;
+      /* Add this */
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+    /* .dropdown:hover .dropdown-content {
+      display: block;
+    } */
+
+    .dropdown-content a {
+      color: black;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* .blog-post img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    } */
+
+    .blog-post-details {
+      flex-grow: 1;
+    }
+
+    .blog-post-details p {
+      font-size: 16px;
+      color: #666;
+      /* Medium gray text color */
+      margin-bottom: 10px;
+    }
+
+    .user-profile button {
+      background-color: #ff7f00;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      background-color: #ff7f00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #101010;
+    }
+
+    .user-profile button:hover {
+      background-color: #101010;
+      /* Darker orange on hover */
+    }
+
+    .blog-post-readmore {
+      color: #ff7f00;
+      /* Orange read more link */
+      text-decoration: underline;
+    }
+
+    .social-media-icons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .social-media-icons a {
+      color: #e0e0e0;
+      /* Light gray text color */
+      text-decoration: none;
+    }
+
+    .social-media-icons a:hover {
+      color: #101010;
+      /* Bright red on hover */
+    }
+  </style>
+
+  <div class="profile-container">
+    <div class="profile-box">
+      <div class="banner">
+        <img id="banner-img" src="/assets/blog-img.jpg" alt="banner-img" />
+        <label for="file-input" class="edit-banner"><i class="fas fa-pencil-alt"></i></label>
+        <input id="file-input" type="file" style="display: none;" onchange="handleFileSelect(event)" />
       </div>
-      <button>edit</button>
-    </div>
 
-    <div class="blog-section">
-      <h3>Your Blog Posts</h3>
-      <div class="blog-posts">
-        <% for(let userBlog of userBlogs) { %>
-        <div class="blog-post">
-          <img src="<%= userBlog.images[0].url %>" alt="blog-post" />
-          <div class="blog-post-details">
-            <p><strong><%= userBlog.destination %></strong></p>
-            <p>Country: <%= userBlog.country %></p>
-            <p>State: <%= userBlog.state %></p>
-            <p>Budget: ₹ <%= userBlog.budget.toLocaleString("en-IN") %></p>
-            <p>Experience: <%= userBlog.experience.substring(0, 100) %> <a class="blog-post-readmore"
-                href="/dashboard/<%= userBlog._id %>">Read More ></a></p>
-            <div class="blog-post-actions">
-              <a href="/dashboard/<%=userBlog._id%>/edit"><i class="fas fa-edit"></i></a>
-              <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=DELETE" style="display: inline;">
-                <button type="submit"><i class="fas fa-trash"></i></button>
-              </form>
-            </div>
+      <div class="user-profile">
+        <img id="profile-img" src="/assets/bg.png" alt="" />
+        <div class="user-details">
+          <h2>
+            <%= currUser.username %>
+          </h2>
+          <h4>
+            <%= currUser.email %>
+          </h4>
+          <p class="user-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos?</p> <!-- User bio -->
+          <div class="social-media-icons">
+            <a href=""><i class="fab fa-linkedin"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-github"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-        <% } %>
-        <% if (userBlogs.length === 0) { %>
-        <div>
-          <h4>No Blogs Posted Yet</h4>
-        </div>
-        <% } %>
+        <button>edit</button>
       </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  function handleFileSelect(event) {
-    var file = event.target.files[0];
-    var reader = new FileReader();
+      <div class="blog-section">
+        <h3>Your Blog Posts</h3>
+        <div class="blog-posts">
+          <% for(let userBlog of userBlogs) { %>
+            <div class="blog-post">
+              <img src="<%= userBlog.images[0].url %>" alt="blog-post" />
+              <div class="blog-post-details">
+                <h4>
+                  <%= userBlog.destination %>
+                </h4>
+                <p>Country: <%= userBlog.country %>
+                </p>
+                <p>State: <%= userBlog.state %>
+                </p>
+                <p>Budget: ₹ <%= userBlog.budget.toLocaleString("en-IN") %>
+                </p>
+                <p>Experience: <%= userBlog.experience.substring(0, 100) %> <a class="blog-post-readmore"
+                      href="/dashboard/<%= userBlog._id %>">Read More ></a></p>
+                <div class="blog-post-actions">
+                  <div class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                    <div id="dropdown-content" class="dropdown-content">
+                      <a href="/dashboard/<%=userBlog._id%>/edit"><i class="fas fa-edit"></i> Edit</a>
+                      <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=DELETE">
+                        <button type="submit"><i class="fas fa-trash"></i> Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr> <!-- Line separator -->
+            </div>
+            <% } %>
+              <% if (userBlogs.length===0) { %>
+                <div>
+                  <h4>No Blogs Posted Yet</h4>
+                </div>
+                <% } %>
+        </div>
+      </div>
 
-    reader.onload = function (e) {
-      document.getElementById('banner-img').src = e.target.result;
-    };
+      <script>
+        function handleFileSelect(event) {
+          var file = event.target.files[0];
+          var reader = new FileReader();
 
-    reader.readAsDataURL(file);
-  }
+          reader.onload = function (e) {
+            document.getElementById('banner-img').src = e.target.result;
+          };
 
-  function handleProfileSelect(event) {
-    var file = event.target.files[0];
-    var reader = new FileReader();
+          reader.readAsDataURL(file);
+        }
 
-    reader.onload = function (e) {
-      document.getElementById('profile-img').src = e.target.result;
-    };
+        function handleProfileSelect(event) {
+          var file = event.target.files[0];
+          var reader = new FileReader();
 
-    reader.readAsDataURL(file);
-  }
-</script>
+          reader.onload = function (e) {
+            document.getElementById('profile-img').src = e.target.result;
+          };
+
+          reader.readAsDataURL(file);
+        }
+      </script>
+      <script>
+        function toggleDropdown() {
+          document.getElementById("dropdown-content").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+      </script>
