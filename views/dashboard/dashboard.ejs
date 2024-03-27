@@ -2,16 +2,35 @@
 
 
   <style>
-    .group {
+    body {
+      background-color: #1C1C1C;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+
+    .search-group {
       display: flex;
       line-height: 28px;
       align-items: center;
       position: relative;
       top: 25px;
+      left: 100px;
       width: 500px;
     }
 
-    /* 
+    .search-button {
+
+      border-radius: 20px;
+      height: 60px;
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
     .input {
       font-size: 1.5rem;
       width: 100%;
@@ -49,10 +68,11 @@
       fill: #9e9ea7;
       width: 1.5rem;
       height: 1.5rem;
-    } */
+    }
 
     .blog-posts-container {
-      margin-left: 14rem;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      margin-left: 16rem;
       /* padding: 25px; */
       flex-direction: column;
       flex-wrap: wrap;
@@ -60,14 +80,16 @@
       align-items: flex-start;
       margin-top: 3%;
       height: 100%;
-      width: 100vw;
-      background-color: aqua;
+      width: 80vw;
+      background-color: #1C1C1C;
+      color: white;
     }
 
     .blog-posts-container .blog-post {
-      height: 20%;
+      height: 20rem;
       display: flex;
       transition: transform 0.3s ease;
+
     }
 
     .blog-post-link {
@@ -83,7 +105,7 @@
 
     .blog-post .blog-post-img {
       width: 30%;
-      height: 18rem;
+      height: inherit;
     }
 
     .blog-post-img img {
@@ -94,11 +116,14 @@
     }
 
     .blog-post .blog-post-content {
+      padding: 10px;
+      padding-left: 20px;
       width: 70%;
       display: flex;
       flex-direction: column;
-      padding: 20px;
-      gap: 20px;
+      /* padding: 10px; */
+      gap: 15px;
+      background-color: #393939;
     }
 
     .user-detail {
@@ -108,10 +133,16 @@
       gap: 12px;
     }
 
-    .user-detail .user-profile {
-      border-radius: 20px;
+    .user-detail .user-profile-img {
       width: 20px;
-      border: 2px solid black;
+      height: 20px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .blog-post-content .destination img {
+      width: 16px;
+      height: 16px;
     }
 
     .blog-post-content .destination {
@@ -121,7 +152,7 @@
     .blog-post-content .country,
     .budget,
     .exp {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
     .blog-post-content .upload-time {
@@ -140,7 +171,9 @@
     }
   </style>
 
-  <div class="group">
+  <div class="search-group">
+    <input placeholder="Search" type="search" class="input">
+
     <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
       <g>
         <path
@@ -148,7 +181,7 @@
         </path>
       </g>
     </svg>
-    <input placeholder="Search" type="search" class="input">
+    <button class="search-button">Search</button>
   </div>
 
 
@@ -163,11 +196,9 @@
           <div class="blog-post-content">
 
             <div class="user-detail">
-              <div class="user-profile">
-                <img src="" alt="">
-              </div>
+              <img class="user-profile-img" src="/assets/blog.png" alt="">
               <div class="username">
-                Aryan Bhati
+                <%=blog.owner.username%>
               </div>
             </div>
             <div class="destination">
@@ -175,23 +206,20 @@
                 <%= blog.destination %>
               </b>
             </div>
-            <div class="upload-by">
-              By:<%=blog.owner.username%>
-            </div>
             <div class="country">
-              <b><img src="/assets/dashboard-blogs/location.svg" alt=""> Country :</b>
+              <b><i class="fa-solid fa-location-dot"></i> Country :</b>
               <%=blog.country%>
             </div>
             <div class="budget">
-              <b><img src="/assets/dashboard-blogs/rupee-sign.svg" alt=""> Budget :</b>
-              <%=blog.budget.toLocaleString('en-IN')%>
+              <b><i class="fa-solid fa-money-check-dollar"></i> Budget :</b>
+              Rs. <%=blog.budget.toLocaleString('en-IN')%>
             </div>
             <div class="exp">
-              <b><img src="/assets/dashboard-blogs/exp.svg" alt=""> Experience :</b>
+              <b><i class="fa-solid fa-suitcase-rolling"></i> Experience :</b>
               <%= blog.experience.substring(0, 195) %>
             </div>
             <div class="upload-time">
-              <img src="/assets/dashboard-blogs/upload-time.svg" alt="">
+              <i class="fa-solid fa-clock-rotate-left"></i>
               <%= new Date(blog.dateUploaded).toLocaleString() %>
             </div>
           </div>
