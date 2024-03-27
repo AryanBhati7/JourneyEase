@@ -64,7 +64,7 @@ footer {
 .details {
   z-index: 22;
   position: absolute;
-  top: 150px;
+  top: 200px;
   left: 60px;
 }
 .details .place-box {
