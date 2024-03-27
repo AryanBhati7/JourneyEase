@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -148,6 +149,7 @@ app.get("/dashboard/:id", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
 app.delete("/dashboard/:id",async(req,res,next)=>{
   let { id } = req.params;
   let deletedBlog = await Blog.findByIdAndDelete(id);
@@ -226,14 +228,11 @@ app.post(
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
-  }),
-  (req, res, next) => {
+  }),(req,res,next)=>{
     req.flash("success", "Welcome Back to JourneyEase");
     let redirectUrl = res.locals.redirectUrl || "/dashboard";
     res.redirect(redirectUrl);
-  }
-);
-
+  })
 app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
@@ -266,6 +265,7 @@ app.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
