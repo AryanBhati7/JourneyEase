@@ -1,5 +1,6 @@
 
 const Blog = require("./models/blog.models");
+const Comment = require("./models/comment.model");
 const ExpressError = require("./utils/ExpressError");
 // const {blogSchema} = require("./schema");
 
@@ -42,3 +43,22 @@ module.exports.saveRedirectUrl = (req,res,next)=>{
 //         next();
 //     }
 // };
+module.exports.isOwner = async(req,res,next)=>{
+    let {id} = req.params;
+    let listing = await Blog.findById(id);
+    if(! listing.owner.equals(res.locals.currUser._id)){
+        alert("error","You are Not the Owner Of these Blog");
+        return res.redirect(`/listings/${id}`);
+    };
+    next();
+};
+
+module.exports.isCommmentAuthor = async(req,res,next)=>{
+    let { id,commentId} = req.params;
+    let comment = await Comment.findById(commentId);
+    if(! comment.author.equals(res.locals.currUser._id)){
+        console.log("error","You did not Post These Comment");
+        return res.redirect(`/dashboard/${id}`);
+    };
+    next();
+};
