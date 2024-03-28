@@ -284,9 +284,11 @@
                 <span class="username">
                   <%= blogComment.author.username %>
                 </span>
+                <%if(currUser && blogComment.author._id.equals(currUser._id)){%>
                 <form method="POST" action="/dashboard/<%=blogs._id%>/comment/<%= blogComment._id %>?_method=DELETE" class="delete-comment-form">
-                  <button class="btn btn-sm btn-dark">Delete</button>
+                  <button class="btn btn-sm ">Delete</button>
                 </form>
+                <%}%>
               </div>
               <span class="comment-text">
                 <%= blogComment.comment %>
