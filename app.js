@@ -12,7 +12,7 @@ const Blog = require("./models/blog.models");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError.js");
-const { saveRedirectUrl, isLoggedIn } = require("./middleware.js");
+const { saveRedirectUrl, isLoggedIn, isCommmentAuthor, isOwner } = require("./middleware.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -151,7 +151,7 @@ app.get("/dashboard/:id", async (req, res) => {
   }
 });
 
-app.delete("/dashboard/:id",async(req,res,next)=>{
+app.delete("/dashboard/:id",isOwner,async(req,res,next)=>{
   let { id } = req.params;
   let deletedBlog = await Blog.findByIdAndDelete(id);
   console.log(deletedBlog);
@@ -205,26 +205,49 @@ app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) =>
   res.redirect(`/dashboard/${id}`);
 });
 
-app.post("/dashboard/:id/comment",async(req,res)=>{
-  let blog = await Blog.findById(req.params.id);
-  console.log(req.params.id);
-  let newComment = new Comment(req.body.comment);
-  newComment.author = req.user._id;
-  blog.comment.push(newComment);
-  await newComment.save();
-  await blog.save();
-  req.flash("success","New Review  Created");
-  res.redirect(`/dashboard/${blog._id}`);
-})
 
 
-app.delete("/dashboard/:id/comment/:commentId", async (req, res) => {
+app.post("/dashboard/:id/comment", async (req, res) => {
+  let { id } = req.params;
+  let commentData = req.body.comment;
+
+  // Check if the comment is empty
+  if (!commentData || !commentData.comment.trim()) {
+      console.log("error", "Comment cannot be empty");
+      return res.redirect(`/dashboard/${id}`);
+  }
+
+  try {
+      let blog = await Blog.findById(id);
+      if (!blog) {
+          req.flash("error", "Blog not found");
+          return res.redirect("/dashboard");
+      }
+
+      let newComment = new Comment(commentData);
+      newComment.author = req.user._id;
+      blog.comment.push(newComment);
+      await newComment.save();
+      await blog.save();
+
+      req.flash("success", "New comment added");
+      res.redirect(`/dashboard/${id}`);
+  } catch (error) {
+      console.error(error);
+      req.flash("error", "Failed to add comment");
+      res.redirect(`/dashboard/${id}`);
+  }
+});
+
+
+
+app.delete("/dashboard/:id/comment/:commentId",isLoggedIn,isCommmentAuthor, async (req, res) => {
   let { id, commentId } = req.params;
-  console.log(commentId);
+  // console.log(commentId);
   try {
       await Blog.findByIdAndUpdate(id, { $pull: { comments: commentId } });
       await Comment.findByIdAndDelete(commentId);
-      req.flash("success", "Review Deleted");
+      alert("success", "Review Deleted");
       res.redirect(`/dashboard/${id}`);
   } catch (error) {
       console.error(error);
