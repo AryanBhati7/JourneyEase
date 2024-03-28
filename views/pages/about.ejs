@@ -1,14 +1,90 @@
 <% layout('/layouts/boilerplate.ejs') -%>
     <style>
+        .home-container {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            /* background-color: #f8f9fa; */
+        }
 
+        .aboutus-container {
+            padding-top: 250px;
+            height: 702px;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(/assets/about-hero.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .aboutus-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 43.9rem;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .aboutus-text {
+            margin-bottom: 23%;
+        }
+
+        .aboutus-text h1 {
+            font-family: "Volkhov", "DM Serif Display", cursive;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            margin-left: 90px;
+            position: relative;
+            font-size: 5rem;
+            z-index: 1;
+        }
+
+        .aboutus-text p {
+            position: absolute;
+            color: #fff;
+            z-index: 100;
+            font-size: 1.2rem;
+            font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        .find-more-btn {
+            margin-top: 20px;
+            position: absolute;
+            z-index: 100;
+            font-size: 1.2rem;
+            font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
+            /* font-family: 'NotoSansGujarati'; */
+            height: 50px;
+            width: 180px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fd4d21;
+            color: white;
+            box-shadow: 0 1.25rem 2.1875rem 0 rgba(241, 165, 1, 0.15);
+            margin-left: 150px;
+        }
+
+        .find-more-btn:hover {
+            background-color: #f17945;
+            color: white;
+        }
     </style>
 
-    <section class="hero-section">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h2 class="hero-subtitle">Share your Experiences with the World</h2>
-                <h1 class="hero-title">Travel, enjoy<br>
-                    and live a new <br>and full life</h1>
+    <section class="aboutus-section">
+        <div class="aboutus-container">
+            <div class="aboutus-text">
+                <h1 class="aboutus-title">About-Us</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Officiis aliquid, atque quis
                     distinctio
                     quasi
@@ -18,6 +94,9 @@
                     </button>
             </div>
         </div>
+    </section>
+    <section>
+
     </section>
 
     <!-- <div class="about">

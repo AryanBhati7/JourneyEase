@@ -1,7 +1,8 @@
 <% layout('/layouts/boilerplate.ejs') -%>
     <style>
         body {
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
+            /* Prevent scrolling */
         }
 
         .login-container {
@@ -11,7 +12,7 @@
             align-items: center;
             height: 100vh;
             font-family: Arial, sans-serif;
-            background: url('assets/bg.png') no-repeat center center fixed;
+            background: url('assets/login-bg.png') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -24,9 +25,11 @@
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 5px;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);display: flex;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribute space evenly between items */
+            justify-content: space-between;
+            /* Distribute space evenly between items */
         }
 
         .login-form h2 {
@@ -67,29 +70,30 @@
         .login-form button:hover {
             background-color: #0056b3;
         }
-        .button-container{
+
+        .button-container {
             margin-top: 0.4rem;
         }
     </style>
 
-<div class="login-container">
-    <form  action = "/login" method="post" class="login-form">
-        <h2>Login</h2>
-        <div class="input-container">
-            <label for="username">Username</label>
-            <input id="username" name="username" type="text" placeholder="Enter your username" required>
-            <label for="password">Password</label>
-            <div class="password-container">
-                <input id="password" type="password" name="password" placeholder="Enter your password" required>
-                <i class="toggle-password">👁️</i>
+    <div class="login-container">
+        <form action="/login" method="post" class="login-form">
+            <h2>Login</h2>
+            <div class="input-container">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" placeholder="Enter your username" required>
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input id="password" type="password" name="password" placeholder="Enter your password" required>
+                    <i class="toggle-password">👁️</i>
+                </div>
             </div>
-        </div>
-        <div class="button-container">
-            <button type="submit">Login</button>
-            <p>Don't have an account? <a href="/signup">Sign up</a></p>
-        </div>
-    </form>
-</div>
+            <div class="button-container">
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="/signup">Sign up</a></p>
+            </div>
+        </form>
+    </div>
 
     <script>
         document.querySelector('.toggle-password').addEventListener('click', function () {
