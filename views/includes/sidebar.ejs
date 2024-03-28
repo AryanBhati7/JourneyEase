@@ -94,14 +94,15 @@
             cursor: pointer;
         }
 
-        #btnn div {
+        .btnn  {
             background-color: #f17945;
             color: #fff;
-            padding-right: 1.7rem;
-            padding-left: 1.7rem;
-            width: 42%;
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+            /* width: 42%; */
             text-align: center;
-        }
+            border-radius: 500px;
+        } 
+        
 
         #btnn div:hover {
             background-color: #e48845;
@@ -132,9 +133,12 @@
                 <a href="/logout">
                     <div><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
                 </a>
-                <a id="btnn" type="btn" href="/blog/form">
-                    <div><i class="fa-solid fa-plus"></i> Post</div>
-                </a>
+                <div class="btnn">
+                    <a id="btnn"  type="btn" href="/blog/form">
+                        <i class="fa-solid fa-plus"></i> Post
+                    </a>
+                </div>
+                
             </div>
             <div class="down">
                 <a href="#">

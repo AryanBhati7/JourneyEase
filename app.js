@@ -247,11 +247,11 @@ app.delete("/dashboard/:id/comment/:commentId",isLoggedIn,isCommmentAuthor, asyn
   try {
       await Blog.findByIdAndUpdate(id, { $pull: { comments: commentId } });
       await Comment.findByIdAndDelete(commentId);
-      req.flash("success", "Review Deleted");
+      req.flash("success", "Comment Deleted");
       res.redirect(`/dashboard/${id}`);
   } catch (error) {
       console.error(error);
-      req.flash("error", "Failed to delete review");
+      req.flash("error", "Failed to delete Comment");
       res.redirect(`/dashboard/${id}`);
   }
 });
