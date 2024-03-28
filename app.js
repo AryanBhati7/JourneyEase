@@ -17,6 +17,7 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/users.model.js");
+const Comment = require("./models/comment.model.js");
 const multer = require("multer");
 const { storage } = require("./cloudConfig");
 const upload = multer({ storage });
@@ -138,8 +139,8 @@ app.get("/dashboard/:id", async (req, res) => {
 
   try {
     const blogs = await Blog.findById(req.params.id)
-      .sort({ dateUploaded: -1 })
-      .populate("owner");
+      .sort({ dateUploaded: -1 }).populate({path:"comment",populate:{path:"author"}}).populate("owner")
+    
     if (!blogs) {
       return res.status(404).json({ error: "Blog not found" });
     }
@@ -202,6 +203,34 @@ app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) =>
   await updatedBlog.save();
   req.flash("success", "Blog Updated");
   res.redirect(`/dashboard/${id}`);
+});
+
+app.post("/dashboard/:id/comment",async(req,res)=>{
+  let blog = await Blog.findById(req.params.id);
+  console.log(req.params.id);
+  let newComment = new Comment(req.body.comment);
+  newComment.author = req.user._id;
+  blog.comment.push(newComment);
+  await newComment.save();
+  await blog.save();
+  req.flash("success","New Review  Created");
+  res.redirect(`/dashboard/${blog._id}`);
+})
+
+
+app.delete("/dashboard/:id/comment/:commentId", async (req, res) => {
+  let { id, commentId } = req.params;
+  console.log(commentId);
+  try {
+      await Blog.findByIdAndUpdate(id, { $pull: { comments: commentId } });
+      await Comment.findByIdAndDelete(commentId);
+      req.flash("success", "Review Deleted");
+      res.redirect(`/dashboard/${id}`);
+  } catch (error) {
+      console.error(error);
+      req.flash("error", "Failed to delete review");
+      res.redirect(`/dashboard/${id}`);
+  }
 });
 
 app.get("/profile", async (req, res) => {

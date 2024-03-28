@@ -165,16 +165,67 @@
   <% } %>
     <p class="time"><b>Uploaded On:</b><%= new Date(blogs.dateUploaded).toLocaleString() %></p>
   </div>
+
+
   <div class="actions">
     <button>Like</button>
-    <div class="comments">
+    <!-- <div class="comments">
       <span>Comments</span>
       <button>Comment</button>
-    </div>
+    </div> -->
   </div>
-  <div class="comment-box">
+
+                    
+  <%if(currUser){%>
+    <hr>
+    <h4>Leave a review</h4>
+    <form action="/dashboard/<%=blogs._id%>/comment" method="POST" novalidate
+        class="needs-validation">
+
+        <div class="mb-3 mt-3">
+           
+        <div class="mb-3 mt-3">
+            <label for="comment" class="form-label">Comments</label>
+            <textarea name="comment[comment]" id="comment" cols="30" rows="5" class="form-control"
+                required></textarea>
+            <!-- <div class="invalid-feedback">Please Add Some Comments For Reviews</div> -->
+        </div>
+
+        <button class="btn btn-outline-dark">Submit</button>
+    </form>
+    <% } %>
+
+
+
+        <%if(blogs.comment && blogs.comment.length > 0){ %>
+            <div class="row">
+                <p><b>Comments</b></p>
+                <% for(let blogComment of blogs.comment){ %>
+                    <div class="card col-5 ms-3 mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">
+                                <%= blogComment.author.username %>
+                            </h5>
+
+
+                            <p class="card-text mb-2">
+                                <%= blogComment.comment %>
+                            </p>
+                        </div>
+
+                        <form class="mb-2 mt-1" method="POST"
+                            action="/dashboard/<%=blogs._id%>/comment/<%= blogComment._id %>?_method=DELETE">
+                            <button class="btn btn-sm btn-dark"> Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+            </div>
+        <%}%>
+
+
+  <!-- <div class="comment-box">
     <textarea placeholder="Write a comment..."></textarea>
-  </div>
+  </div> -->
 </div>
 
 <script>
