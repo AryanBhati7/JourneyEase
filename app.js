@@ -213,7 +213,7 @@ app.post("/dashboard/:id/comment", async (req, res) => {
 
   // Check if the comment is empty
   if (!commentData || !commentData.comment.trim()) {
-      console.log("error", "Comment cannot be empty");
+      req.flash("error", "Comment cannot be empty");
       return res.redirect(`/dashboard/${id}`);
   }
 
@@ -247,7 +247,7 @@ app.delete("/dashboard/:id/comment/:commentId",isLoggedIn,isCommmentAuthor, asyn
   try {
       await Blog.findByIdAndUpdate(id, { $pull: { comments: commentId } });
       await Comment.findByIdAndDelete(commentId);
-      alert("success", "Review Deleted");
+      req.flash("success", "Review Deleted");
       res.redirect(`/dashboard/${id}`);
   } catch (error) {
       console.error(error);
