@@ -1,246 +1,328 @@
 <%- include("../includes/sidebar.ejs") %>
 
-<style>
-  /* Sidebar styling */
-  /* Main content styling */
-  body {
-    background-color: #f2f2f2; /* Light gray background */
-    color: #333;
-    font-family: Arial, sans-serif;
-  }
+  <style>
+    /* Sidebar styling */
+    /* Main content styling */
+    body {
+      background-color: #f2f2f2;
+      /* Light gray background */
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
 
-  .blog-details {
-    max-width: 80%;
-    margin-left: 20rem;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
+    .blog-details {
+      max-width: 80%;
+      margin-left: 20rem;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
 
 
 
-  .blog-details .images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-  }
+    .blog-details .images {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-  .blog-details .images img {
-    width: 500px;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 5px;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .blog-details .images .prev, .blog-details .images .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .blog-details .images .prev {
-    left: 10px;
-  }
+    .blog-details .images img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 5px;
+      transition: transform 0.3s ease-in-out;
+    }
 
-  .blog-details .images .next {
-    right: 10px;
-  }
+    .blog-details .images .prev,
+    .blog-details .images .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+    }
 
-  .blog-details .content {
-    margin-top: 20px;
-    font-size: 1.2em;
-    line-height: 1.6;
-  }
+    .blog-details .images .prev {
+      left: 10px;
+    }
 
-  /* Add styles for like, comment features, and comment box */
-  .blog-details .actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-  }
+    .blog-details .images .next {
+      right: 10px;
+    }
 
-  .blog-details .actions button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff; /* Blue button color */
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
+    .blog-details .content {
+      margin-top: 20px;
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
 
-  .blog-details .actions button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
+    /* Add styles for like, comment features, and comment box */
+    .blog-details .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-  .blog-details .actions .comments {
-    display: flex;
-    align-items: center;
-  }
+    .blog-details .actions button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      /* Blue button color */
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
 
-  .blog-details .actions .comments span {
-    margin-right: 10px;
-  }
+    .blog-details .actions button:hover {
+      background-color: #0056b3;
+      /* Darker blue on hover */
+    }
 
-  .blog-details .comment-box {
-    margin-top: 20px;
-  }
+    .blog-details .actions .comments {
+      display: flex;
+      align-items: center;
+    }
 
-  .blog-details .comment-box textarea {
-    width: 100%;
-    min-height: 100px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  .time{
+    .blog-details .actions .comments span {
+      margin-right: 10px;
+    }
+
+    .blog-details .comment-box {
+      margin-top: 20px;
+    }
+
+    .blog-details .comment-box textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .time {
       font-size: small;
       text-align: end;
     }
 
-  /* Responsive styling */
-  @media screen and (max-width: 768px) {
-    .sidebar {
-      display: none;
+    
+    .comment-section {
+      max-width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .blog-details {
-      max-width: 100%;
-      margin-left: 0;
-      float: none;
-      padding: 20px 10px;
+    .comment-section .comment {
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
     }
 
-    .blog-details .images {
-      flex-direction: column; /* Stack images vertically on smaller screens */
-      overflow-x: hidden; /* Hide horizontal overflow */
-      scroll-behavior: initial; /* Remove smooth scrolling */
+    .comment-section .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .blog-details .images img {
-      width: 100%; /* Make images full width */
-      height: auto; /* Auto height */
-      margin-bottom: 10px; /* Add space between images */
+    .comment-section .comment .username {
+      font-weight: bold;
     }
-  
-  }
-</style>
 
-<div class="blog-details">
-  <h2><%= blogs.destination %></h2>
-  <div class="images">
-    <% if (blogs.images.length > 1) { %>
-      <div class="prev">&lt;</div>
-    <% } %>
-    <% blogs.images.forEach((image, index) => { %>
-      <% if(index === 0) { %>
-        <img src="<%= image.url %>" alt="BlogImage" style="display:block;" />
-      <% } else { %>
-        <img src="<%= image.url %>" alt="BlogImage" style="display:none;" />
-      <% } %>
-    <% }); %>
-    <% if (blogs.images.length > 1) { %>
-      <div class="next">&gt;</div>
-    <% } %>
-  </div>
-  <div class="content">
-    <p><b>Country:</b> <%= blogs.country %></p>
-    <p><b>State:</b> <%= blogs.state %></p>
-    <p><b>Budget:</b> &#8377;<%= blogs.budget %></p>
-    <p><b>Experience:</b> <%= blogs.experience %></p>
-    <% if (blogs.owner) { %>
-      <p><b>Posted by:</b> <%= blogs.owner.username %></p>
-  <% } else { %>
-      <p><b>Posted by:</b> Unknown</p>
-  <% } %>
-    <p class="time"><b>Uploaded On:</b><%= new Date(blogs.dateUploaded).toLocaleString() %></p>
-  </div>
+    .comment-section .comment .comment-text {
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+
+    .comment-section .comment-input {
+      margin-top: 20px;
+    }
+
+    .comment-section .comment-input input {
+      width: 100%;
+      min-height: 100px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      resize: none;
+    }
+
+    .comment-section .comment-input button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .comment-section .comment-input button:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-comment-form {
+      margin-left: auto;
+    }
+
+    /* Responsive styling */
+    @media screen and (max-width: 768px) {
+      .comment-section {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        box-shadow: none;
+      }
+
+      .comment-section .comment-input {
+        position: static;
+      }
+
+      .comment-section .comments {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Responsive styling */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .blog-details {
+        max-width: 100%;
+        margin-left: 0;
+        float: none;
+        padding: 20px 10px;
+      }
+
+      .blog-details .images {
+        flex-direction: column;
+        /* Stack images vertically on smaller screens */
+        overflow-x: hidden;
+        /* Hide horizontal overflow */
+        scroll-behavior: initial;
+        /* Remove smooth scrolling */
+      }
+
+      .blog-details .images img {
+        width: 100%;
+        /* Make images full width */
+        height: auto;
+        /* Auto height */
+        margin-bottom: 10px;
+        /* Add space between images */
+      }
+
+    }
+  </style>
+
+  <div class="blog-details">
+    <h2>
+      <%= blogs.destination %>
+    </h2>
+    <div class="images">
+      <% if (blogs.images.length> 1) { %>
+        <div class="prev">&lt;</div>
+        <% } %>
+          <% blogs.images.forEach((image, index)=> { %>
+            <% if(index===0) { %>
+              <img src="<%= image.url %>" alt="BlogImage" style="display:block;" />
+              <% } else { %>
+                <img src="<%= image.url %>" alt="BlogImage" style="display:none;" />
+                <% } %>
+                  <% }); %>
+                    <% if (blogs.images.length> 1) { %>
+                      <div class="next">&gt;</div>
+                      <% } %>
+    </div>
+    <div class="content">
+      <p><b>Country:</b>
+        <%= blogs.country %>
+      </p>
+      <p><b>State:</b>
+        <%= blogs.state %>
+      </p>
+      <p><b>Budget:</b> &#8377;<%= blogs.budget %>
+      </p>
+      <p><b>Experience:</b>
+        <%= blogs.experience %>
+      </p>
+      <% if (blogs.owner) { %>
+        <p><b>Posted by:</b>
+          <%= blogs.owner.username %>
+        </p>
+        <% } else { %>
+          <p><b>Posted by:</b> Unknown</p>
+          <% } %>
+            <p class="time"><b>Uploaded On:</b>
+              <%= new Date(blogs.dateUploaded).toLocaleString() %>
+            </p>
+    </div>
 
 
-  <div class="actions">
-    <button>Like</button>
-    <!-- <div class="comments">
-      <span>Comments</span>
-      <button>Comment</button>
-    </div> -->
-  </div>
-
-                    
-  <%if(currUser){%>
-    <hr>
-    <h4>Leave a review</h4>
-    <form action="/dashboard/<%=blogs._id%>/comment" method="POST" novalidate
-        class="needs-validation">
-
-        <div class="mb-3 mt-3">
-           
-        <div class="mb-3 mt-3">
-            <label for="comment" class="form-label">Comments</label>
-            <textarea name="comment[comment]" id="comment" cols="30" rows="5" class="form-control"
-                required></textarea>
-            <!-- <div class="invalid-feedback">Please Add Some Comments For Reviews</div> -->
-        </div>
-
-        <button class="btn btn-outline-dark">Submit</button>
-    </form>
-    <% } %>
-
-
-
-        <%if(blogs.comment && blogs.comment.length > 0){ %>
-            <div class="row">
-                <p><b>Comments</b></p>
-                <% for(let blogComment of blogs.comment){ %>
-                    <div class="card col-5 ms-3 mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title mt-2">
-                                <%= blogComment.author.username %>
-                            </h5>
-
-
-                            <p class="card-text mb-2">
-                                <%= blogComment.comment %>
-                            </p>
-                        </div>
-
-                        <form class="mb-2 mt-1" method="POST"
-                            action="/dashboard/<%=blogs._id%>/comment/<%= blogComment._id %>?_method=DELETE">
-                            <button class="btn btn-sm btn-dark"> Delete</button>
-                        </form>
-                    </div>
-                    <% } %>
+    <%if(currUser){%>
+      <div class="comment-section">
+        <h4>Comments</h4>
+        <%if(blogs.comment && blogs.comment.length> 0){ %>
+          <% for(let blogComment of blogs.comment){ %>
+            <div class="comment">
+              <div class="comment-header">
+                <span class="username">
+                  <%= blogComment.author.username %>
+                </span>
+                <form method="POST" action="/dashboard/<%=blogs._id%>/comment/<%= blogComment._id %>?_method=DELETE" class="delete-comment-form">
+                  <button class="btn btn-sm btn-dark">Delete</button>
+                </form>
+              </div>
+              <span class="comment-text">
+                <%= blogComment.comment %>
+              </span>
             </div>
+          <% } %>
         <%}%>
+        <div class="comment-input">
+          <form action="/dashboard/<%=blogs._id%>/comment" method="POST" novalidate class="needs-validation">
+            <input name="comment[comment]" id="comment" cols="30" rows="5" class="form-control"
+              placeholder="Write a comment..." required></input>
+            <button>Like</button>
+            <button class="btn btn-outline-dark">Submit</button>
+          </form>
+        </div>
+      </div>
+    <% } %>
 
-
-  <!-- <div class="comment-box">
+        <!-- <div class="comment-box">
     <textarea placeholder="Write a comment..."></textarea>
   </div> -->
-</div>
+  </div>
 
-<script>
-  var images = document.querySelectorAll('.blog-details .images img');
-  var currentIndex = 0;
+  <script>
+    var images = document.querySelectorAll('.blog-details .images img');
+    var currentIndex = 0;
 
-  document.querySelector('.blog-details .images .prev').addEventListener('click', function() {
-    images[currentIndex].style.display = 'none';
-    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-    images[currentIndex].style.display = 'block';
-  });
+    document.querySelector('.blog-details .images .prev').addEventListener('click', function () {
+      images[currentIndex].style.display = 'none';
+      currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+      images[currentIndex].style.display = 'block';
+    });
 
-  document.querySelector('.blog-details .images .next').addEventListener('click', function() {
-    images[currentIndex].style.display = 'none';
-    currentIndex = (currentIndex + 1) % images.length;
-    images[currentIndex].style.display = 'block';
-  });
-</script>
+    document.querySelector('.blog-details .images .next').addEventListener('click', function () {
+      images[currentIndex].style.display = 'none';
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].style.display = 'block';
+    });
+  </script>
