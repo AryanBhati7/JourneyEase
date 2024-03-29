@@ -272,3 +272,24 @@
   border-radius: 20px;
   width: 80px;
 }
+
+.animate {
+  transition: all 1s;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.animate-rp {
+  transition: all 1s;
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.animate-rp.show {
+  opacity: 1;
+  transform: translateX(0);
+}
