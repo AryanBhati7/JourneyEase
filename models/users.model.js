@@ -15,7 +15,29 @@ const userSchema = new Schema({
       required: true,
       default: 'user',
     },
-
+    bio:{
+      type:String,
+    },
+    avatar:{
+      avatarUrl:{
+        type:String
+      },
+    },
+      social:{
+        linkedin:{
+          type:String,
+        },
+        github:{
+          type:String,
+        },
+        instagram:{
+          type:String,
+        },
+        twitter:{
+          type:String,
+        },
+      }
+    
   });
 
 
