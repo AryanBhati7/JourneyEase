@@ -85,28 +85,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5% 3%;
-            height: 100vh;
-            /* background-image: url('/assets/FAQ.png'); */
+            padding: 5% 8%;
+            width: 100vw;
             background-size: cover;
             background-position: center;
         }
 
         .faq-left {
-            width: 30%;
-            height: 100%;
             position: relative;
-            left: 0;
+            width: 35%;
+            height: 50rem;
         }
 
         .faq-left img {
-            height: 100%;
-            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 35px;
+            right: 0;
         }
 
         .faq-right {
+            position: relative;
+            bottom: 4rem;
             width: 70%;
             /* padding: 2rem; */
+        }
+
+        .faq-title {
+            font-size: 5rem;
+            color: white;
+            font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
         }
 
         .faq-question {
@@ -121,12 +131,19 @@
             margin: 10px auto;
             position: relative;
             z-index: 1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f8f8f8;
         }
 
         .faq-question h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             flex-grow: 1;
+            line-height: 1.5;
         }
 
         .faq-question i {
@@ -135,6 +152,10 @@
         }
 
         .faq-answer {
+            overflow: auto;
+            line-height: 1.5;
+            padding: 1rem 2rem;
+            transition: max-height 0.3s ease, padding 0.3s ease;
             background-color: #fff4f4;
             display: none;
             padding: 1rem;
@@ -161,6 +182,74 @@
         .faq-answer p {
             font-size: 1.2rem;
             line-height: 1.6;
+            margin: 0;
+        }
+
+        .toggle {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle.open {
+            transform: rotate(45deg);
+        }
+
+        .our-team {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100vw;
+            height: auto;
+            padding: 2rem 0;
+        }
+
+        .our-team .our-team-title {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            color: #f17945;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .our-team .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .team-members .member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            box-shadow: 0 2rem 2.1875rem 0 rgb(253, 77, 33, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .team-members .member:hover {
+            transform: scale(1.05);
+        }
+
+        .team-members img {
+            border-radius: 50%;
+            height: 150px;
+            width: 150px;
+        }
+
+        .team-members .member-name {
+            text-align: center;
+            color: #f17945;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .our-team .team-members {
+                flex-direction: column;
+            }
         }
     </style>
 
@@ -179,10 +268,11 @@
         </div>
     </section>
     <section class="faq">
-        <div class="faq-left">
-            <img src="/assets/FAQ.png" alt="">
-        </div>
+
         <div class="faq-right">
+            <div class="faq-title">
+                FAQs
+            </div>
             <div class="faq-questions">
                 <div class="faq-question">
                     <h2>Q.What is the price of a russian girl</h2><i class="fa-solid fa-plus toggle">+</i>
@@ -212,11 +302,47 @@
                 </div>
             </div>
         </div>
+        <div class="faq-left">
+            <img src="/assets/FAQ.png" alt="faq">
+        </div>
+    </section>
+    <section class="our-team">
+        <div class="our-team-title">
+            <h1>Our Team</h1>
+        </div>
+        <div class="team-members">
+            <div class="member">
+                <img src="/assets/aryan.jpg" alt="">
+                <div class="member-name">
+                    <h3>Aryan Bhati</h3>
+                </div>
+            </div>
+            <div class="member">
+                <img src="/assets/arnab.jpg" alt="">
+                <div class="member-name">
+                    <h3>Arnab Jyoti Kakati</h3>
+                </div>
+            </div>
+            <div class="member">
+                <img src="/assets/arjun.jpg" alt="">
+                <div class="member-name">
+                    <h3>Arjun Bhandari</h3>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script>
         document.querySelectorAll('.toggle').forEach(item => {
             item.addEventListener('click', event => {
+                // Close all answers
+                document.querySelectorAll('.faq-answer.open').forEach(openItem => {
+                    if (openItem !== event.target.parentElement.nextElementSibling) {
+                        openItem.classList.remove('open');
+                    }
+                });
+
+                // Toggle current answer
                 const answer = event.target.parentElement.nextElementSibling;
                 answer.classList.toggle('open');
             })
