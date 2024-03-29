@@ -208,6 +208,20 @@
       /* Medium gray text color */
       margin-bottom: 10px;
     }
+.user-profile .buttons{
+  display: flex;
+  flex-direction:column;
+}
+
+.user-profile .buttons a{
+  text-decoration: none;
+  color: white;
+  margin-right: 0.2rem;
+  background-color:#ff7f00 ;
+  padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+  border-radius: 0.3rem;
+}
+
 
     .user-profile button {
       background-color: #ff7f00;
@@ -289,7 +303,10 @@
             <a href=""><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-        <button>edit</button>
+        <div class="buttons">
+          <a href=""> <i class="fas fa-pencil-alt"> </i>Edit</a>
+        </div>
+
       </div>
 
       <div class="blog-section">
@@ -306,7 +323,7 @@
                 </p>
                 <p>State: <%= userBlog.state %>
                 </p>
-                <p>Budget: ₹ <%= userBlog.budget.toLocaleString("en-IN") %>
+                <p>Budget: ₹<%= userBlog.budget.toLocaleString("en-IN") %>
                 </p>
                 <p>Experience: <%= userBlog.experience.substring(0, 100) %> <a class="blog-post-readmore"
                       href="/dashboard/<%= userBlog._id %>">Read More ></a></p>
