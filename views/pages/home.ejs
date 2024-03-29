@@ -16,7 +16,7 @@
                 </div>
             </div>
         </section>
-        <section class="step-section">
+        <section class="step-section animate">
             <div class="three-step-container">
                 <div class="step-text">
                     <div class="step-head-text">
@@ -58,12 +58,12 @@
                 </div>
             </div>
         </section>
-        <section class="recent-posts">
+        <section class="recent-posts animate">
             <div class="recent-posts-head">
                 <h1>Recent Posts</h1>
             </div>
             <div class="recent-posts-container">
-                <div class="recent-post-1-container">
+                <div class="recent-post-1-container animate-rp" data-delay="0">
                     <div class="img-container">
                         <img src="/assets/recent-posts/recent-post-1.jpg" alt="recent-post-1">
                     </div>
@@ -75,7 +75,7 @@
                         <a class="recent-post-readmore" href="">Read More ></a>
                     </div>
                 </div>
-                <div class="recent-post-1-container">
+                <div class="recent-post-1-container animate-rp" data-delay="200">
                     <div class="img-container">
                         <img src="/assets/recent-posts/recent-post-2.jpg" alt="recent-post-1">
                     </div>
@@ -87,7 +87,7 @@
                         <a class="recent-post-readmore" href="">Read More ></a>
                     </div>
                 </div>
-                <div class="recent-post-1-container">
+                <div class="recent-post-1-container animate-rp" data-delay="400">
                     <div class="img-container">
                         <img src="/assets/recent-posts/recent-post-3.jpg" alt="recent-post-1">
                     </div>
@@ -99,7 +99,7 @@
                         <a class="recent-post-readmore" href="">Read More ></a>
                     </div>
                 </div>
-                <div class="recent-post-1-container">
+                <div class="recent-post-1-container animate-rp" data-delay="600">
                     <div class="img-container">
                         <img src="/assets/recent-posts/recent-post-4.jpg" alt="recent-post-1">
                     </div>
@@ -114,7 +114,7 @@
             </div>
 
         </section>
-        <section class="Write-Your-Own-Blog">
+        <section class="Write-Your-Own-Blog animate">
             <div class="text">
                 <h1>Share you Sweet Memories
                     with the World</h1>
@@ -137,5 +137,38 @@
             image.onload = function () {
                 document.querySelector('.hero-container').style.backgroundImage = 'url(' + this.src + ')';
             }
+        });
+    </script>
+    <script>
+        window.addEventListener('scroll', function () {
+            const animatedElements = document.querySelectorAll('.animate');
+
+            animatedElements.forEach(function (element) {
+                const positionFromTop = element.getBoundingClientRect().top;
+
+                if (positionFromTop - window.innerHeight <= 0) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+        });
+    </script>
+    <script>
+        window.addEventListener('scroll', function () {
+            const animatedElements = document.querySelectorAll('.animate-rp');
+
+            animatedElements.forEach(function (element) {
+                const positionFromTop = element.getBoundingClientRect().top;
+
+                if (positionFromTop - window.innerHeight <= 0) {
+                    const delay = element.getAttribute('data-delay');
+                    setTimeout(function () {
+                        element.classList.add('show');
+                    }, delay);
+                } else {
+                    element.classList.remove('show');
+                }
+            });
         });
     </script>
