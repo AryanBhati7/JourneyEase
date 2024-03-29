@@ -79,6 +79,89 @@
             background-color: #f17945;
             color: white;
         }
+
+        .faq {
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5% 3%;
+            height: 100vh;
+            /* background-image: url('/assets/FAQ.png'); */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .faq-left {
+            width: 30%;
+            height: 100%;
+            position: relative;
+            left: 0;
+        }
+
+        .faq-left img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .faq-right {
+            width: 70%;
+            /* padding: 2rem; */
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 10px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-question h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .faq-question i {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            background-color: #fff4f4;
+            display: none;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+            transform: scaleY(1);
+            display: block;
+        }
+
+        .faq-answer p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
     </style>
 
     <section class="aboutus-section">
@@ -95,34 +178,20 @@
             </div>
         </div>
     </section>
-    <section>
-
-    </section>
-
-    <!-- <div class="about">
-            <div class="about-left">
-                <h1>About Us</h1>
-                <p>
-                    JourneyEase is a travel agency that provides a platform for users to book their travel tickets and hotel
-                    rooms. We provide a wide range of options for our users to choose from. We also provide a platform for
-                    users to share their travel experiences and reviews. We are committed to providing the best travel
-                    experience to our users.
-                </p>
-            </div>
-            <div class="right"></div>
+    <section class="faq">
+        <div class="faq-left">
+            <img src="/assets/FAQ.png" alt="">
         </div>
-        
-        <div class="faq">
-            <div class="faq-left"></div>
-            <div class="faq-right">
-                <div class="faq-questions">
-                    <div class="faq-question">
-                        <h2>Q.What is the price of a russian girl</h2><i class="fa-solid fa-plus toggle">+</i>
-                    </div>
+        <div class="faq-right">
+            <div class="faq-questions">
+                <div class="faq-question">
+                    <h2>Q.What is the price of a russian girl</h2><i class="fa-solid fa-plus toggle">+</i>
+                </div>
                 <div class="faq-answer">
                     <p>This is the answer to the question.
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, eligendi velit. Ipsum,
-                        voluptatem rem. Vel minus excepturi sequi voluptatibus architecto facere quasi ipsam. Delectus
+                        voluptatem rem. Vel minus excepturi sequi voluptatibus architecto facere quasi ipsam.
+                        Delectus
                         illum, quisquam ut adipisci magni molestias!
                     </p>
                 </div>
@@ -143,7 +212,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <script>
         document.querySelectorAll('.toggle').forEach(item => {
@@ -152,7 +221,23 @@
                 answer.classList.toggle('open');
             })
         })
-    </script> -->
+    </script>
+
+    <!-- <div class="about">
+            <div class="about-left">
+                <h1>About Us</h1>
+                <p>
+                    JourneyEase is a travel agency that provides a platform for users to book their travel tickets and hotel
+                    rooms. We provide a wide range of options for our users to choose from. We also provide a platform for
+                    users to share their travel experiences and reviews. We are committed to providing the best travel
+                    experience to our users.
+                </p>
+            </div>
+            <div class="right"></div>
+        </div>
+        
+     
+
     <!-- <style>
                         .about {
                             background-image: url('/assets/About-UsBackground.png');
@@ -190,80 +275,5 @@
                             background-size: cover;
                             background-position: center;
                         } */
-                        .faq {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            padding: 5% 3%;
-                            height: 100vh;
-                            background-image: url('/assets/FAQ.png');
-                            background-size: cover;
-                            background-position: center;
-                        }
-                    
-                        .faq-left {
-                            width: 50%;
-                            /* background-image: url('/assets/FAQ.png'); */
-                            background-size: cover;
-                            background-position: center;
-                        }
-                    
-                        .faq-right {
-                            width: 70%;
-                            /* padding: 2rem; */
-                        }
-                    
-                        .faq-question {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            background-color: #fff;
-                            padding: 1rem;
-                            border-radius: 10px;
-                            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                            width: 100%;
-                            margin: 10px auto;
-                            position: relative;
-                            z-index: 1;
-                        }
-                    
-                        .faq-question h2 {
-                            font-size: 1.5rem;
-                            margin-bottom: 1rem;
-                            flex-grow: 1;
-                        }
-                    
-                        .faq-question i {
-                            font-size: 2rem;
-                            font-weight: bold;
-                        }
-                    
-                        .faq-answer {
-                            background-color: #fff4f4;
-                            display: none;
-                            padding: 1rem;
-                            border-radius: 10px;
-                            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                            width: 80%;
-                            position: relative;
-                            z-index: 2;
-                            width: 100%;
-                            left: 0;
-                            right: 0;
-                            overflow: hidden;
-                            transition: transform 0.5s ease;
-                            transform: scaleY(0);
-                            transform-origin: top;
-                        }
-                    
-                        .faq-answer.open {
-                            max-height: 500px;
-                            transform: scaleY(1);
-                            display: block;
-                        }
-                    
-                        .faq-answer p {
-                            font-size: 1.2rem;
-                            line-height: 1.6;
-                        }
+                        
                     </style> -->
