@@ -20,7 +20,7 @@
             top: 0;
             left: 0;
             height: 100%;
-            width: 21rem;
+            width: 17rem;
             background-color: #000;
             transition: 0.5s;
             margin-right: 20px;
@@ -53,23 +53,28 @@
 
         .up a div {
             padding: 0.8rem;
-            margin: 0.8rem;
-            border-radius: 4rem;
+            margin: 0.5rem 0.8rem .05rem 0.8rem;
+            border-radius: 1rem;
             background-color: #000;
             transition: 0.5s;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             display: inline-block;
+            width: 90%;
             /* border: 1px solid #fff; */
         }
-
+        .up a div i{
+            font-size: 1rem;
+        }
         .up a div:hover {
             background-color: #4e4e4e;
+            width: 90%;
             cursor: pointer;
         }
 
         .down {
             display: flex;
             flex-direction: column;
+            margin-top: 5rem;
         }
 
         .down a {
@@ -80,27 +85,32 @@
 
         .down a div {
             padding: 0.8rem;
-            margin-top: 1.6rem;
-            border-radius: 4rem;
+            /* margin-top: 3rem; */
+            border-radius: 1rem;
             background-color: #000;
             transition: 0.5s;
-            font-size: 1.4rem;
+            font-size: 1rem;
             display: inline-block;
+            width: 90%;
             /* border: 1px solid #fff; */
         }
 
         .down a div:hover {
             background-color: #4e4e4e;
+            width: 90%;
             cursor: pointer;
         }
 
         .btnn  {
             background-color: #f17945;
             color: #fff;
-            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-            /* width: 42%; */
+            padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+            width: 10rem;
             text-align: center;
             border-radius: 500px;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            margin-top: 2rem;
         } 
         
 
@@ -130,17 +140,21 @@
                 <a href="/profile">
                     <div><i class="fa-solid fa-gear"></i> Setting</div>
                 </a>
-                <a href="/logout">
-                    <div><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
-                </a>
+
                 <div class="btnn">
                     <a id="btnn"  type="btn" href="/blog/form">
                         <i class="fa-solid fa-plus"></i> Post
                     </a>
                 </div>
+
+              
+             
                 
             </div>
             <div class="down">
+                <a href="/logout">
+                    <div><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+                </a>
                 <a href="#">
                     <div><i class="fa-solid fa-circle-info"></i> Help</div>
                 </a>
