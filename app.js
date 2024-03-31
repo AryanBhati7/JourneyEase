@@ -270,6 +270,20 @@ app.get("/profile", async (req, res) => {
   }
 });
 
+app.get("/profile/:id/edit",async (req,res)=>{
+try{
+const userId = req.params._id;
+const editUser = await User.find({userId})
+if(!editUser){
+  req.flash("User You requested Does not exist");
+}
+res.render("users/profile.edit.ejs",{editUser})
+}catch(e){
+console.log("Error Ourruring on fetching user Profile",e)
+res.status(500).send("Internal Server Error");
+}
+})
+
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
