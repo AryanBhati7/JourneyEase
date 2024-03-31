@@ -2,9 +2,7 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* background-color: #f8f9fa; */
 }
 
 .hero-container {
