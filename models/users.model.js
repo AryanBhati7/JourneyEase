@@ -20,14 +20,15 @@ const userSchema = new Schema({
     },
     avatar:{
       avatarUrl:{
-        type:String
+        type:String,
+        filename:String,
       },
     },
       social:{
-        linkedin:{
+        youtube:{
           type:String,
         },
-        github:{
+        facebook:{
           type:String,
         },
         instagram:{

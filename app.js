@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -12,7 +11,12 @@ const Blog = require("./models/blog.models");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError.js");
-const { saveRedirectUrl, isLoggedIn, isCommmentAuthor, isOwner } = require("./middleware.js");
+const {
+  saveRedirectUrl,
+  isLoggedIn,
+  isCommmentAuthor,
+  isOwner,
+} = require("./middleware.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -74,7 +78,32 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+//passport.use(new LocalStrategy(User.authenticate()));
+
+passport.use(
+  new LocalStrategy(
+    { usernameField: "email" },
+
+    function (email, password, done) {
+      User.findOne({ email: email })
+        .then((currUser) => {
+          if (!currUser) {
+            return done(null, false, { message: "Incorrect email." });
+          }
+          currUser.authenticate(password, (err, isAuthenticated) => {
+            if (err) {
+              return done(err);
+            }
+            if (!isAuthenticated) {
+              return done(null, false, { message: "Incorrect password." });
+            }
+            return done(null, currUser);
+          });
+        })
+        .catch((err) => done(err)); // Handle errors from User.findOne()
+    }
+  )
+);
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -88,7 +117,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("pages/home.ejs");
+  res.render("pages/home.ejs", { currUser: req.user });
 });
 
 app.get("/about", (req, res) => {
@@ -139,8 +168,10 @@ app.get("/dashboard/:id", async (req, res) => {
 
   try {
     const blogs = await Blog.findById(req.params.id)
-      .sort({ dateUploaded: -1 }).populate({path:"comment",populate:{path:"author"}}).populate("owner")
-    
+      .sort({ dateUploaded: -1 })
+      .populate({ path: "comment", populate: { path: "author" } })
+      .populate("owner");
+
     if (!blogs) {
       return res.status(404).json({ error: "Blog not found" });
     }
@@ -151,61 +182,59 @@ app.get("/dashboard/:id", async (req, res) => {
   }
 });
 
-app.delete("/dashboard/:id",isOwner,async(req,res,next)=>{
+app.delete("/dashboard/:id", isOwner, async (req, res, next) => {
   let { id } = req.params;
+  let currUser = req.user;
   let deletedBlog = await Blog.findByIdAndDelete(id);
   console.log(deletedBlog);
   req.flash("success", " Blog Deleted");
-  res.redirect("/profile");
-})
- 
+  res.redirect(`/profile/${currUser._id}`);
+});
 
-app.get("/dashboard/:id/edit",async (req,res)=>{
+app.get("/dashboard/:id/edit", async (req, res) => {
   let { id } = req.params;
   const userBlog = await Blog.findById(id);
   if (!userBlog) {
     req.flash("error", " Blog You Requested does not exist!");
     res.redirect("/dashboard");
   }
-  let originalImageUrls = userBlog.images.map(image => {
+  let originalImageUrls = userBlog.images.map((image) => {
     let originalImageUrl = image.url;
     return originalImageUrl.replace("/upload", "/upload/w_200");
   });
-  res.render("pages/editBlog.ejs", { userBlog,originalImageUrls });
-
-})
-
-app.put("/dashboard/:id", upload.array("Blog[images][]", 6), async (req, res) => {
-  let { id } = req.params;
-  // Ensure that id is a valid ObjectId
-  if (!mongoose.isValidObjectId(id)) {
-    return res.status(400).send('Invalid ObjectId');
-  }
-  let updatedBlog = await Blog.findByIdAndUpdate(
-    id,
-    { ...req.body.blog }
-  );
-  if (!updatedBlog) {
-    return res.status(404).send('Blog not found');
-  }
-  if(typeof req.files !== "undefined" && req.files.length > 0){
-  const images = req.files.map((file) => {
-    return {
-      url: file.path,
-      filename: file.filename,
-    };
-  });
-  updatedBlog.images = images;
-  }else{
-    updatedBlog.images = updatedBlog.images
-  }
-
-  await updatedBlog.save();
-  req.flash("success", "Blog Updated");
-  res.redirect(`/dashboard/${id}`);
+  res.render("pages/editBlog.ejs", { userBlog, originalImageUrls });
 });
 
+app.put(
+  "/dashboard/:id",
+  upload.array("Blog[images][]", 6),
+  async (req, res) => {
+    let { id } = req.params;
+    // Ensure that id is a valid ObjectId
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).send("Invalid ObjectId");
+    }
+    let updatedBlog = await Blog.findByIdAndUpdate(id, { ...req.body.blog });
+    if (!updatedBlog) {
+      return res.status(404).send("Blog not found");
+    }
+    if (typeof req.files !== "undefined" && req.files.length > 0) {
+      const images = req.files.map((file) => {
+        return {
+          url: file.path,
+          filename: file.filename,
+        };
+      });
+      updatedBlog.images = images;
+    } else {
+      updatedBlog.images = updatedBlog.images;
+    }
 
+    await updatedBlog.save();
+    req.flash("success", "Blog Updated");
+    res.redirect(`/dashboard/${id}`);
+  }
+);
 
 app.post("/dashboard/:id/comment", async (req, res) => {
   let { id } = req.params;
@@ -213,76 +242,83 @@ app.post("/dashboard/:id/comment", async (req, res) => {
 
   // Check if the comment is empty
   if (!commentData || !commentData.comment.trim()) {
-      req.flash("error", "Comment cannot be empty");
-      return res.redirect(`/dashboard/${id}`);
+    req.flash("error", "Comment cannot be empty");
+    return res.redirect(`/dashboard/${id}`);
   }
 
   try {
-      let blog = await Blog.findById(id);
-      if (!blog) {
-          req.flash("error", "Blog not found");
-          return res.redirect("/dashboard");
-      }
+    let blog = await Blog.findById(id);
+    if (!blog) {
+      req.flash("error", "Blog not found");
+      return res.redirect("/dashboard");
+    }
 
-      let newComment = new Comment(commentData);
-      newComment.author = req.user._id;
-      blog.comment.push(newComment);
-      await newComment.save();
-      await blog.save();
+    let newComment = new Comment(commentData);
+    newComment.author = req.user._id;
+    blog.comment.push(newComment);
+    await newComment.save();
+    await blog.save();
 
-      req.flash("success", "New comment added");
-      res.redirect(`/dashboard/${id}`);
+    req.flash("success", "New comment added");
+    res.redirect(`/dashboard/${id}`);
   } catch (error) {
-      console.error(error);
-      req.flash("error", "Failed to add comment");
-      res.redirect(`/dashboard/${id}`);
+    console.error(error);
+    req.flash("error", "Failed to add comment");
+    res.redirect(`/dashboard/${id}`);
   }
 });
 
-
-
-app.delete("/dashboard/:id/comment/:commentId",isLoggedIn,isCommmentAuthor, async (req, res) => {
-  let { id, commentId } = req.params;
-  // console.log(commentId);
-  try {
+app.delete(
+  "/dashboard/:id/comment/:commentId",
+  isLoggedIn,
+  isCommmentAuthor,
+  async (req, res) => {
+    let { id, commentId } = req.params;
+    // console.log(commentId);
+    try {
       await Blog.findByIdAndUpdate(id, { $pull: { comments: commentId } });
       await Comment.findByIdAndDelete(commentId);
       req.flash("success", "Comment Deleted");
       res.redirect(`/dashboard/${id}`);
-  } catch (error) {
+    } catch (error) {
       console.error(error);
       req.flash("error", "Failed to delete Comment");
       res.redirect(`/dashboard/${id}`);
+    }
   }
-});
+);
 
-app.get("/profile", async (req, res) => {
+app.get("/profile/:id", async (req, res) => {
   try {
     const userId = req.user._id;
     const userBlogs = await Blog.find({ owner: userId })
       .sort({ dateUploaded: -1 })
       .populate("owner");
 
-    res.render("users/profile.ejs", { userBlogs });
+    res.render("users/profile.ejs", { userBlogs, user: req.user });
   } catch (err) {
     console.error("Error fetching user's blogs:", err);
     res.status(500).send("Internal Server Error");
   }
 });
 
-app.get("/profile/:id/edit",async (req,res)=>{
-try{
-const userId = req.params._id;
-const editUser = await User.find({userId})
-if(!editUser){
-  req.flash("User You requested Does not exist");
-}
-res.render("users/profile.edit.ejs",{editUser})
-}catch(e){
-console.log("Error Ourruring on fetching user Profile",e)
-res.status(500).send("Internal Server Error");
-}
-})
+app.get("/profile/:id/edit", async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const editUser = await User.findById(id);
+    console.log(editUser.username);
+    if (!editUser) {
+      req.flash("User You requested Does not exist");
+    }
+    res.render("users/profile.edit.ejs", { editUser });
+  } catch (e) {
+    console.log("Error Occuring on fetching user Profile", e);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
@@ -294,19 +330,33 @@ app.post(
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
-  }),(req,res,next)=>{
+  }),
+  (req, res, next) => {
     req.flash("success", "Welcome Back to JourneyEase");
     let redirectUrl = res.locals.redirectUrl || "/dashboard";
     res.redirect(redirectUrl);
-  })
+  }
+);
 app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
 app.post("/signup", async (req, res, next) => {
   try {
-    let { username, email, password, role } = req.body;
-    const newUser = new User({ email, username, role });
+    let { username, email, password, role} = req.body;
+    const newUser = new User({
+      email,
+      username,
+      role,
+      bio:"",
+      avatar: { avatarUrl: "", filename: "" },
+      social: {
+        facebook:"",
+        instagram: "",
+        youtube: "",
+        twitter:"",
+      },
+    });
     let registerUser = await User.register(newUser, password);
     console.log(registerUser);
     req.login(registerUser, (err) => {
@@ -331,7 +381,6 @@ app.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
-
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));

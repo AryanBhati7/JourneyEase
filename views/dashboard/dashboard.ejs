@@ -226,7 +226,9 @@
             <div class="user-detail">
               <img class="user-profile-img" src="/assets/blog.png" alt="">
               <div class="username">
-                <%=blog.owner.username%>'s
+                <% if (blog && blog.owner) { %>
+                  <%= blog.owner.username %>'s
+              <% } %>
               </div>
             </div>
             <div class="destination">

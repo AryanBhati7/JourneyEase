@@ -1,0 +1,269 @@
+<!-- <%- include("../includes/sidebar.ejs") %>
+
+<div>
+  <form method="post" action="#" enctype="multipart/form-data">
+    <div>
+      <h2>Edit Your Profile</h2>
+    </div>
+
+    <div>
+      <label for="avatar"> Avatar</label>
+      <input id="avatar" type="file" name="avatar" />
+    </div>
+
+    <div>
+      <label for="username">Username</label>
+      <input id="username" tye="text" placeholder="Username" name="username" />
+    </div>
+    <div>
+      <label for="bio">Bio</label>
+      <input id="bio" type="text" placeholder="Bio" name="bio" />
+    </div>
+    <div>
+      <label for="linkedin">Linkedin url</label>
+      <input
+        id="linkedin"
+        type="text"
+        placeholder="past your linkedin url"
+        name="linkedin"
+      />
+    </div>
+    <div>
+      <label for="twitter">X url</label>
+      <input
+        id="twitter"
+        type="text"
+        placeholder="past your twitter url"
+        name="twitter"
+      />
+    </div>
+    <div>
+      <label for="instagram">Instagram url</label>
+      <input
+        id="instagram"
+        type="text"
+        placeholder="past your Instagram url"
+        name="instagram"
+      />
+    </div>
+    <div>
+      <label for="github">Github url</label>
+      <input
+        id="github"
+        type="text"
+        placeholder="past your twitter url"
+        name="github"
+      />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div> -->
+
+
+<%- include("../includes/sidebar.ejs") %>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      width: 60%;
+      max-width: 800px;
+      background-color: #232323;
+      color: #fff;
+      padding: 2rem;
+      border-radius: 23px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      overflow: scroll;
+      scrollbar-width: none;
+      max-height: 90vh;
+    }
+
+
+    .modal-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+
+    .modal-content.dark .close-button {
+      /* background-color: #333; */
+      color: #fff;
+    }
+
+    .modal-content h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background-color: #555;
+      color: #fff;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #777;
+      transition: border 0.3s ease;
+    }
+
+    .modal-content.dark .form-group input,
+    .modal-content.dark .form-group textarea {
+      background-color: #555;
+      color: #fff;
+      border-color: #777;
+    }
+
+    .form-group textarea {
+      height: 200px;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-row div {
+      width: 45%;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .modal-content.dark button {
+      background-color: #555;
+    }
+
+    .modal-content.dark button:hover {
+      background-color: #777;
+    }
+  </style>
+
+  <div class="modal">
+    <div class="modal-content" id="form-container">
+      <span class="close-button" onclick="window.location.href='/profile/<%=editUser._id%>'">&times;</span>
+      <h3>Edit Your  Profile</h3>
+      <form method="POST" action="/profile/<%=editUser._id%> ?_method=PUT" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file-input">Select Avatar</label>
+          <input type="file" id="file-input" name="User[avatar]" multiple accept="image/*"
+            onchange="previewImage(event)">
+          <div id="image-preview-container"></div>
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input id="username" name="User[username]" placeholder="Enter your username" type="text" value="<%=editUser.username%>">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <input id="bio" name="User[bio]" placeholder=" Enter Bio">
+          </div>
+          <div class="form-group">
+            <label for="youtube">Youtube</label>
+            <input id="youtube" name="User[youtube]" placeholder="Enter Your Linkedin Url" type="text" >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="twitter">X</label>
+          <input id="twitter" name="User[twitter]" placeholder="Enter Your X url" type="text">
+        </div>
+
+        <div class="form-group">
+          <label for="instagram">Instagram</label>
+          <input id="instagram" name="User[instagram]" type="text"
+            placeholder="Enter your Instagram Url" >
+        </div>
+        
+        <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <input id="facebook" name="User[facebbok]" type="text"
+              placeholder="Enter your Facebook Url">
+          </div>
+
+        <button style="position: relative; z-index: 1;">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const fileInput = event.target;
+      const imagePreviewContainer = document.getElementById("image-preview-container");
+      imagePreviewContainer.innerHTML = "";
+
+      for (const file of fileInput.files) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.style.width = '100px';
+          img.style.height = '100px';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '5px';
+          img.style.marginRight = '10px';
+          imagePreviewContainer.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+
+  <script>
+    document.getElementById('form-container').classList.toggle('dark');
+  </script>

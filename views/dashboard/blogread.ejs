@@ -262,8 +262,11 @@
         <%= blogs.experience %>
       </p>
       <% if (blogs.owner) { %>
+
         <p><b>Posted by:</b>
-          <%= blogs.owner.username %>
+          <% if (blogs && blogs.owner) { %>
+            <%= blogs.owner.username %>
+  <%}%>
         </p>
         <% } else { %>
           <p><b>Posted by:</b> Unknown</p>
@@ -282,13 +285,18 @@
             <div class="comment">
               <div class="comment-header">
                 <span class="username">
-                  <%= blogComment.author.username %>
+                  <% if (blogComment && blogComment.author) { %>
+                    <%= blogComment.author.username %>
+                <% } %>
                 </span>
-                <%if(currUser && blogComment.author._id.equals(currUser._id)){%>
-                <form method="POST" action="/dashboard/<%=blogs._id%>/comment/<%= blogComment._id %>?_method=DELETE" class="delete-comment-form">
-                  <button class="btn btn-sm ">Delete</button>
-                </form>
-                <%}%>
+
+                <% if (blogComment && blogComment.author && currUser && currUser._id) { %>
+                  <% if (blogComment.author._id && blogComment.author._id.equals(currUser._id)) { %>
+                      <form method="POST" action="/dashboard/<%= blogs._id %>/comment/<%= blogComment._id %>?_method=DELETE" class="delete-comment-form">
+                          <button class="btn btn-sm">Delete</button>
+                      </form>
+                  <% } %>
+              <% } %>
               </div>
               <span class="comment-text">
                 <%= blogComment.comment %>
