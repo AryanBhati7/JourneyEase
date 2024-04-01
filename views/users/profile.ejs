@@ -287,7 +287,7 @@
       </div>
 
       <div class="user-profile">
-        <img id="profile-img" src="/assets/bg.png" alt="img" />
+        <img id="profile-img" src="<%=user.avatar.avatarUrl%>" alt="img" />
         <div class="user-details">
           <h2>
             <%= user.username %>
@@ -295,12 +295,12 @@
           <h4>
             <%= user.email %>
           </h4>
-          <p class="user-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos?</p> <!-- User bio -->
+          <p class="user-bio"><%=user.bio%></p> <!-- User bio -->
           <div class="social-media-icons">
-            <a href=""><i class="fab fa-linkedin"></i></a>
-            <a href=""><i class="fab fa-twitter"></i></a>
-            <a href=""><i class="fab fa-github"></i></a>
-            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href="<%=user.social.youtube%>" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="<%=user.social.twitter%>" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="<%=user.social.facebook%>" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="<%=user.social.instagram%> " target="_blank"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
         <div class="buttons">

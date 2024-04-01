@@ -290,8 +290,9 @@ app.delete(
 
 app.get("/profile/:id", async (req, res) => {
   try {
-    const userId = req.user._id;
-    const userBlogs = await Blog.find({ owner: userId })
+    const id = req.params.id
+    console.log(req.session.passport.user)
+    const userBlogs = await Blog.find({ owner: id })
       .sort({ dateUploaded: -1 })
       .populate("owner");
 
@@ -300,14 +301,11 @@ app.get("/profile/:id", async (req, res) => {
     console.error("Error fetching user's blogs:", err);
     res.status(500).send("Internal Server Error");
   }
-});
-
+})
 app.get("/profile/:id/edit", async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id);
     const editUser = await User.findById(id);
-    console.log(editUser.username);
     if (!editUser) {
       req.flash("User You requested Does not exist");
     }
@@ -318,6 +316,28 @@ app.get("/profile/:id/edit", async (req, res) => {
   }
 });
 
+
+
+app.post("/profile/:id", upload.single("User[avatar]"), async (req, res) => {
+  try {
+    let id = req.params.id;
+    console.log(req.session.user);
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).send("Invalid ObjectId");
+    }
+    let updatedUser = await User.findByIdAndUpdate(id, req.body.User);
+console.log(updatedUser);
+    if (typeof req.file !== "undefined") {
+      let avatarUrl = req.file.path;
+      updatedUser.avatar = { avatarUrl };
+      await updatedUser.save();
+    }
+    req.flash("success", "Profile Updated");
+    res.redirect(`/profile/${id}`);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 app.get("/login", (req, res) => {
@@ -343,11 +363,11 @@ app.get("/signup", (req, res) => {
 
 app.post("/signup", async (req, res, next) => {
   try {
-    let { username, email, password, role} = req.body;
+    let { username,email, password, role} = req.body;
     const newUser = new User({
       email,
-      username,
       role,
+      username,
       bio:"",
       avatar: { avatarUrl: "", filename: "" },
       social: {

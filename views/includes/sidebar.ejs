@@ -137,10 +137,12 @@
                 <a href="#">
                     <div><i class="fa-solid fa-bell"></i> Notification</div>
                 </a>
-                <a href="/profile/<%=currUser._id%>">
-                    <div><i class="fa-solid fa-gear"></i> Setting</div>
-                </a>
 
+                <% if (currUser) { %>
+                    <a href="/profile/<%=currUser._id%>">
+                        <div><i class="fa-solid fa-gear"></i> Setting</div>
+                    </a>
+                <% } %>
                 <div class="btnn">
                     <a id="btnn"  type="btn" href="/blog/form">
                         <i class="fa-solid fa-plus"></i> Post
