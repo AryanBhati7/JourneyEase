@@ -171,3 +171,36 @@ nav .signup-btn::before {
     left: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .nav .fas {
+    display: block;
+    font-size: 30px;
+
+}
+  .nav-links {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .nav-links a {
+    color: #fff;
+  }
+
+  nav {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  nav .signup-btn {
+    display: none;
+  }
+  
+}

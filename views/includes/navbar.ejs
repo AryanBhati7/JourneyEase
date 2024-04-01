@@ -5,7 +5,7 @@
         <a href="/" class="logo">
             <img class="logo-navbar" src="/assets/logo.png" alt="logo">
         </a>
-        <ul>
+        <ul id="sidemenu">
             <li><a href="/">Home</a></li>
             <%if(!currUser){%>
                 <li><a href="/blog">Blog</a></li>
@@ -14,8 +14,10 @@
                     <%if(currUser){%>
                         <li><a href="/dashboard">Dashboard</a></li>
                         <%}%>
+                        <i class="fas fa-times" onclick="closemenu()"></i>
 
         </ul>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
         <%if(!currUser){%>
             <button class="signup-btn" onclick="location.href='/login'">Login
                 <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
@@ -37,3 +39,13 @@
 
     </nav>
 </header>
+<script>
+
+    var sidemenu = document.getElementById("sidemenu");
+    function openmenu() {
+        sidemenu.style.right = "0";
+    }
+    function closemenu() {
+        sidemenu.style.right = "-200px ";
+    }
+</script>
