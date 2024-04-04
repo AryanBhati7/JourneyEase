@@ -45,10 +45,10 @@ module.exports.saveRedirectUrl = (req,res,next)=>{
 // };
 module.exports.isOwner = async(req,res,next)=>{
     let {id} = req.params;
-    let listing = await Blog.findById(id);
-    if(! listing.owner.equals(res.locals.currUser._id)){
+    let BlogOwner = await Blog.findById(id);
+    if(! BlogOwner.owner.equals(res.locals.currUser._id)){
         req.flash("error","You are Not the Owner Of these Blog");
-        return res.redirect(`/listings/${id}`);
+        return res.redirect(`/profile/${id}`);
     };
     next();
 };
