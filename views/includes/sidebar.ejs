@@ -62,9 +62,11 @@
             width: 90%;
             /* border: 1px solid #fff; */
         }
-        .up a div i{
+
+        .up a div i {
             font-size: 1rem;
         }
+
         .up a div:hover {
             background-color: #4e4e4e;
             width: 90%;
@@ -101,7 +103,7 @@
             cursor: pointer;
         }
 
-        .btnn  {
+        .btnn {
             background-color: #f17945;
             color: #fff;
             padding: 0.2rem 0.5rem 0.2rem 0.5rem;
@@ -111,63 +113,139 @@
             font-size: 1.2rem;
             margin-left: 20px;
             margin-top: 2rem;
-        } 
-        
+        }
+
 
         #btnn div:hover {
             background-color: #e48845;
+        }
+
+        #close-icon {
+            color: #fff;
+            /* Change this to whatever color you want */
+            font-size: 2rem;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2000;
+            display: none;
+        }
+
+
+        #hamburger-icon {
+            color: #fff;
+            /* Change this to whatever color you want */
+            font-size: 2rem;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+        }
+
+        #hamburger-icon,
+        #close-icon {
+            z-index: 2001;
+        }
+
+        .sidemenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 17rem;
+            background-color: #000;
+            transition: 0.5s;
+            margin-right: 20px;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .sidemenu {
+                transform: translateX(-100%);
+            }
+
+            .sidemenu.show {
+                transform: translateX(0);
+            }
+
+            #hamburger-icon {
+                display: block;
+            }
+        }
+
+        @media (min-width: 769px) {
+            #hamburger-icon {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
     <%- include("../includes/flash.ejs") %>
-    <div class="sidemenu">
-        <div class="side-content">
-            <div class="up">
-                <a href="/">
-                    <div>JourneyEase</div>
-                </a>
-                <a href="/dashboard">
-                    <div><i class="fa-solid fa-house"></i> Home</div>
-                </a>
-                <a href="#">
-                    <div><i class="fa-solid fa-plane"></i> Plan Your trip</div>
-                </a>
-                <a href="#">
-                    <div><i class="fa-solid fa-bell"></i> Notification</div>
-                </a>
-
-                <% if (currUser) { %>
-                    <a href="/profile/<%=currUser._id%>">
-                        <div><i class="fa-solid fa-user"></i> Profile</div>
+        <i id="hamburger-icon" class="fas fa-bars"></i>
+        <div id="sidebar" class="sidemenu">
+            <div class="side-content">
+                <div class="up">
+                    <a href="/">
+                        <div>JourneyEase</div>
                     </a>
-                <% } %>
-                <div class="btnn">
-                    <a id="btnn"  type="btn" href="/dashboard/form">
-                        <i class="fa-solid fa-plus"></i> Post
+                    <a href="/dashboard">
+                        <div><i class="fa-solid fa-house"></i> Home</div>
+                    </a>
+                    <a href="#">
+                        <div><i class="fa-solid fa-plane"></i> Plan Your trip</div>
+                    </a>
+                    <a href="#">
+                        <div><i class="fa-solid fa-bell"></i> Notification</div>
+                    </a>
+
+                    <% if (currUser) { %>
+                        <a href="/profile/<%=currUser._id%>">
+                            <div><i class="fa-solid fa-user"></i> Profile</div>
+                        </a>
+                        <% } %>
+                            <div class="btnn">
+                                <a id="btnn" type="btn" href="/dashboard/form">
+                                    <i class="fa-solid fa-plus"></i> Post
+                                </a>
+                            </div>
+
+
+
+
+                </div>
+                <div class="down">
+                    <a href="/logout">
+                        <div><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+                    </a>
+                    <a href="#">
+                        <div><i class="fa-solid fa-circle-info"></i> Help</div>
                     </a>
                 </div>
-
-              
-             
-                
-            </div>
-            <div class="down">
-                <a href="/logout">
-                    <div><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
-                </a>
-                <a href="#">
-                    <div><i class="fa-solid fa-circle-info"></i> Help</div>
-                </a>
             </div>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
 
-    <script src="https://kit.fontawesome.com/637810c134.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/637810c134.js" crossorigin="anonymous"></script>
+
+        <script>
+            document.getElementById('hamburger-icon').addEventListener('click', function () {
+                var sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('show');
+
+                var icon = document.getElementById('hamburger-icon');
+                if (sidebar.classList.contains('show')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        </script>
 </body>
 
 </html>
