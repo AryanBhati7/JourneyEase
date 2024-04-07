@@ -197,6 +197,60 @@
       flex-wrap: wrap; */
       text-wrap: wrap;
     }
+    @media (max-width: 600px) {
+      body {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .search-group {
+        position: static;
+        width: 90%;
+        margin: 10px auto;
+      }
+    
+      .search-button, .input {
+        width: 100%;
+        height: 40px;
+        font-size: 1rem;
+      }
+    
+      .blog-posts-container {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .blog-post {
+        flex-direction: column;
+        width: 90%;
+        box-sizing: border-box;
+        margin: 10px auto;
+      }
+    
+      .blog-post-img, .blog-post-content {
+        width: 100%;
+      }
+      .blog-post-img{
+        display: none;
+      }
+    
+      .user-detail {
+        font-size: 1rem;
+      }
+    
+      .blog-post-content .destination {
+        font-size: 1.2rem;
+      }
+    
+      .blog-post-content .country,
+      .budget,
+      .exp {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 
   <div class="search-group">
