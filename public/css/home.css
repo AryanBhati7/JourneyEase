@@ -438,4 +438,16 @@
     margin-right: 0;
     width: 50%;
   }
+  .Write-Your-Own-Blog .text {
+    width: 100%;
+  }
+  .Write-Your-Own-Blog {
+    flex-direction: column;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  .Write-Your-Own-Blog .blog-img img {
+    display: none;
+  }
 }
