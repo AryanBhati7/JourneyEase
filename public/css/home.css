@@ -5,8 +5,19 @@
   align-items: center;
 }
 
+.hero-section {
+  width: 100vw;
+  height: 43rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+}
 .hero-container {
-  padding-top: 250px;
+  padding-top: 16rem;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 702px;
   width: 100vw;
   display: flex;
@@ -15,16 +26,7 @@
   background-image: url(/assets/hero-background.png);
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.hero-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 43.9rem;
-  background: rgba(0, 0, 0, 0.7);
+  order: 1;
 }
 
 .hero-text {
@@ -87,8 +89,20 @@
   background-color: #f17945;
   color: white;
 }
+.step-section {
+  margin-top: 20px;
+  margin-left: 8%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
 
 .three-step-container {
+  overflow-y: hidden;
+  order: 2;
   display: flex;
   flex-wrap: wrap;
   padding-top: 50px;
@@ -293,13 +307,13 @@
   opacity: 1;
   transform: translateX(0);
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
   .home-container,
   .hero-container,
   .three-step-container,
   .recent-posts,
   .Write-Your-Own-Blog {
-    width: 90vw;
+    width: 100vw;
     padding-left: 5vw;
   }
 
@@ -309,6 +323,35 @@
 
   .hero-text h1 {
     font-size: 4rem;
+  }
+  .three-step-container {
+    margin-top: 20px;
+    overflow-y: hidden;
+    position: relative;
+    left: 0;
+    padding-top: 20px;
+    width: 100%;
+  }
+  .three-step-container .step-head-text,
+  .step-1,
+  .step-2,
+  .step-3 {
+    width: 100%;
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+  .three-step-container .step-head-text,
+  .step-1-text,
+  .step-2-text,
+  .step-3-text {
+    width: 100%;
+  }
+  .three-step-container .step-img {
+    width: 100%;
+    padding-right: 50px;
+  }
+  .three-step-container .step-img img {
+    width: 70%;
   }
 
   .three-step-container .step {
@@ -350,6 +393,25 @@
     overflow: auto;
   }
 
+  .hero-container {
+    overflow-y: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 29rem;
+  }
+  .three-step-container {
+    margin-top: 20px;
+    overflow-y: hidden;
+    position: relative;
+    left: 0;
+    padding-top: 20px;
+    width: 100%;
+  }
+  .three-step-container .step-img {
+    width: 100%;
+  }
+
   .hero-text h1 {
     font-size: 3rem;
   }
@@ -374,6 +436,18 @@
 
   .Write-Your-Own-Blog .text .write-blog-btn {
     margin-right: 0;
+    width: 50%;
+  }
+  .Write-Your-Own-Blog .text {
     width: 100%;
+  }
+  .Write-Your-Own-Blog {
+    flex-direction: column;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  .Write-Your-Own-Blog .blog-img img {
+    display: none;
   }
 }
