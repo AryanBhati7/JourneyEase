@@ -5,39 +5,7 @@
   /* margin-left: 90px; */
 }
 
-/* nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-} */
-
-/* nav ul li {
-  display: inline-block;
-  padding: 0 10px;
-  line-height: 60px;
-}
-
-nav ul li a {
-  margin-left: 60px;
-  font-weight: 500;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-nav ul li a:hover {
-  color: #f17945;
-} */
-/* nav ul li a.active {
-  color: #f17945;
-} */
-
 .media .signup-btn {
-  /* margin-right: 40px; */
-  /* margin-left: 150px; */
-  /* position: relative; */
-  /* right: 150px; */
   transition: all 0.3s ease-in-out;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   padding-block: 0.5rem;
@@ -54,7 +22,10 @@ nav ul li a:hover {
   border: none;
   outline: none;
   overflow: hidden;
-  font-size: 15px;
+  font-size: 12px;
+  width: 7rem;
+  height: 2rem;
+  text-align: center;
 }
 
 .media .signup-btn .icon {
@@ -105,36 +76,3 @@ nav ul li a:hover {
     left: 100%;
   }
 }
-
-/* @media (max-width: 768px) {
-  .nav .fas {
-    display: block;
-    font-size: 30px;
-
-}
-  .nav-links {
-    display: flex;
-  }
-
-  .nav-links li {
-    margin: 0;
-  }
-
-  .nav-links a {
-    color: #fff;
-  }
-
-  nav {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  nav ul {
-    display: none;
-  }
-
-  nav .signup-btn {
-    display: none;
-  }
-  
-} */

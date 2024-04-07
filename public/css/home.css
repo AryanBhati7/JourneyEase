@@ -91,12 +91,13 @@
 }
 .step-section {
   margin-top: 20px;
+  margin-left: 8%;
   width: 100vw;
-  height: 43rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .three-step-container {
@@ -306,13 +307,13 @@
   opacity: 1;
   transform: translateX(0);
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
   .home-container,
   .hero-container,
   .three-step-container,
   .recent-posts,
   .Write-Your-Own-Blog {
-    width: 90vw;
+    width: 100vw;
     padding-left: 5vw;
   }
 
@@ -322,6 +323,35 @@
 
   .hero-text h1 {
     font-size: 4rem;
+  }
+  .three-step-container {
+    margin-top: 20px;
+    overflow-y: hidden;
+    position: relative;
+    left: 0;
+    padding-top: 20px;
+    width: 100%;
+  }
+  .three-step-container .step-head-text,
+  .step-1,
+  .step-2,
+  .step-3 {
+    width: 100%;
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+  .three-step-container .step-head-text,
+  .step-1-text,
+  .step-2-text,
+  .step-3-text {
+    width: 100%;
+  }
+  .three-step-container .step-img {
+    width: 100%;
+    padding-right: 50px;
+  }
+  .three-step-container .step-img img {
+    width: 70%;
   }
 
   .three-step-container .step {
@@ -368,7 +398,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: 28rem;
+    padding-top: 29rem;
   }
   .three-step-container {
     margin-top: 20px;
@@ -406,6 +436,6 @@
 
   .Write-Your-Own-Blog .text .write-blog-btn {
     margin-right: 0;
-    width: 100%;
+    width: 50%;
   }
 }
