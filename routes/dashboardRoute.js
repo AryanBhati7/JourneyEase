@@ -12,7 +12,7 @@ router.route("/")
 .get(
     isLoggedIn,
     wrapAsync(dashboardController.index)
-    ) // GET
+    ) 
 .post(
     isLoggedIn, 
     upload.array("Blog[images][]", 6),

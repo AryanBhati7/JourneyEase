@@ -199,8 +199,10 @@
     }
   </style>
 
+
+<form action="/dashboard" method="GET">
   <div class="search-group">
-    <input placeholder="Search" type="search" class="input">
+    <input name="q" placeholder="Search" type="search" class="input">
 
     <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
       <g>
@@ -209,9 +211,9 @@
         </path>
       </g>
     </svg>
-    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
-
+</form>
 
 
   <div class="blog-posts-container">
