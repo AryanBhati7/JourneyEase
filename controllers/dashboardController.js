@@ -12,14 +12,16 @@ module.exports.search = async (req, res) => {
     let query = {};
     const searchQuery = req.query.q; 
     if (searchQuery) {
+      const parsedBudget = parseFloat(searchQuery);
         query = {
             $or: [
                 { destination: { $regex: searchQuery, $options: 'i' } },
                 { experience: { $regex: searchQuery, $options: 'i' } },
                 { country: { $regex: searchQuery, $options: 'i' } },
                 { state: { $regex: searchQuery, $options: 'i' } },
-                { budget: parseFloat(searchQuery) }
-            ]
+                // { budget: parseFloat(searchQuery) }
+                !isNaN(parsedBudget) && { budget: parsedBudget },
+            ].filter(Boolean) 
         };
     }
 

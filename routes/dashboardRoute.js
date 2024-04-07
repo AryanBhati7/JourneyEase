@@ -18,7 +18,7 @@ router.route("/")
     upload.array("Blog[images][]", 6),
     wrapAsync(dashboardController.createNewBlog)
     )
-    router.get("/search",dashboardController.search);
+    router.get("/search",wrapAsync(dashboardController.search));
     router.get("/form",isLoggedIn,dashboardController.renderCreateForm);
 
     router.route("/:id")
