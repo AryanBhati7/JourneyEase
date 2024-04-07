@@ -2,17 +2,23 @@ const Blog = require("../models/blog.models");
 const mongoose = require("mongoose");
 
 module.exports.index = async (req, res) => {
-    let query = {};
-    const searchQuery = req.query.q; // Retrieve the search query from request query parameters
+  const allBlog = await Blog.find({})
+    .sort({ dateUploaded: -1 })
+    .populate("owner");
+  res.render("dashboard/dashboard.ejs", { allBlog });
+};
 
-    // If search query exists, construct the query to search for the given term in specified fields
+module.exports.search = async (req, res) => {
+    let query = {};
+    const searchQuery = req.query.q; 
     if (searchQuery) {
         query = {
             $or: [
                 { destination: { $regex: searchQuery, $options: 'i' } },
                 { experience: { $regex: searchQuery, $options: 'i' } },
                 { country: { $regex: searchQuery, $options: 'i' } },
-                { state: { $regex: searchQuery, $options: 'i' } }
+                { state: { $regex: searchQuery, $options: 'i' } },
+                { budget: parseFloat(searchQuery) }
             ]
         };
     }
@@ -29,7 +35,6 @@ module.exports.index = async (req, res) => {
                         return value.toLowerCase().includes(searchQuery.toLowerCase());
                     } catch (error) {
                         console.error("Error converting value to lower case:", error);
-                        console.log("Value:", value);
                         return false;
                     }
                 }
@@ -41,7 +46,6 @@ module.exports.index = async (req, res) => {
                         return value.toLowerCase().includes(searchQuery.toLowerCase());
                     } catch (error) {
                         console.error("Error converting value to lower case:", error);
-                        console.log("Value:", value);
                         return false;
                     }
                 }
@@ -61,34 +65,6 @@ module.exports.index = async (req, res) => {
     }
 };
 
-
-// module.exports.index = async (req, res) => {
-
-//   let query = {};
-//   const searchQuery = req.query.q; // Retrieve the search query from request query parameters
-
-//   // If search query exists, construct the query to search for the given term in title or content
-//   if (searchQuery) {
-//       query = {
-//           $or: [
-//               { destination: { $regex: searchQuery, $options: 'i' } },
-//               { experience: { $regex: searchQuery, $options: 'i' } },
-//               { country: { $regex: searchQuery, $options: 'i' } },
-//               { state: { $regex: searchQuery, $options: 'i' } }
-//           ]
-//       };
-//   }
-
-//   try{
-//     const allBlog = await Blog.find({})
-//     .sort({ dateUploaded: -1 })
-//     .populate("owner");
-//   res.render("dashboard/dashboard.ejs", { allBlog });
-//   }catch (error){
-//     console.error("Error fetching blogs:", error);
-//     res.status(500).send("Error fetching blogs");
-//   }
-//   };
 
 module.exports.createNewBlog = async (req, res) => {
   if (!req.files || req.files.length === 0) {
