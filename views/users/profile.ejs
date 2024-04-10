@@ -1,249 +1,257 @@
 <%- include("../includes/sidebar.ejs") %>
 
   <style>
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    background-color: #d2d1d1;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
+    body {
+      background-color: #d2d1d1;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
 
- .profile-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-    /* margin-top: 50px; */
-    margin-left: 260px;
-  }
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+      /* margin-top: 50px; */
+      margin-left: 260px;
+    }
 
- .profile-box {
-    width: 80rem;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #151515;
-    border-radius: 10px;
-    /* margin-left: 2.6rem; */
-    margin-top: -30px;
-  }
+    .profile-box {
+      width: 80rem;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #151515;
+      border-radius: 10px;
+      /* margin-left: 2.6rem; */
+      margin-top: -30px;
+    }
 
- .banner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
+    .banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
 
- .banner img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
+    .banner img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
 
- .edit-banner {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #ff7f00;
-    cursor: pointer;
-  }
+    .edit-banner {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #ff7f00;
+      cursor: pointer;
+    }
 
- .user-profile {
-    display: flex;
-    align-items: center;
-    background-color: #ff860040;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
+    .user-profile {
+      display: flex;
+      align-items: center;
+      background-color: #ff860040;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
 
- .user-profile img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid white;
-    object-fit: cover;
-    margin-right: 20px;
-  }
+    .user-profile img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      margin-right: 20px;
+    }
 
- .user-details {
-    flex-grow: 1;
-  }
-  .user-profile .buttons {
-    display: flex;
-    flex-direction: column;
-  }
+    .user-details {
+      flex-grow: 1;
+    }
 
-  .user-profile .buttons a {
-    text-decoration: none;
-    color: white;
-    margin-right: 0.2rem;
-    background-color: #ff7f00;
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
-    border-radius: 0.3rem;
-  }
+    .user-profile .buttons {
+      display: flex;
+      flex-direction: column;
+    }
 
- .user-details h1 {
-    font-size: 24px;
-    color: #e0e0e0;
-    margin-bottom: 10px;
-  }
+    .user-profile .buttons a {
+      text-decoration: none;
+      color: white;
+      margin-right: 0.2rem;
+      background-color: #ff7f00;
+      padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+      border-radius: 0.3rem;
+    }
 
- .user-details h2,
- .user-details h4 {
-    margin: 0;
-    color: white;
-  }
+    .user-details h1 {
+      font-size: 24px;
+      color: #e0e0e0;
+      margin-bottom: 10px;
+    }
 
- .user-details h3 {
-    font-size: 16px;
-    color: #e0e0e0;
-    margin-bottom: 10px;
-  }
+    .user-details h2,
+    .user-details h4 {
+      margin: 0;
+      color: white;
+    }
 
- .user-bio {
-    font-size: 14px;
-    color: #e0e0e0;
-    margin-bottom: 10px;
-  }
+    .user-details h3 {
+      font-size: 16px;
+      color: #e0e0e0;
+      margin-bottom: 10px;
+    }
 
- .blog-section {
- 
-    background-color: #101010;
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
+    .user-bio {
+      font-size: 14px;
+      color: #e0e0e0;
+      margin-bottom: 10px;
+    }
 
- .blog-post {
-  position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    background-color: #171515;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  .blog-post-readmore{
-    color: #ff7f00;
-    text-decoration: none;
-  }
+    .blog-section {
 
- .blog-post img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
+      background-color: #101010;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
 
- .blog-post-details h4 {
-    font-size: 24px;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
+    .blog-post {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background-color: #171515;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
 
- .blog-post-actions {
-  position:absolute;
-  top: 0;
-  left: 0;
-  padding: 0.4rem;
-    display: flex;
-    justify-content: flex-start;
-  }
+    .blog-post-readmore {
+      color: #ff7f00;
+      text-decoration: none;
+    }
 
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 70px;
-  }
+    .blog-post img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #0e0c0c;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(91, 83, 83, 0.2);
-    padding: 12px 16px;
-    z-index: 1;
-    overflow: auto;
-    max-width: 100%;
-  }
+    .blog-post-details h4 {
+      font-size: 24px;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
 
-  .dropdown-content.show {
-    display: block;
-  }
-  .threedot{
-    border: none;
-    background-color:#171515;
-    
-  }
-.threedot i{
-  color: #d2d1d1;
-}
+    .blog-post-actions {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0.4rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      width: 70px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #0e0c0c;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(91, 83, 83, 0.2);
+      padding: 12px 16px;
+      z-index: 1;
+      overflow: auto;
+      max-width: 100%;
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+    .threedot {
+      border: none;
+      background-color: #171515;
+
+    }
+
+    .threedot i {
+      color: #d2d1d1;
+    }
 
 
-  .dropdown-content a {
-    color: rgb(248, 248, 248);
-    text-decoration: none;
-    display: block;
-    padding: 5px 10px;
-    text-align: center;
-    font-size: 14px;
-    background-color: #1c1a1a;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    transition: background-color 0.3s ease;
-  }
-  .dropdown-content button {
-    color: rgb(248, 248, 248);
-    text-decoration: none;
-    display: block;
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #1c1a1a;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    margin-top: 1rem;
-  }
+    .dropdown-content a {
+      color: rgb(248, 248, 248);
+      text-decoration: none;
+      display: block;
+      padding: 5px 10px;
+      text-align: center;
+      font-size: 14px;
+      background-color: #1c1a1a;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
 
-  .dropdown-content a:hover {
-    background-color: #120f0f;
-  }
-  social-media-icons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
+    .dropdown-content button {
+      color: rgb(248, 248, 248);
+      text-decoration: none;
+      display: block;
+      padding: 5px 10px;
+      font-size: 14px;
+      background-color: #1c1a1a;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+    }
 
-  .social-media-icons a {
-    color: #e0e0e0;
-    /* Light gray text color */
-    text-decoration: none;
-  }
+    .dropdown-content a:hover {
+      background-color: #120f0f;
+    }
 
-  .social-media-icons a:hover {
-    color: #101010;
-    /* Bright red on hover */
-  }
- @media screen and  (max-width:600px){
-  .profile-container{
-    margin-left: 1.75rem;
-  }
-  .user-profile .buttons{
-    margin-top: 5rem;
-  }
-  
- }
-   
+    social-media-icons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .social-media-icons a {
+      color: #e0e0e0;
+      /* Light gray text color */
+      text-decoration: none;
+    }
+
+    .social-media-icons a:hover {
+      color: #101010;
+      /* Bright red on hover */
+    }
+
+    @media screen and (max-width:768px) {
+      .profile-container {
+        margin-left: 1.75rem;
+      }
+
+
+      .user-profile .buttons {
+        margin-top: 5rem;
+      }
+
+    }
   </style>
 
   <div class="profile-container">
@@ -299,10 +307,11 @@
                       href="/dashboard/<%= userBlog._id %>"> Read More --></a></p>
 
 
-                      
+
                 <div class="blog-post-actions dropbtn">
                   <div class="dropdown">
-                    <button onclick="toggleDropdown()" class="dropbtn threedot"><i class="fas fa-ellipsis-v dropbtn"></i></button>
+                    <button onclick="toggleDropdown()" class="dropbtn threedot"><i
+                        class="fas fa-ellipsis-v dropbtn"></i></button>
                     <div id="dropdown-content" class="dropdown-content">
                       <a href="/dashboard/<%=userBlog._id%>/edit"><i class="fas fa-edit"></i> Edit</a>
                       <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=DELETE">
