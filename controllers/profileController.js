@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 module.exports.renderProfile = async (req, res) => {
     
       const id = req.params.id
-      console.log(req.session.passport.user)
       const userBlogs = await Blog.find({ owner: id })
         .sort({ dateUploaded: -1 })
         .populate("owner");
@@ -28,12 +27,10 @@ module.exports.renderProfile = async (req, res) => {
   module.exports.updateProfile = async (req, res) => {
     try {
       let id = req.params.id;
-      console.log(req.session.user);
       if (!mongoose.isValidObjectId(id)) {
         return res.status(400).send("Invalid ObjectId");
       }
       let updatedUser = await User.findByIdAndUpdate(id, req.body.User);
-  console.log(updatedUser);
       if (typeof req.file !== "undefined") {
         let avatarUrl = req.file.path;
         updatedUser.avatar = { avatarUrl };
