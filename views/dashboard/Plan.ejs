@@ -1,0 +1,60 @@
+<%- include("../includes/sidebar.ejs") %>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+        .error-image {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 40px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+
+        @media (min-width: 601px) {
+            body {
+                padding-left: 300px; /* Adjust this value as needed */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Under Construction</h1>
+    <p>We're working hard to finish the development of this site. Our target launch date is
+        <strong>Coming Soon!</strong> Sign up for updates using the form below!
+    </p>
+    <img class="error-image" src="assets/caterror.jpg" alt="Cat saying error">
+</body>
+</html>
