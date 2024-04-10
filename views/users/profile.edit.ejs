@@ -1,6 +1,6 @@
-<!-- <%- include("../includes/sidebar.ejs") %>
 
-<div>
+
+<!-- <div>
   <form method="post" action="#" enctype="multipart/form-data">
     <div>
       <h2>Edit Your Profile</h2>
@@ -57,8 +57,8 @@
     </div>
     <button type="submit">Submit</button>
   </form>
-</div> -->
-
+</div> 
+ -->
 
 <%- include("../includes/sidebar.ejs") %>
 
@@ -185,6 +185,12 @@
 
     .modal-content.dark button:hover {
       background-color: #777;
+    }
+    @media  screen and (max-width:600px) {
+      .modal-content{
+        width: 95%;
+      }
+      
     }
   </style>
 
