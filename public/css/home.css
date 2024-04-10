@@ -390,7 +390,8 @@
     width: 100vw;
     padding-left: 2vw;
     box-sizing: border-box;
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   .hero-container {
@@ -398,7 +399,12 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: 29rem;
+    padding-top: 20rem;
+    height: 710px;
+  }
+  .hero-container .hero-text .hero-subtitle {
+    font-size: 1.2rem;
+    width: 60%;
   }
   .three-step-container {
     margin-top: 20px;
@@ -425,6 +431,17 @@
     width: 100%;
     text-align: center;
   }
+  .step-text .step-1,
+  .step-2,
+  .step-3 {
+    width: 90%;
+  }
+  .step-text .step-head-text h1 {
+    font-size: 2rem;
+  }
+  .step-text .step-head-text {
+    margin-bottom: 0px;
+  }
 
   .three-step-container .step img {
     margin: 0 auto;
@@ -446,6 +463,7 @@
     width: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
+    padding-top: 0;
   }
   .Write-Your-Own-Blog .blog-img img {
     display: none;
