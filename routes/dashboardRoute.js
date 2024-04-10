@@ -12,13 +12,13 @@ router.route("/")
 .get(
     isLoggedIn,
     wrapAsync(dashboardController.index)
-    ) // GET
+    ) 
 .post(
     isLoggedIn, 
     upload.array("Blog[images][]", 6),
     wrapAsync(dashboardController.createNewBlog)
     )
-
+    router.get("/search",wrapAsync(dashboardController.search));
     router.get("/form",isLoggedIn,dashboardController.renderCreateForm);
 
     router.route("/:id")

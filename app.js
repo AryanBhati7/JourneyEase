@@ -139,6 +139,10 @@ app.get("/blog", async (req, res) => {
   res.render("pages/blog.ejs", { allBlog });
 });
 
+app.get("/plan", (req,res)=>{
+  res.render("dashboard/Plan.ejs")
+})
+
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
 });
