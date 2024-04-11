@@ -116,7 +116,6 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
-
   next();
 });
 
@@ -126,10 +125,15 @@ app.use("/profile",profileRouter);
 app.use("/",userRouter);
 
 
-app.get("/", (req, res) => {
-  res.render("pages/home.ejs", { currUser: req.user });
+app.get("/", async (req, res) => {
+  try {
+    const homeBlogs = await Blog.find({}).sort({ dateUploaded: -1 }).limit(4);
+    res.render("pages/home.ejs", { currUser: req.user, homeBlogs });
+  } catch (error) {
+    console.error("Error fetching recent blogs:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
-
 app.get("/about", (req, res) => {
   res.render("pages/about.ejs");
 });

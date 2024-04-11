@@ -60,55 +60,22 @@
             <div class="recent-posts-head">
                 <h1>Recent Posts</h1>
             </div>
+
             <div class="recent-posts-container">
-                <div class="recent-post-1-container animate-rp" data-delay="0">
-                    <div class="img-container">
-                        <img src="/assets/recent-posts/recent-post-1.jpg" alt="recent-post-1">
+                <%for ( let blog of homeBlogs){%>
+                    <div class="recent-post-1-container animate-rp" data-delay="0">
+                        <div class="img-container">
+                            <img src="<%=blog.images[0].url%>" alt="recent-post-1">
+                        </div>
+                        <div class="recent-post-text">
+                            <p class="recent-post-date"><%= new Date(blog.dateUploaded).toLocaleString() %></p>
+                            <p class="recent-post-date"><b><%=blog.destination%></b></p>
+                            <p class="recent-post-date"><%=blog.experience.substring(0,50)%> </p>
+                            <a class="recent-post-readmore" href="/dashboard/<%=blog._id%>">Read More ></a>
+                        </div>
                     </div>
-                    <div class="recent-post-text">
-                        <p class="recent-post-date">14th March, 2021</p>
-                        <p class="recent-post-date"><b>Far Far away, behind the world mountains</b></p>
-                        <p class="recent-post-date">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                            adipisci qui exercitationem? </p>
-                        <a class="recent-post-readmore" href="">Read More ></a>
-                    </div>
-                </div>
-                <div class="recent-post-1-container animate-rp" data-delay="200">
-                    <div class="img-container">
-                        <img src="/assets/recent-posts/recent-post-2.jpg" alt="recent-post-1">
-                    </div>
-                    <div class="recent-post-text">
-                        <p class="recent-post-date">14th March, 2021</p>
-                        <p class="recent-post-date"><b>Far Far away, behind the world mountains</b></p>
-                        <p class="recent-post-date">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                            adipisci qui exercitationem? </p>
-                        <a class="recent-post-readmore" href="">Read More ></a>
-                    </div>
-                </div>
-                <div class="recent-post-1-container animate-rp" data-delay="400">
-                    <div class="img-container">
-                        <img src="/assets/recent-posts/recent-post-3.jpg" alt="recent-post-1">
-                    </div>
-                    <div class="recent-post-text">
-                        <p class="recent-post-date">14th March, 2021</p>
-                        <p class="recent-post-date"><b>Far Far away, behind the world mountains</b></p>
-                        <p class="recent-post-date">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                            adipisci qui exercitationem? </p>
-                        <a class="recent-post-readmore" href="">Read More ></a>
-                    </div>
-                </div>
-                <div class="recent-post-1-container animate-rp" data-delay="600">
-                    <div class="img-container">
-                        <img src="/assets/recent-posts/recent-post-4.jpg" alt="recent-post-1">
-                    </div>
-                    <div class="recent-post-text">
-                        <p class="recent-post-date">14th March, 2021</p>
-                        <p class="recent-post-date"><b>Far Far away, behind the world mountains</b></p>
-                        <p class="recent-post-date">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                            adipisci qui exercitationem? </p>
-                        <a class="recent-post-readmore" href="">Read More ></a>
-                    </div>
-                </div>
+               <% }%>
+
             </div>
 
         </section>
