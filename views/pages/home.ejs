@@ -68,13 +68,19 @@
                             <img src="<%=blog.images[0].url%>" alt="recent-post-1">
                         </div>
                         <div class="recent-post-text">
-                            <p class="recent-post-date"><%= new Date(blog.dateUploaded).toLocaleString() %></p>
-                            <p class="recent-post-date"><b><%=blog.destination%></b></p>
-                            <p class="recent-post-date"><%=blog.experience.substring(0,50)%> </p>
+                            <p class="recent-post-date">
+                                <%= new Date(blog.dateUploaded).toLocaleString() %>
+                            </p>
+                            <p class="recent-post-date"><b>
+                                    <%=blog.destination%>
+                                </b></p>
+                            <p class="recent-post-date">
+                                <%=blog.experience.substring(0,50)%>
+                            </p>
                             <a class="recent-post-readmore" href="/dashboard/<%=blog._id%>">Read More ></a>
                         </div>
                     </div>
-               <% }%>
+                    <% }%>
 
             </div>
 
@@ -87,7 +93,7 @@
                     Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right
                     at the coast of the Semantics, a large language ocean.</p>
                 <button class="write-blog-btn">
-                    <a href="#">Write Your Own Blog Now </a>
+                    <a href="">Write Your Own Blog Now </a>
                 </button>
             </div>
             <div class="blog-img">
