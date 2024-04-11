@@ -48,6 +48,8 @@
 
         .aboutus-text p {
             position: absolute;
+            right: 10rem;
+            left: 10rem;
             color: #fff;
             z-index: 100;
             font-size: 1.2rem;
@@ -59,6 +61,8 @@
         .find-more-btn {
             margin-top: 20px;
             position: absolute;
+            top: 5rem;
+            right: 28rem;
             z-index: 100;
             font-size: 1.2rem;
             font-family: Poppins, Rubik, "Open Sans", -apple-system, BlinkMacSystemFont,
@@ -254,6 +258,10 @@
         }
 
         @media (max-width: 768px) {
+            .aboutus-section {
+                width: 100vw;
+            }
+
             .home-container {
                 flex-direction: column;
                 align-items: flex-start;
@@ -270,18 +278,22 @@
             }
 
             .aboutus-text {
+                text-align: center;
                 position: relative;
                 bottom: 5rem;
+                top: 2rem;
+                width: 80%;
             }
 
             .aboutus-text h1 {
-                font-size: 3rem;
-                margin-left: 2px;
+                font-size: 2rem;
+                margin-left: 0;
             }
 
 
             .aboutus-text p {
                 font-size: 1rem;
+                position: static;
             }
 
             .find-more-btn {
@@ -336,10 +348,11 @@
         <div class="aboutus-container">
             <div class="aboutus-text">
                 <h1 class="aboutus-title">About-Us</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Officiis aliquid, atque quis
-                    distinctio
-                    quasi
-                    Nemo <br> recusandae pariatur quia illum nesciunt <br>
+                <p>JourneyEase is a travel platform that empowers travelers through
+                    community-driven insights. With user-generated blogs, community
+                    engagement tools such as comments and likes, and a user-friendly interface,
+                    JourneyEase makes it easy for travelers to connect, share their experiences,
+                    and discover new destinations.
                     <button class="find-more-btn">
                         Find out More <a href="/about"></a>
                     </button>

@@ -81,6 +81,8 @@
     .user-profile .buttons {
       display: flex;
       flex-direction: column;
+      position: absolute;
+      right: 2rem;
     }
 
     .user-profile .buttons a {
@@ -230,10 +232,14 @@
     }
 
 
-    social-media-icons {
+    .social-media-icons {
       display: flex;
-      gap: 10px;
+      gap: 1rem;
       margin-top: 10px;
+    }
+
+    .social-media-icons i {
+      scale: 1.2;
     }
 
     .social-media-icons a {
@@ -243,7 +249,7 @@
     }
 
     .social-media-icons a:hover {
-      color: #101010;
+      color: #ff7f00;
       /* Bright red on hover */
     }
 
@@ -267,12 +273,6 @@
         font-size: medium;
       }
 
-      .user-profile .buttons {
-        margin-top: 5rem;
-        position: relative;
-        right: 28%;
-      }
-
     }
 
     .social-media-icons a:hover {
@@ -290,7 +290,9 @@
       </div>
 
       <div class="user-profile">
-        <img id="profile-img" src="<%=user.avatar.avatarUrl%>" alt="img" />
+        <div class="user-img">
+          <img id="profile-img" src="<%=user.avatar.avatarUrl%>" alt="img" />
+        </div>
         <div class="user-details">
           <h2>
             <%= user.username %>
@@ -302,14 +304,15 @@
             <%=user.bio%>
           </p> <!-- User bio -->
           <div class="social-media-icons">
-            <a href="<%=user.social.youtube%>" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="<%=user.social.youtube%>" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
             <a href="<%=user.social.twitter%>" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="<%=user.social.facebook%>" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="<%=user.social.facebook%>" target="_blank"><i class="fa-brands fa-youtube"></i></a>
             <a href="<%=user.social.instagram%> " target="_blank"><i class="fab fa-instagram"></i></a>
+            <div class="buttons">
+              <a href="/profile/<%=user._id%>/edit"> Edit</a>
+            </div>
           </div>
-        </div>
-        <div class="buttons">
-          <a href="/profile/<%=user._id%>/edit"> Edit</a>
+
         </div>
 
       </div>
