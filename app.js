@@ -138,6 +138,10 @@ app.get("/about", (req, res) => {
   res.render("pages/about.ejs");
 });
 
+app.get("/contact", (req, res) => {
+  res.render("dashboard/contact.ejs");
+});
+
 app.get("/blog", async (req, res) => {
   const allBlog = await Blog.find({}).sort({ dateUploaded: -1 });
   res.render("pages/blog.ejs", { allBlog });
