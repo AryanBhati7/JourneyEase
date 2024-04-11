@@ -183,10 +183,9 @@
   gap: 10px;
 }
 .step-img img {
-  margin-right: 40px;
   border-radius: 20px;
   height: 168px;
-  width: 320px;
+  width: 300px;
 }
 
 .recent-posts {
@@ -361,7 +360,7 @@
   }
 
   .three-step-container .step-text {
-    width: 95%;
+    width: 100%;
     text-align: center;
   }
 
@@ -443,21 +442,13 @@
   .step-text .step-head-text {
     margin-bottom: 0px;
   }
-  .step-section {
-    width: 5%;
-  }
 
-  .three-step-container .step-img {
+  .three-step-container .step img {
     margin: 0 auto;
-    width: 100%;
-    margin-right: 20px;
   }
 
   .recent-posts-container .recent-post-1-container {
     width: 100%;
-  }
-  .step-text .step-head-text h1 {
-    font-size: 1.8rem;
   }
 
   .Write-Your-Own-Blog .text .write-blog-btn {
