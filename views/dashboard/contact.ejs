@@ -1,0 +1,41 @@
+<%- include("../includes/sidebar.ejs") %>
+
+<script src="https://kit.fontawesome.com/637810c134.js" crossorigin="anonymous"></script>
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="left">
+                <h1 class="sub-title">Contact us</h1>
+                <p><i class="fa-regular fa-envelope"></i>sagespeak008@cyberdude.com</p>
+                <p><i class="fa-solid fa-phone"></i>+91 9394551205, +91 9863646492</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/_arnab.jk_008" target="_blank"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://github.com/xensen008" target="_blank"> <i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/arnabjk008/" target="_blank"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://twitter.com/Arnabjk008" target="_blank"><i
+                            class="fa-brands fa-twitter"></i></a>
+                    <a href="https://bio.link/xensen008" target="_blank"><i class="fa-solid fa-link"></i></a>
+                </div>
+                <a href="https://t.me/ihackit08" target="_blank" class="btn btn2">Telegram</a>
+            </div>
+            <div class="right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="your name*" required>
+                    <input type="email" name="email" placeholder="your Email*" required>
+                    <input type="tel" name="phone" pattern="[0-9]{10}"
+                        placeholder="Please enter a 10-digit phone number" maxlength="10" >
+                    <textarea name="Message" rows="6" placeholder="Your message*" required></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+                <span id="warn">pls wait for few sec after clicking the submit btn!</span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright <i class="fa-regular fa-copyright"></i> Arnab. Made with <i
+            class="fa-solid fa-heart"></i> by Arnabjk008</p>
+    </div>
+</div>
