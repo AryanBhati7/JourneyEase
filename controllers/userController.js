@@ -43,9 +43,9 @@ module.exports.renderSignUpform = (req, res) => {
     res.render("users/login.ejs");
   }
 
-  module.exports.login = (req, res, next) => {
+  module.exports.login = async (req, res, next) => {
     req.flash("success", "Welcome Back to JourneyEase");
-    let redirectUrl = res.locals.redirectUrl || "/dashboard";
+    let redirectUrl = await res.locals.redirectUrl || "/dashboard";
     res.redirect(redirectUrl);
   };
 
