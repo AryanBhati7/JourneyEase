@@ -122,7 +122,7 @@ app.use((req, res, next) => {
 app.use("/dashboard",dashboardRouter);
 app.use("/dashboard/:id/comment",commentRouter);
 app.use("/profile",profileRouter);
-app.use("/",userRouter);
+app.use("/user",userRouter);
 
 
 app.get("/", async (req, res) => {
