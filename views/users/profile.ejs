@@ -249,12 +249,27 @@
 
     @media screen and (max-width:768px) {
       .profile-container {
-        margin-left: 1.75rem;
+        width: 100%;
+        margin-left: 0;
+        overflow-x: hidden;
+        padding-left: 2rem;
       }
 
+      .profile-box {
+        width: 100vw;
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      .user-details h2,
+      h4 {
+        font-size: medium;
+      }
 
       .user-profile .buttons {
         margin-top: 5rem;
+        position: relative;
+        right: 28%;
       }
 
     }
@@ -262,22 +277,6 @@
     .social-media-icons a:hover {
       color: #101010;
       /* Bright red on hover */
-    }
-
-    @media (max-width:768px) {
-      .profile-container {
-        margin: 0;
-        padding: 1rem;
-      }
-
-      .profile-box {
-        width: 70rem;
-      }
-
-      .user-profile .buttons {
-        margin-top: 5rem;
-      }
-
     }
   </style>
 
