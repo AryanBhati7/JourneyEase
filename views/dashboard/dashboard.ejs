@@ -302,38 +302,37 @@
             <img src="<%=blog.images[0].url%>" alt="">
           </div>
           <div class="blog-post-content">
-
-            <div class="user-detail">
-              <img class="user-profile-img" src="/assets/blog.png" alt="">
-              <div class="username">
-                <% if (blog && blog.owner) { %>
+            <% if (blog && blog.owner) { %>
+              <div class="user-detail">
+                <img class="user-profile-img" src="<%=blog.owner.avatar.avatarUrl%>" alt="">
+                <div class="username">
                   <%= blog.owner.username %>'s
-                    <% } %>
+                </div>
               </div>
-            </div>
-            <div class="destination">
-              <b>
-                <%= blog.destination.toUpperCase()%>
-              </b>
-            </div>
-            <div class="country">
-              <i class="fa-solid fa-location-dot"></i>
-              <%=blog.state%>-<%=blog.country%>
-            </div>
-            <div class="budget">
-              <b><i class="fa-solid fa-money-check-dollar"></i> Budget :</b>
-              Rs. <%=blog.budget.toLocaleString('en-IN')%>
-            </div>
-            <div class="exp">
-              <b><i class="fa-solid fa-suitcase-rolling"></i> Experience :</b>
-              <%= blog.experience.substring(0, 195) %>.....
-                <span>Read More >> </span>
-            </div>
-            <div class="upload-time">
-              <i class="fa-solid fa-clock-rotate-left"></i>
-              <%= new Date(blog.dateUploaded).toLocaleString() %>
+              <% } %>
+                <div class="destination">
+                  <b>
+                    <%= blog.destination.toUpperCase()%>
+                  </b>
+                </div>
+                <div class="country">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <%=blog.state%>-<%=blog.country%>
+                </div>
+                <div class="budget">
+                  <b><i class="fa-solid fa-money-check-dollar"></i> Budget :</b>
+                  Rs. <%=blog.budget.toLocaleString('en-IN')%>
+                </div>
+                <div class="exp">
+                  <b><i class="fa-solid fa-suitcase-rolling"></i> Experience :</b>
+                  <%= blog.experience.substring(0, 195) %>.....
+                    <span>Read More >> </span>
+                </div>
+                <div class="upload-time">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  <%= new Date(blog.dateUploaded).toLocaleString() %>
 
-            </div>
+                </div>
           </div>
         </div>
       </a>
