@@ -83,7 +83,6 @@ module.exports.createNewBlog = async (req, res) => {
   newBlog.owner = req.user._id;
   newBlog.images = images;
   const saveBlog = await newBlog.save();
-  console.log(saveBlog);
   res.redirect("/dashboard");
 };
 
@@ -131,11 +130,10 @@ module.exports.updateBlog = async (req, res) => {
   res.redirect(`/dashboard/${id}`);
 };
 
-module.exports.destroyBog = async (req, res, next) => {
+module.exports.destroyBlog = async (req, res, next) => {
   let { id } = req.params;
   let currUser = req.user;
   let deletedBlog = await Blog.findByIdAndDelete(id);
-  console.log(deletedBlog);
   req.flash("success", " Blog Deleted");
   res.redirect(`/profile/${currUser._id}`);
 };

@@ -32,7 +32,7 @@ router.route("/")
     .delete(
         isLoggedIn,
         isOwner,
-        wrapAsync(dashboardController.destroyBog)
+        wrapAsync(dashboardController.destroyBlog)
         )
 
 router.get("/:id/edit", isLoggedIn,isOwner,wrapAsync(dashboardController.renderEditform));
