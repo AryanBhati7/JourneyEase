@@ -230,10 +230,14 @@
     }
 
 
-    social-media-icons {
+    .social-media-icons {
       display: flex;
-      gap: 10px;
+      gap: 1rem;
       margin-top: 10px;
+    }
+
+    .social-media-icons i {
+      scale: 1.2;
     }
 
     .social-media-icons a {
@@ -243,7 +247,7 @@
     }
 
     .social-media-icons a:hover {
-      color: #101010;
+      color: #ff7f00;
       /* Bright red on hover */
     }
 
@@ -302,9 +306,9 @@
             <%=user.bio%>
           </p> <!-- User bio -->
           <div class="social-media-icons">
-            <a href="<%=user.social.youtube%>" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="<%=user.social.youtube%>" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
             <a href="<%=user.social.twitter%>" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="<%=user.social.facebook%>" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="<%=user.social.facebook%>" target="_blank"><i class="fa-brands fa-youtube"></i></a>
             <a href="<%=user.social.instagram%> " target="_blank"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
