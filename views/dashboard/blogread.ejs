@@ -20,6 +20,9 @@
       transition: transform 0.3s ease-in-out;
     }
 
+    .blog-details h2 {
+      margin-left: 18%;
+    }
 
 
     .blog-details .images {
@@ -113,7 +116,7 @@
       text-align: end;
     }
 
-    
+
     .comment-section {
       max-width: 80%;
       margin: 20px auto;
@@ -266,7 +269,7 @@
         <p><b>Posted by:</b>
           <% if (blogs && blogs.owner) { %>
             <%= blogs.owner.username %>
-  <%}%>
+              <%}%>
         </p>
         <% } else { %>
           <p><b>Posted by:</b> Unknown</p>
@@ -287,33 +290,35 @@
                 <span class="username">
                   <% if (blogComment && blogComment.author) { %>
                     <%= blogComment.author.username %>
-                <% } %>
+                      <% } %>
                 </span>
 
                 <% if (blogComment && blogComment.author && currUser && currUser._id) { %>
                   <% if (blogComment.author._id && blogComment.author._id.equals(currUser._id)) { %>
-                      <form method="POST" action="/dashboard/<%= blogs._id %>/comment/<%= blogComment._id %>?_method=DELETE" class="delete-comment-form">
-                          <button class="btn btn-sm">Delete</button>
-                      </form>
-                  <% } %>
-              <% } %>
+                    <form method="POST"
+                      action="/dashboard/<%= blogs._id %>/comment/<%= blogComment._id %>?_method=DELETE"
+                      class="delete-comment-form">
+                      <button class="btn btn-sm">Delete</button>
+                    </form>
+                    <% } %>
+                      <% } %>
               </div>
               <span class="comment-text">
                 <%= blogComment.comment %>
               </span>
             </div>
-          <% } %>
-        <%}%>
-        <div class="comment-input">
-          <form action="/dashboard/<%=blogs._id%>/comment" method="POST" novalidate class="needs-validation">
-            <input name="comment[comment]" id="comment" cols="30" rows="5" class="form-control"
-              placeholder="Write a comment..." required></input>
-            <!-- <button>Like</button> -->
-            <button class="btn btn-outline-dark">Submit</button>
-          </form>
-        </div>
+            <% } %>
+              <%}%>
+                <div class="comment-input">
+                  <form action="/dashboard/<%=blogs._id%>/comment" method="POST" novalidate class="needs-validation">
+                    <input name="comment[comment]" id="comment" cols="30" rows="5" class="form-control"
+                      placeholder="Write a comment..." required></input>
+                    <!-- <button>Like</button> -->
+                    <button class="btn btn-outline-dark">Submit</button>
+                  </form>
+                </div>
       </div>
-    <% } %>
+      <% } %>
 
         <!-- <div class="comment-box">
     <textarea placeholder="Write a comment..."></textarea>
