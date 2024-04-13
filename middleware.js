@@ -1,27 +1,24 @@
-
 const Blog = require("./models/blog.models");
 const Comment = require("./models/comment.model");
 const ExpressError = require("./utils/ExpressError");
 // const {blogSchema} = require("./schema");
 
+module.exports.isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    //redirectUrl
+    req.session.redirectUrl = req.originalUrl;
+    req.flash("error", "You Must Be Logged In");
+    return res.redirect("/user/login");
+  }
+  next();
+};
 
-module.exports.isLoggedIn = (req,res,next)=>{
-    if(!req.isAuthenticated()){
-        //redirectUrl
-        req.session.redirectUrl = req.originalUrl;
-        req.flash("error","You Must Be Logged In");
-        return res.redirect("/login");
-    }
-    next();
-}
-
-module.exports.saveRedirectUrl = (req,res,next)=>{
-    if(req.session.redirectUrl){
-        res.locals.redirectUrl = req.session.redirectUrl;
-    };
-    next();
- };
-
+module.exports.saveRedirectUrl = (req, res, next) => {
+  if (req.session.redirectUrl) {
+    res.locals.redirectUrl = req.session.redirectUrl;
+  }
+  next();
+};
 
 // module.exports.isAdmin= async(req,res,next)=>{
 //     if(res.locals.currUser.role != "admin"){
@@ -30,7 +27,6 @@ module.exports.saveRedirectUrl = (req,res,next)=>{
 //     };
 //     next();
 // };
-
 
 // //Validate Images
 // module.exports.validateImage = (req,res,next)=>{
@@ -43,22 +39,22 @@ module.exports.saveRedirectUrl = (req,res,next)=>{
 //         next();
 //     }
 // };
-module.exports.isOwner = async(req,res,next)=>{
-    let {id} = req.params;
-    let BlogOwner = await Blog.findById(id);
-    if(! BlogOwner.owner.equals(res.locals.currUser._id)){
-        req.flash("error","You are Not the Owner Of these Blog");
-        return res.redirect(`/profile/${id}`);
-    };
-    next();
+module.exports.isOwner = async (req, res, next) => {
+  let { id } = req.params;
+  let BlogOwner = await Blog.findById(id);
+  if (!BlogOwner.owner.equals(res.locals.currUser._id)) {
+    req.flash("error", "You are Not the Owner Of these Blog");
+    return res.redirect(`/profile/${id}`);
+  }
+  next();
 };
 
-module.exports.isCommmentAuthor = async(req,res,next)=>{
-    let { id,commentId} = req.params;
-    let comment = await Comment.findById(commentId);
-    if(! comment.author.equals(res.locals.currUser._id)){
-        req.flash("error","You did not Post These Comment");
-        return res.redirect(`/dashboard/${id}`);
-    };
-    next();
+module.exports.isCommmentAuthor = async (req, res, next) => {
+  let { id, commentId } = req.params;
+  let comment = await Comment.findById(commentId);
+  if (!comment.author.equals(res.locals.currUser._id)) {
+    req.flash("error", "You did not Post These Comment");
+    return res.redirect(`/dashboard/${id}`);
+  }
+  next();
 };
