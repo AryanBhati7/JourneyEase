@@ -25,7 +25,7 @@ The website is hosted at: [JourneyEase](https://journeyease.onrender.com/)
 
 
 ## Hosted Website Link
-This project is hosted online. You can visit the website clone by clicking [here](https://open-clone-spotify.netlify.app/).
+This project is hosted online. You can visit the website clone by clicking [here](https://journeyease.onrender.com/).
 
 ## Features
 
