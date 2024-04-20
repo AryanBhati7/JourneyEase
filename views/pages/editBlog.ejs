@@ -129,7 +129,7 @@
   <div class="modal">
     <div class="modal-content" id="form-container">
       <span class="close-button" onclick="window.location.href='/dashboard'">&times;</span>
-      <h3>Edit Your  Blog</h3>
+      <h3>Edit Your Blog</h3>
       <form method="POST" action="/dashboard/<%=userBlog._id%>?_method=PUT" enctype="multipart/form-data">
         <div class="form-group">
           <label for="file-input">Select Image</label>
@@ -141,36 +141,39 @@
           <div>
             <img src="<%=originalImage%>">
           </div>
-       <%})%>
-        
-        <div class="form-group">
-          <label for="destination">Destination</label>
-          <input id="title" name="blog[destination]" placeholder="Enter Title" type="text" value="<%=userBlog.destination%>">
-        </div>
+          <%})%>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="budget">Budget</label>
-            <input id="budget" name="blog[budget]" placeholder=" 1200,etc" value="<%=userBlog.budget%>">
-          </div>
-          <div class="form-group">
-            <label for="state">State</label>
-            <input id="state" name="blog[state]" placeholder="Enter State You Visited" type="text" value="<%=userBlog.state%>">
-          </div>
-        </div>
+            <div class="form-group">
+              <label for="destination">Destination</label>
+              <input id="title" name="blog[destination]" placeholder="Enter Title" type="text" required
+                value="<%=userBlog.destination%> ">
+            </div>
 
-        <div class="form-group">
-          <label for="country">Country</label>
-          <input id="country" name="blog[country]" placeholder="Enter Country" type="text" value="<%=userBlog.country%>">
-        </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="budget">Budget</label>
+                <input id="budget" name="blog[budget]" placeholder=" 1200,etc" value="<%=userBlog.budget%>" required>
+              </div>
+              <div class="form-group">
+                <label for="state">State</label>
+                <input id="state" name="blog[state]" placeholder="Enter State You Visited" type="text"
+                  value="<%=userBlog.state%>" required>
+              </div>
+            </div>
 
-        <div class="form-group">
-          <label for="experience">Experience</label>
-          <textarea id="experience" name="blog[experience]" type="text"
-            placeholder="Enter your experience of your adventure trip" ><%=userBlog.experience%></textarea>
-        </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input id="country" name="blog[country]" placeholder="Enter Country" type="text"
+                value="<%=userBlog.country%>" required>
+            </div>
 
-        <button style="position: relative; z-index: 1;">Add</button>
+            <div class="form-group">
+              <label for="experience">Experience</label>
+              <textarea id="experience" name="blog[experience]" type="text"
+                placeholder="Enter your experience of your adventure trip" required><%=userBlog.experience%></textarea>
+            </div>
+
+            <button style="position: relative; z-index: 1;">Add</button>
       </form>
     </div>
   </div>

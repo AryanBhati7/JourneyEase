@@ -2,40 +2,39 @@ const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const Blog = require("../models/blog.models.js");
-const {isLoggedIn, isOwner,validateListing} = require("../middleware.js");
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 const dashboardController = require("../controllers/dashboardController.js");
-const multer  = require('multer')
-const {storage} = require("../cloudConfig.js");
+const multer = require("multer");
+const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 const mongoose = require("mongoose");
-router.route("/")
-.get(
+router
+  .route("/")
+  .get(isLoggedIn, wrapAsync(dashboardController.index))
+  .post(
     isLoggedIn,
-    wrapAsync(dashboardController.index)
-    ) 
-.post(
-    isLoggedIn, 
     upload.array("Blog[images][]", 6),
     wrapAsync(dashboardController.createNewBlog)
-    )
-    router.get("/search",wrapAsync(dashboardController.search));
-    router.get("/form",isLoggedIn,dashboardController.renderCreateForm);
+  );
+router.get("/search", wrapAsync(dashboardController.search));
+router.get("/form", isLoggedIn, dashboardController.renderCreateForm);
 
-    router.route("/:id")
-    .get(wrapAsync(dashboardController.blogRead))
-    .put(
-        isLoggedIn,
-        isOwner,
-        upload.array("Blog[images][]", 6),
-        wrapAsync(dashboardController.updateBlog)
-        )
-    .delete(
-        isLoggedIn,
-        isOwner,
-        wrapAsync(dashboardController.destroyBlog)
-        )
+router
+  .route("/:id")
+  .get(isLoggedIn, wrapAsync(dashboardController.blogRead))
+  .put(
+    isLoggedIn,
+    isOwner,
+    upload.array("Blog[images][]", 6),
+    wrapAsync(dashboardController.updateBlog)
+  )
+  .delete(isLoggedIn, isOwner, wrapAsync(dashboardController.destroyBlog));
 
-router.get("/:id/edit", isLoggedIn,isOwner,wrapAsync(dashboardController.renderEditform));
+router.get(
+  "/:id/edit",
+  isLoggedIn,
+  isOwner,
+  wrapAsync(dashboardController.renderEditform)
+);
 
-
-module.exports=router;
+module.exports = router;

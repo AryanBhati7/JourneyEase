@@ -141,7 +141,7 @@
         <div class="form-group">
           <label for="file-input">Select Avatar</label>
           <input type="file" id="file-input" name="User[avatar]" multiple accept="image/*"
-            onchange="previewImage(event)">
+            onchange="previewImage(event)" required>
           <div id="image-preview-container"></div>
         </div>
 
@@ -149,7 +149,7 @@
         <div class="form-group">
           <label for="username">Username</label>
           <input id="username" name="User[username]" placeholder="Enter your username" type="onlyread"
-            value="<%=editUser.username%> *Username Cannot be Changed*" disabled>
+            value="<%=editUser.username%> *Username Cannot be Changed*" disabled required>
         </div>
 
         <div class="form-row">
@@ -160,26 +160,26 @@
           <div class="form-group">
             <label for="youtube">Youtube</label>
             <input id="youtube" name="User[social][youtube]" placeholder="Enter Your Youtube Url" type="text"
-              value="<%=editUser.social.youtube%>">
+              value="<%=editUser.social.youtube%>" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="twitter">X</label>
           <input id="twitter" name="User[social][twitter]" placeholder="Enter Your X url" type="text"
-            value="<%=editUser.social.twitter%>">
+            value="<%=editUser.social.twitter%>" required>
         </div>
 
         <div class="form-group">
           <label for="instagram">Instagram</label>
           <input id="instagram" name="User[social][instagram]" type="text" placeholder="Enter your Instagram Url"
-            value="<%=editUser.social.instagram%>">
+            value="<%=editUser.social.instagram%>" required>
         </div>
 
         <div class="form-group">
           <label for="facebook">Facebook</label>
           <input id="facebook" name="User[social][facebook]" type="text" placeholder="Enter your Facebook Url"
-            value=" <%=editUser.social.facebook%>">
+            value=" <%=editUser.social.facebook%>" required>
         </div>
 
         <button style="position: relative; z-index: 1;">Add</button>
